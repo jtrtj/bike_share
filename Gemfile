@@ -47,3 +47,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #ruby version for heroku
 ruby "2.4.1"
+
+#bulma styling
+gem "bulma-rails", "~> 0.7.1"
