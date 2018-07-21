@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   
-  resources :stations
+  resources :stations, only: [:index, :show]
 end
