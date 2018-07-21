@@ -9,5 +9,6 @@ FactoryBot.define do
     end_station_name "Castro"
     start_date Date.today
     end_date Date.today
+    zip_code 91234
   end
 end

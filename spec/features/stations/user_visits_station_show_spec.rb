@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'A visitor' do
   context 'visits stations show page with station name url' do
     it 'sees stations with name, dock count, city, installation date, longitude and latitude' do
-      station_1 = Station.create!(name: 'City hall', dock_count: 20, city: 'San Jose', installation_date: Time.now, latitude: 32.329732, longitude: -121.901, created_at: 2018-02-21, updated_at: 2018-03-21)
+      station_1 = Station.create!(name: 'City hall', dock_count: 20, city: 'San Jose', installation_date: Time.now, created_at: 2018-02-21, updated_at: 2018-03-21)
 
       visit '/city-hall'
 

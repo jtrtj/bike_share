@@ -1,0 +1,34 @@
+<div class="container">
+<section class="hero is-small is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-size-1 has-text-centered has-text-weight-bold">Trips</h1>
+    </div>
+  </div>
+
+  <table class="table">
+    <tr>
+      <td>Duration</td>
+      <td>Start Date</td>
+      <td>Start Station</td>
+      <td>End Date</td>
+      <td>End Station</td>
+      <td>Bike</td>
+      <td>Subscription Type</td>
+      <td>Zip Code</td>
+    </tr>
+    <% @trips.each do |trip| %>
+    <tr>
+      <td><%=trip.duration%></td>
+      <td><%=trip.start_date%></td>
+      <td><%=trip.start_station_id%></td>
+      <td><%=trip.end_date%></td>
+      <td><%=trip.end_station_id%></td>
+      <td><%=trip.bike_id%></td>
+      <td><%=trip.subscription_type%></td>
+      <td><%=trip.zip_code%></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+</div>

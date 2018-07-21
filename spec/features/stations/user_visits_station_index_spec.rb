@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'A visitor' do
   context 'visits stations index' do
     it 'sees all stations with name, dock count, city, installation date' do
-      station_1 = Station.create!(name: 'City hall', dock_count: 20, city: 'San Jose', installation_date: Time.now, latitude: 32.329732, longitude: -121.901, created_at: 2018-02-21, updated_at: 2018-03-21)
-      station_2 = Station.create!(name: 'South Blvd', dock_count: 15, city: 'San Jose', installation_date: Time.now, latitude: 32.329732, longitude: -121.901, created_at: 2018-01-11, updated_at: 2018-02-11)
+      station_1 = Station.create!(name: 'City hall', dock_count: 20, city: 'San Jose', installation_date: Time.now, created_at: 2018-02-21, updated_at: 2018-03-21)
+      station_2 = Station.create!(name: 'South Blvd', dock_count: 15, city: 'San Jose', installation_date: Time.now, created_at: 2018-01-11, updated_at: 2018-02-11)
 
       visit stations_path
 
