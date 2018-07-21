@@ -14,12 +14,3 @@ describe 'A visitor' do
     end
   end
 end
-
-=begin
-As a visitor,
-When I visit the station show
-I see the url '/:station-name' with that station's name instead of :id,
-I see all attributes for that station.
-
-** All Attributes must be present **
-=end
