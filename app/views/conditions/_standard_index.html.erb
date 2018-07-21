@@ -1,0 +1,28 @@
+<h1 class="title">Conditions</h1>
+
+<section>
+  <table class="table">
+    <tr>
+      <th>Date<th>
+      <th>Max. Temperature (f)<th>
+      <th>Avg. Temperature (f)<th>
+      <th>Min. Temperature (f)<th>
+      <th>Avg. Humidity<th>
+      <th>Avg. Visibility (Miles)<th>
+      <th>Avg. Wind Speed (Mph)<th>
+      <th>Precipitation (Inches)<th>
+    </tr>
+    <% @conditions.each do |condition| %>
+      <tr>
+        <td><%= condition.date %></td>
+        <td><%= condition.max_temperature_f %></td>
+        <td><%= condition.mean_temperature_f %></td>
+        <td><%= condition.min_temperature_f %></td>
+        <td><%= condition.mean_humidity %></td>
+        <td><%= condition.mean_visibility_miles %></td>
+        <td><%= condition.mean_wind_speed_mph %></td>
+        <td><%= condition.precipitation_inches%></td>
+      </tr>
+    <% end %>
+  </table>
+</section>

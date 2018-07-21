@@ -9,7 +9,6 @@ class CreateConditions < ActiveRecord::Migration[5.1]
       t.decimal :mean_visibility_miles
       t.decimal :mean_wind_speed_mph
       t.decimal :precipitation_inches
-
       t.timestamps
     end
   end

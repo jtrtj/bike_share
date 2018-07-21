@@ -3,7 +3,8 @@ require 'rails_helper'
 describe "A visitor" do
   context "visits trips index page" do
     it "sees duration, start date, start station, end date, end station, bike id, subscription type, zip code of a trip" do
-      trip = create(:trip)
+      station = create(:station)
+      trip = create(:trip, start_station: station, end_station: station)
 
       visit trips_path
 
