@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180721003357) do
+ActiveRecord::Schema.define(version: 20180721023820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,30 @@ ActiveRecord::Schema.define(version: 20180721003357) do
     t.decimal "mean_visibility_miles"
     t.decimal "mean_wind_speed_mph"
     t.decimal "precipitation_inches"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string "name"
+    t.integer "dock_count"
+    t.string "city"
+    t.datetime "installation_date"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.integer "bike_id"
+    t.integer "subscription_type"
+    t.integer "duration"
+    t.integer "zip_code"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "start_station_id"
+    t.integer "end_station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
