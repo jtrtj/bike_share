@@ -12,16 +12,8 @@
   </head>
 
   <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a href="/" class="navbar-item">BikeShare</a>
-        <a href="#" class="navbar-item">Stations</a>
-        <a href="#" class="navbar-item">Trips</a>
-        <a href="#" class="navbar-item">Accessories</a>
-        <a href="#" class="navbar-item">Cart</a>
-        <a href="#" class="navbar-item">Login</a>
-      </div>
-    </nav>
+    <%= render partial: '/layouts/nav' %>
+
     <%= yield %>
   </body>
 </html>
