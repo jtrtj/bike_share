@@ -7,4 +7,7 @@ describe Status, type: :model do
     it {should validate_presence_of(:docks_available)}
     it {should validate_presence_of(:time)}
   end
+  describe 'relationships' do
+    it {should belong_to(:station)}
+  end
 end
