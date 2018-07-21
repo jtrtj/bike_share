@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   
   resources :trips, only: [:index]
+
+  resources :stations, only: [:index, :show]
+
+  get '/:id', to: 'stations#show'
 end

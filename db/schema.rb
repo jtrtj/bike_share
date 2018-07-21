@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180721023820) do
+ActiveRecord::Schema.define(version: 20180721222907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20180721023820) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
   create_table "stations", force: :cascade do |t|
     t.string "name"
     t.integer "dock_count"
@@ -35,21 +47,33 @@ ActiveRecord::Schema.define(version: 20180721023820) do
     t.datetime "installation_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.integer "station_id"
+    t.integer "bikes_available"
+    t.integer "docks_available"
+    t.datetime "time"
   end
 
   create_table "trips", force: :cascade do |t|
-    t.integer "bike_id"
-    t.integer "subscription_type"
     t.integer "duration"
-    t.integer "zip_code"
     t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer "start_station_id"
-    t.integer "end_station_id"
     t.string "start_station_name"
+    t.integer "start_station_id"
+    t.datetime "end_date"
     t.string "end_station_name"
+    t.integer "end_station_id"
+    t.integer "bike_id"
+    t.string "subscription_type"
+    t.integer "zip_code"
+    t.bigint "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_station_id"], name: "index_trips_on_end_station_id"
+    t.index ["start_station_id"], name: "index_trips_on_start_station_id"
+    t.index ["station_id"], name: "index_trips_on_station_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,4 +84,7 @@ ActiveRecord::Schema.define(version: 20180721023820) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "trips", "stations"
+  add_foreign_key "trips", "stations", column: "end_station_id"
+  add_foreign_key "trips", "stations", column: "start_station_id"
 end
