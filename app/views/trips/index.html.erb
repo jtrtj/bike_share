@@ -1,7 +1,6 @@
 <h1>Trips</h1>
 
-<table>
-  <% @trips.each do |trip| %>
+<table class="table">
   <tr>
     <td>Duration</td>
     <td>Start Date</td>
@@ -12,16 +11,16 @@
     <td>Subscription Type</td>
     <td>Zip Code</td>
   </tr>
+  <% @trips.each do |trip| %>
   <tr>
-    <td>trip.duration</td>
-    <td>trip.start_date</td>
-    <td>trip.start_station</td>
-    <td>trip.end_date</td>
-    <td>trip.end_station</td>
-    <td>trip.bike_id</td>
-    <td>trip.bike_id</td>
-    <td>trip.subscription_type</td>
-    <td>trip.zip_code</td>
+    <td><%=trip.duration%></td>
+    <td><%=trip.start_date%></td>
+    <td><%=trip.start_station_id%></td>
+    <td><%=trip.end_date%></td>
+    <td><%=trip.end_station_id%></td>
+    <td><%=trip.bike_id%></td>
+    <td><%=trip.subscription_type%></td>
+    <td><%=trip.zip_code%></td>
   </tr>
   <% end %>
 </table>
