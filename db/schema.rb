@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180721210255) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,24 +46,35 @@ ActiveRecord::Schema.define(version: 20180721210255) do
     t.integer "dock_count"
     t.string "city"
     t.datetime "installation_date"
-    t.decimal "latitude"
-    t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.integer "station_id"
+    t.integer "bikes_available"
+    t.integer "docks_available"
+    t.datetime "time"
+  end
+
   create_table "trips", force: :cascade do |t|
-    t.integer "bike_id"
-    t.integer "subscription_type"
     t.integer "duration"
-    t.integer "zip_code"
     t.datetime "start_date"
-    t.datetime "end_date"
+    t.string "start_station_name"
     t.integer "start_station_id"
+    t.datetime "end_date"
+    t.string "end_station_name"
     t.integer "end_station_id"
+    t.integer "bike_id"
+    t.string "subscription_type"
+    t.integer "zip_code"
+    t.bigint "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_station_id"], name: "index_trips_on_end_station_id"
+    t.index ["start_station_id"], name: "index_trips_on_start_station_id"
+    t.index ["station_id"], name: "index_trips_on_station_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +85,7 @@ ActiveRecord::Schema.define(version: 20180721210255) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "trips", "stations"
+  add_foreign_key "trips", "stations", column: "end_station_id"
+  add_foreign_key "trips", "stations", column: "start_station_id"
 end

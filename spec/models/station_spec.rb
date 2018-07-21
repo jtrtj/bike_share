@@ -6,7 +6,9 @@ describe Station, type: :model do
     it {should validate_presence_of(:dock_count)}
     it {should validate_presence_of(:city)}
     it {should validate_presence_of(:installation_date)}
-    it {should validate_presence_of(:latitude)}
-    it {should validate_presence_of(:longitude)}
+  end
+  describe 'relationships' do
+    it {should have_many(:statuses)}
+    it {is_expected.to respond_to(:trips)}
   end
 end
