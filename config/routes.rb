@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :stations, only: [:index, :show]
+  resources :stations, only: [:index]
+  resources :conditions, only: [:index, :show]
+
 
   get '/:id', to: 'stations#show'
 end
