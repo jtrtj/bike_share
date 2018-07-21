@@ -33,8 +33,6 @@ ActiveRecord::Schema.define(version: 20180721023820) do
     t.integer "dock_count"
     t.string "city"
     t.datetime "installation_date"
-    t.decimal "latitude"
-    t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +46,8 @@ ActiveRecord::Schema.define(version: 20180721023820) do
     t.datetime "end_date"
     t.integer "start_station_id"
     t.integer "end_station_id"
+    t.string "start_station_name"
+    t.string "end_station_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

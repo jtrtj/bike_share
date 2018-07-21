@@ -5,9 +5,7 @@ describe "A visitor" do
     it "sees duration, start date, start station, end date, end station, bike id, subscription type, zip code of a trip" do
       station1 = create(:station)
       station2 = create(:station)
-      trips = create(:trip, start_station: station1, end_station: station2)
-
-      visit trips_index
+      trip = create(:trip)
 
       expect(page).to have_content(trip.duration) 
       expect(page).to have_content(trip.start_date) 
