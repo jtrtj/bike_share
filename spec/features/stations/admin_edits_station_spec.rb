@@ -12,15 +12,15 @@ describe 'an admin' do
       within "#station-#{station.id}" do
         click_on 'Edit'
       end
-      
-      expect(current_path).to eq(edit_admin_station_path(station))
+
+      expect(current_path).to eq(edit_admin_station_path(station.id))
 
       fill_in :station_name, with: 'Pier 44'
       fill_in :station_dock_count, with: 12
       fill_in :station_city, with: 'Bellevue'
       fill_in :station_installation_date, with: Time.now
 
-      click_button 'Edit Station'
+      click_button 'Update Station'
 
       expect(current_path).to eq(station_path(station))
       expect(page).to have_content('Pier 44')

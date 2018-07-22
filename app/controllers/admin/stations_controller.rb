@@ -15,7 +15,10 @@ class Admin::StationsController < Admin::BaseController
   end
 
   def edit
-  end 
+    @station = Station.find(params[:id])
+  end
+
+  
 
   def destroy
     station = Station.find(params[:id])
