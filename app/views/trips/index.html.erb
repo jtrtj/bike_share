@@ -1,37 +1,43 @@
 <div class="container">
-<section class="hero is-small is-primary is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title is-size-1 has-text-centered has-text-weight-bold">Trips</h1>
+  <section class="hero is-small is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-size-1 has-text-centered has-text-weight-bold">Trips</h1>
+      </div>
+    </div>
+  </section>
+<br>
+<br>
+  <div>
+    <%= will_paginate %>
+    <br>
+    <table class="table is-bordered is-striped">
+      <thead>
+        <th>Duration</th>
+        <th>Start Date</th>
+        <th>Start Station</th>
+        <th>End Date</th>
+        <th>End Station</th>
+        <th>Bike</th>
+        <th>Subscription Type</th>
+        <th>Zip Code</th>
+      </thead>
+
+      <% @trips.each do |trip| %>
+        <tbody>
+          <tr>
+            <td><%=trip.duration%></td>
+            <td><%=trip.start_date%></td>
+            <td><%=trip.start_station_id%></td>
+            <td><%=trip.end_date%></td>
+            <td><%=trip.end_station_id%></td>
+            <td><%=trip.bike_id%></td>
+            <td><%=trip.subscription_type%></td>
+            <td><%=trip.zip_code%></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
     </div>
   </div>
-
-<%= will_paginate %>
-  <table class="table is-bordered is-striped">
-    <thead>
-      <th>Duration</th>
-      <th>Start Date</th>
-      <th>Start Station</th>
-      <th>End Date</th>
-      <th>End Station</th>
-      <th>Bike</th>
-      <th>Subscription Type</th>
-      <th>Zip Code</th>
-    </thead>
-    <% @trips.each do |trip| %>
-    <tbody>
-      <tr>
-        <td><%=trip.duration%></td>
-        <td><%=trip.start_date%></td>
-        <td><%=trip.start_station_id%></td>
-        <td><%=trip.end_date%></td>
-        <td><%=trip.end_station_id%></td>
-        <td><%=trip.bike_id%></td>
-        <td><%=trip.subscription_type%></td>
-        <td><%=trip.zip_code%></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
-</div>
 </div>
