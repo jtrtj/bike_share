@@ -26,6 +26,7 @@ class Admin::StationsController < Admin::BaseController
       flash[:notice] = "#{old_station_name} has been updated!"
       redirect_to station_path(@station)
     else
+      flash[:notice] = "#{old_station_name} has not been updated!"
       render :edit
     end
   end
