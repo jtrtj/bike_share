@@ -21,9 +21,3 @@ describe "A visitor" do
     end
   end
 end
-
-=begin
-As a visitor,
-When I visit the trip show,
-I see all attributes for that trip.
-=end
