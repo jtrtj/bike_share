@@ -1,0 +1,44 @@
+<section id="grad" class="hero is-white is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                         <%= form_for [:admin, @station] do |f| %>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :name %>
+                                  <%= f.text_field :name, class: "input is-large",placeholder: "Station's Name" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :dock_count%>
+                                  <%= f.number_field :dock_count, class: "input is-large", placeholder: "Dock Count" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :city %>
+                                  <%= f.text_field :city, class: "input is-large", placeholder: "Station's City" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :installation_date %>
+                                  <%= f.date_field :installation_date, class: "input is-large" %>
+                                </div>
+                            </div>
+                            <%= f.submit class: "button is-block is-info is-large is-fullwidth" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script async type="text/javascript" src="../js/bulma.js"></script>
+
+
+Add CommentCollapse 
+Message Input
+
+Message #bizzike_share

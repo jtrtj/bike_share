@@ -19,16 +19,16 @@
         <th>Installation Date</th>
       </thead>
 
-      <% @stations.each do |station| %>
-        <tbody>
-          <tr>
-            <td><%= station.name %></td>
-            <td><%= station.dock_count %></td>
-            <td><%= station.city %></td>
-            <td><%= station.installation_date %></td>
-          </tr>
-        </tbody>
-      <% end %>
+      <tbody>
+        <% @stations.each do |station| %>
+            <tr>
+              <td><%= station.name %></td>
+              <td><%= station.dock_count %></td>
+              <td><%= station.city %></td>
+              <td><%= station.installation_date %></td>
+            </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>

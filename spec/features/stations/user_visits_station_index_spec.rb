@@ -17,6 +17,9 @@ describe 'A visitor' do
       expect(page).to have_content(station_2.dock_count)
       expect(page).to have_content(station_2.city)
       expect(page).to have_content(station_2.installation_date)
+
+      expect(page).to_not have_button('Edit')
+      expect(page).to_not have_button('Delete')
     end
   end
 end
