@@ -9,6 +9,7 @@ class Admin::StationsController < Admin::BaseController
       redirect_to station_path(@station)
       flash[:notice] = "#{@station.name} created!"
     else
+      flash[:notice] = "One of more fields are invalid"
       render :new
     end
   end
