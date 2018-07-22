@@ -1,11 +1,38 @@
 <div class="container">
-  <section class="hero is-small is-primary is-bold">
+  <section class="hero is-small is-info is-bold">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-size-1 has-text-centered has-text-weight-bold">
           Trip <%= @trip.id %>
         </h1>
+        <h2 class="title is-size-2 has-text-centered has-text-weight-bold">
+          <%= @trip.duration / 60 %> Minutes
+        </h2>
+        <h3 class="title is-size-2 has-text-centered has-text-weight-bold">
+          Bike: <%= @trip.bike_id %>
+        </h3>
+        <div class="level">
+          <div class="level-item has-text-centered">
+            <p class="subtitle is-5">
+              Subscription Type: <%= @trip.subscription_type %>
+            </p>
+          </div>
+          <div class="level-item has-text-centered">
+            <p class="subtitle is-5">
+              Zip Code: <%= @trip.zip_code %>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <div class="tile is-ancestor">
+      <div class="tile is-6">
+        <p class="title">Start Station</p>
+        <p class="subtitle">Name: <%= @trip.start_station_name %></p>
+        <p class="subtitle">Date: <%= @trip.start_date %></p>
+        <p class="subtitle">ID: <%= @trip.start_station_id %></p>
+      </div>
+  </div>
 </div>
