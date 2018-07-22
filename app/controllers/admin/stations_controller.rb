@@ -14,6 +14,9 @@ class Admin::StationsController < Admin::BaseController
     end
   end
 
+  def edit
+  end 
+
   def destroy
     station = Station.find(params[:id])
     deleted_station_name = station.name
