@@ -9,7 +9,7 @@ describe 'An admin' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit stations_path
-      save_and_open_page
+      
       within "#station-#{station.id}" do
         expect(page).to have_content(station.name)
         expect(page).to have_content(station.dock_count)
