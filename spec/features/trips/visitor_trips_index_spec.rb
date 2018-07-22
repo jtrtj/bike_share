@@ -19,13 +19,14 @@ describe "A visitor" do
     end
     it 'see the first 30 trips and a button to see more pages of trips' do
       station = create(:station)
-      29trips = create(:trip, 29)
-      trip30 = create(:trip)
-      trip31 = create(:trip)
+      trips = 29.times do
+        create(:trip, start_station: station, end_station: station)
+      end
+      trip30 = create(:trip, start_station: station, end_station: station)
+      trip31 = create(:trip, start_station: station, end_station: station)
 
       visit trips_path
 
-      expect(page).to have_content(29trips)
       expect(page).to have_content(trip30)
       expect(page).to_not have_content(trip31)
     end
