@@ -24,11 +24,34 @@ describe "A visitor" do
       end
       trip30 = create(:trip, bike_id: 1234, start_station: station, end_station: station)
       trip31 = create(:trip, bike_id: 5678, start_station: station, end_station: station)
+      trips_page_2 = 50.times do
+        create(:trip, start_station: station, end_station: station)
+      end
 
       visit trips_path
-save_and_open_page
+
       expect(page).to have_content(trip30.bike_id)
       expect(page).to_not have_content(trip31.bike_id)
+      expect(page).to have_content("Previous")
+      expect(page).to have_content("Next")
+    end
+    it 'on the second page, there should be buttons to move both forward and backward in time.' do
+      station = create(:station)
+      trips = 75.times do
+        create(:trip, start_station: station, end_station: station)
+      end
+      last_trip = create(:trip, bike_id: 1234567, start_station: station, end_station: station)
+
+
+      visit trips_path
+      click_on "Next"
+
+      expect(page).to have_content("Previous")
+      expect(page).to have_content("Next")
+
+      click_on "Next"
+
+      expect(page).to have_content(last_trip.bike_id)
     end
   end
 end
@@ -36,8 +59,6 @@ end
 =begin
 As a visitor,
 When I visit the trips index,
-I see the first 30 trips (duration, start date, start station, end date, end station, bike id, subscription type, zip code),
-I also see a button to see more pages of trips,
 
 When I visit a second page, there should be buttons to move both forward and backward in time.
 
