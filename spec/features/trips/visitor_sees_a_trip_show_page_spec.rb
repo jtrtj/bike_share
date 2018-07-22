@@ -6,8 +6,8 @@ describe "A visitor" do
       station = create(:station)
       trip = create(:trip, start_station: station, end_station: station)
 
-      visit trip_path
-
+      visit trip_path(trip)
+save_and_open_page
       expect(page).to have_content(trip.duration)
       expect(page).to have_content(trip.start_date)
       expect(page).to have_content(trip.start_station_name)

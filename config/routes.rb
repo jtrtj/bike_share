@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :conditions, only: [:index, :show]
 
   get '/:id', to: 'stations#show'
+  get '/:id', to: 'trips#show'
 end
