@@ -6,13 +6,14 @@ describe 'An admin' do
       admin = create(:user, role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_station_path
-      save_and_open_page
+      
       fill_in :station_name, with: 'Pier 44'
       fill_in :station_dock_count, with: 12
       fill_in :station_city, with: 'Bellevue'
       fill_in :station_installation_date, with: Time.now
 
       click_button 'Create Station'
+
       expect(current_path).to eq(station_path(Station.last))
       expect(page).to have_content("#{Station.last.name} created!")
     end

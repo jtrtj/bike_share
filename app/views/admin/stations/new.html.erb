@@ -3,7 +3,7 @@
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
                     <div class="box">
-                         <%= form_for @station do |f| %>
+                         <%= form_for [:admin, @station] do |f| %>
                             <div class="field">
                                 <div class="control">
                                   <%=f.label :name %>
