@@ -16,4 +16,12 @@ describe "nav system" do
 
     expect(current_path).to eq(stations_path)
    end
+
+   it 'redirects to trips index when you click on Trips' do
+    visit root_path
+
+    click_on "Trips"
+
+    expect(current_path).to eq(trips_path)
+   end
 end
