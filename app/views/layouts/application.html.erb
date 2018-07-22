@@ -13,8 +13,9 @@
 
   <body>
     <%= render partial: '/layouts/nav' %>
-    <%= render partial: '/layouts/flash' %>
-    
+    <% if flash[:notice] %>
+      <%= render partial: '/layouts/flash' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
