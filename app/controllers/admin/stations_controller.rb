@@ -1,4 +1,7 @@
 class Admin::StationsController < Admin::BaseController
+  def new
+    @station = Station.new
+  end
 
   def destroy
     station = Station.find(params[:id])
