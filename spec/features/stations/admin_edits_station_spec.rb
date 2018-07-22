@@ -22,6 +22,7 @@ describe 'an admin' do
 
       click_button 'Update Station'
 
+      expect(page).to have_content("#{station.name} has been updated!")
       expect(current_path).to eq(station_path(station))
       expect(page).to have_content('Pier 44')
       expect(page).to have_content("12")
