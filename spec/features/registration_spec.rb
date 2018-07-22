@@ -8,6 +8,7 @@ describe 'a visitor' do
       click_link 'Log In'
       expect(current_path).to eq(login_path)
       expect(page).to have_button('Login')
+      expect(page).to have_link('Create Account')
       expect(page).to have_field(:user_name)
       expect(page).to have_field(:password)
     end
