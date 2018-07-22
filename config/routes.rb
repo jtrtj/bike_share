@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
 
-  resources :users, only: [:new]
+  get '/dashboard', to: 'dashboard#show'
+
+  resources :users, only: [:new, :create]
 
   resources :trips, only: [:index]
 
@@ -14,5 +16,4 @@ Rails.application.routes.draw do
   resources :conditions, only: [:index, :show]
 
   get '/:id', to: 'stations#show'
-
 end

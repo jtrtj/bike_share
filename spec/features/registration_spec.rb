@@ -14,7 +14,21 @@ describe 'a visitor' do
     end
 
     it 'can create account from login page' do
+      user_name = 'Pol'
+      password = 'Polpo'
 
+      visit login_path
+
+      click_link 'Create Account'
+      expect(current_path).to eq(new_user_path)
+
+      fill_in :user_user_name, with: user_name
+      fill_in :user_password, with: password
+      click_button 'Sign Up'
+      expect(current_path).to eq(dashboard_path)
+      within '.navbar' do
+        expect(page).to have_content("Logged in as #{user_name}")
+      end
     end
   end
 end
