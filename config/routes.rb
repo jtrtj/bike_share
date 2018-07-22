@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  resources :trips, only: [:index]
+  resources :trips, only: [:index, :show]
 
   resources :stations, only: [:index, :show]
   resources :conditions, only: [:index, :show]
