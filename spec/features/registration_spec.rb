@@ -29,6 +29,9 @@ describe 'a visitor' do
       within '.navbar' do
         expect(page).to have_content("Logged in as #{user_name}")
       end
+
+      expect(page).to_not have_link('Log In')
+      expect(page).to have_link('Log Out')
     end
   end
 end
