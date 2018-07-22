@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   resources :trips, only: [:index]
 
   resources :stations, only: [:index, :show]
+  namespace :admin do
+    resources :stations, only: [:edit, :update, :destroy]
+  end
+
   resources :conditions, only: [:index, :show]
 
   get '/:id', to: 'stations#show'

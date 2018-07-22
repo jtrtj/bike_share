@@ -26,8 +26,8 @@
               <td><%= station.dock_count %></td>
               <td><%= station.city %></td>
               <td><%= station.installation_date %></td>
-              <td><%= button_to  "Edit", admin_edit_station_path, method: "GET" %>
-              <td><%= button_to  "Delete", admin_station_path %>
+              <td><%= button_to  "Edit", edit_admin_station_path(station), method: "GET" %></td>
+              <td><%= button_to  "Delete", admin_station_path(station), method: "DELETE" %></td>
             </tr>
         <% end %>
       </tbody>
