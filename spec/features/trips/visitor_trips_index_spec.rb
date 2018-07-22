@@ -22,13 +22,13 @@ describe "A visitor" do
       trips = 29.times do
         create(:trip, start_station: station, end_station: station)
       end
-      trip30 = create(:trip, start_station: station, end_station: station)
-      trip31 = create(:trip, start_station: station, end_station: station)
+      trip30 = create(:trip, bike_id: 1234, start_station: station, end_station: station)
+      trip31 = create(:trip, bike_id: 5678, start_station: station, end_station: station)
 
       visit trips_path
-
-      expect(page).to have_content(trip30)
-      expect(page).to_not have_content(trip31)
+save_and_open_page
+      expect(page).to have_content(trip30.bike_id)
+      expect(page).to_not have_content(trip31.bike_id)
     end
   end
 end
