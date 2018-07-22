@@ -11,7 +11,7 @@ describe 'An admin' do
       station = create(:station)
 
       visit stations_path
-      
+
       within "#station-#{station.id}" do
         expect(page).to have_content(station.name)
         expect(page).to have_content(station.dock_count)
@@ -25,24 +25,17 @@ describe 'An admin' do
 
     it 'can delete a station from the stations index' do
       station_1 = create(:station, name: 'station 1')
-      station_2 = create(:station, name: 'station 2')
+      station_2 = create(:station, name: 'station 2', city: 'M.View')
+      station_count = Station.count
 
       visit stations_path
-      
+
       within "#station-#{station_1.id}" do
         click_button 'Delete'
       end
 
-      expect(page).to_not have_content(station_1.name)
-      expect(page).to_not have_content(station_1.dock_count)
-      expect(page).to_not have_content(station_1.city)
-      expect(page).to_not have_content(station_1.installation_date)
-      
-      expect(page).to have_content(station_2.name)
-      expect(page).to have_content(station_2.dock_count)
-      expect(page).to have_content(station_2.city)
-      expect(page).to have_content(station_2.installation_date)
+      expect(page).to_not have_css("#station-#{station_1.id}")
+      expect(Station.count).to_not eq(station_count)
     end
   end
 end
-
