@@ -55,13 +55,3 @@ describe "A visitor" do
     end
   end
 end
-
-=begin
-As a visitor,
-When I visit the trips index,
-
-When I visit a second page, there should be buttons to move both forward and backward in time.
-
-** All Attributes must be present **
-
-=end
