@@ -22,10 +22,3 @@ describe 'An admin' do
   end
 end
 
-=begin
-As an admin user,
-When I visit the stations index,
-I see everything a visitor can see,
-I see a button next to each station to edit that station,
-I also see a button next to each station to delete that station.
-=end

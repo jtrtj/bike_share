@@ -1,1 +1,5 @@
-<%= render partial: 'standard_index' %>
+<% if current_admin? %>
+  <% render partial: 'admin_index' %>
+<% else %>
+  <%= render partial: 'standard_index' %>
+<% end %>
