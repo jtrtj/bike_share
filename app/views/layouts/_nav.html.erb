@@ -18,12 +18,16 @@
 
     </div>
       <div class="navbar-end">
-
-          <%= link_to 'Log Out', '#', class: 'navbar-item'%>
-       
+        <% if current_user %>
+          <a class='navbar-item'>
+            Logged in as <%= current_user.user_name %>
+          </a>
+          <%= link_to 'Log Out', logout_path, class: 'navbar-item'%>
+        <% else %>
           <%= link_to 'Sign Up', '#', class: 'navbar-item'%>
-          <%= link_to 'Log In', '#', class: 'navbar-item'%>
-       
+          <%= link_to 'Log In', login_path, class: 'navbar-item'%>
+        <% end %>
+
       </div>
     </div>
   </div>
@@ -32,7 +36,7 @@
 (function() {
   var burger = document.querySelector('.burger');
   var nav = document.querySelector('#'+burger.dataset.target);
- 
+
   burger.addEventListener('click', function(){
     burger.classList.toggle('is-active');
     nav.classList.toggle('is-active');
