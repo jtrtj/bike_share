@@ -18,6 +18,11 @@
 
     </div>
       <div class="navbar-end">
+        <% if current_user %>
+          <a class='navbar-item'>
+            Logged in as <%= current_user.user_name %>
+          </a>
+        <% end %>
 
           <%= link_to 'Log Out', '#', class: 'navbar-item'%>
 
