@@ -36,6 +36,7 @@ describe 'An admin' do
 
       expect(page).to_not have_css("#station-#{station_1.id}")
       expect(Station.count).to_not eq(station_count)
+      expect(page).to have_content("#{station_1.name} was deleted!")
     end
   end
 end
