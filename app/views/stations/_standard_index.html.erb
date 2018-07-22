@@ -1,22 +1,35 @@
-<h1 class="title">Stations</h1>
+<div class="container">
+  <section class="hero is-small is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-size-1 has-text-centered has-text-weight-bold">Stations</h1>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <div>
+    <%= will_paginate %>
+    <br>
+    <table class="table is-bordered is-striped">
+      <thead>
+        <th>Name</th>
+        <th>Dock Count</th>
+        <th>City</th>
+        <th>Installation Date</th>
+      </thead>
 
-<section>
-  <table class="table">
-    <tr>
-      <th>Name</th>
-      <th>Dock Count</th>
-      <th>City</th>
-      <th>Installation Date</th>
-    </tr>
-    <%= @stations.each do |station| %>
-    <tr>
-      <td><%= station.name %></td>
-      <td><%= station.dock_count %></td>
-      <td><%= station.city %></td>
-      <td><%= station.installation_date %></td>
-    </tr>
-    <% end %>
-  </table>
-</section>
-
+      <% @stations.each do |station| %>
+        <tbody>
+          <tr>
+            <td><%= station.name %></td>
+            <td><%= station.dock_count %></td>
+            <td><%= station.city %></td>
+            <td><%= station.installation_date %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
 

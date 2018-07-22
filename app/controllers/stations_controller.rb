@@ -1,6 +1,6 @@
 class StationsController < ApplicationController
   def index
-    @stations = Station.all
+    @stations = Station.paginate(page: params[:page])
   end
 
   def show
