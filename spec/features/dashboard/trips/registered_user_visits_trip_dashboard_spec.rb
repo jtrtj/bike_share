@@ -29,7 +29,7 @@ describe 'A registered user' do
 
       expected_result = trip
 
-      expect(page).to have_content("Longest ride : #{expected_result}")
+      expect(page).to have_content("Longest ride : #{expected_result.id}")
 
     end
 
@@ -43,7 +43,7 @@ describe 'A registered user' do
       visit trips_dashboard_path
 
       expected_result = trip3
-      expect(page).to have_content("Shortest ride : #{}")
+      expect(page).to have_content("Shortest ride : #{expected_result.id}")
     end
   end
 end
