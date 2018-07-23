@@ -36,6 +36,10 @@
             <td><%=trip.bike_id%></td>
             <td><%=trip.subscription_type%></td>
             <td><%=trip.zip_code%></td>
+            <% if current_admin? %>
+            <td><%= button_to "Edit", edit_admin_trip_path(trip) %></td>
+            <td><%= button_to "Delete", admin_trip_path(trip), method: :delete %></td>
+            <% end %>
           </tr>
         </tbody>
       <% end %>
