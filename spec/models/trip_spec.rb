@@ -54,7 +54,7 @@ describe Trip, type: :model do
       station_2 = create(:station, name: 'Fromage')
       trip = create(:trip, start_station: station_1, end_station: station_1, duration: 120)
       trip2 = create(:trip, start_station: station_1, end_station: station_2, duration: 60)
-      trip3 = create(:trip, start_station: station_1, end_station: station_2, duration: 30)
+      trip3 = create(:trip, start_station: station_2, end_station: station_2, duration: 30)
 
       expect(Trip.station_with_most_rides_originating).to eq(station_1)
     end

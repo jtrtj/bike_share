@@ -15,4 +15,8 @@ class Trip < ApplicationRecord
   def self.shortest_ride
     order(duration: :desc).last
   end
+
+  def self.station_with_most_rides_originating
+   select(:start_station_id).group(:start_station_id)
+  end
 end
