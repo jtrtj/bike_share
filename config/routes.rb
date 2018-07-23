@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :stations, only: [:new, :create, :edit, :update, :destroy]
+    resources :conditions, only: [:new, :create, :edit, :update, :destroy]
     resources :trips, only: [:edit, :update, :destroy]
   end
 
