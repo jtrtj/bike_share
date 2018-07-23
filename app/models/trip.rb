@@ -11,4 +11,8 @@ class Trip < ApplicationRecord
   def self.longest_ride
     order(duration: :desc).first
   end
+
+  def self.shortest_ride
+    order(duration: :desc).last
+  end
 end
