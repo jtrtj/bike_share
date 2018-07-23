@@ -29,5 +29,14 @@ describe Trip, type: :model do
 
       expect(Trip.average_duration_trip).to eq(expected_result)
     end
+    it 'find longest ride' do
+      station = create(:station)
+      trip = create(:trip, start_station: station, end_station: station, duration: 120)
+      trip2 = create(:trip, start_station: station, end_station: station, duration: 60)
+      trip3 = create(:trip, start_station: station, end_station: station, duration: 30)
+
+      expected_result = trip
+      expect(Trip.longest_ride).to eq(expected_result)
+    end
   end
 end
