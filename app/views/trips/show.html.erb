@@ -22,6 +22,10 @@
               Zip Code: <%= @trip.zip_code %>
             </p>
           </div>
+          <div class="level-item">
+            <p><%= button_to "Edit", edit_admin_trip_path(@trip) %></p>
+            <%= button_to "Edit", admin_trip_path(@trip), method: :delete %>
+          </div>
         </div>
       </div>
     </div>
