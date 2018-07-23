@@ -7,5 +7,8 @@ class Trip < ApplicationRecord
   def self.average_duration_trip
     average(:duration)
   end
-  
+
+  def self.longest_ride
+    order(duration: :desc).first
+  end
 end
