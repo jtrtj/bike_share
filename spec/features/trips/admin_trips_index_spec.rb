@@ -30,6 +30,18 @@ describe "Admin user" do
       expect(page).to have_button("Edit")
       expect(page).to have_button("Delete")
     end
+
+    it "Default user does not see buttons next to each trip to edit that trip" do
+      station = create(:station)
+      trip = create(:trip, start_station: station, end_station: station)
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit trips_path
+
+      expect(page).to_not have_button("Edit")
+      expect(page).to_not have_button("Delete")
+    end
   end
 end
 
