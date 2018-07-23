@@ -22,11 +22,12 @@ class Admin::ConditionsController < Admin::BaseController
   def update
     @condition = Condition.find(params[:id])
     @condition.update(condition_params)
-    if @condition
+    if @condition.save
       flash[:notice] = "Condition for #{@condition.date} was updated!"
-      redirect_to conditions_path
+      redirect_to condition_path(@condition)
     else
-      redirect_to edit_admin_condition_path(@condition)
+      flash[:notice] = "Entry invalid, please fill out all fields"
+      render :edit
     end
   end
 

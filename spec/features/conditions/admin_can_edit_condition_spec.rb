@@ -27,9 +27,34 @@ describe 'an admin' do
       fill_in :condition_precipitation_inches, with: 87
       click_on 'Update Condition'
 
-      expect(current_path).to eq(conditions_path)
+      expect(current_path).to eq(condition_path(condition_1))
       expect(page).to_not have_content(old_max)
       expect(page).to have_content("Condition for #{condition_1.date} was updated!")
+    end
+    it 'will get redirected back to the edit page if condition invalid' do
+      admin = create(:user, role: 1)
+
+      condition_1 = create(:condition, max_temperature_f: 500)
+      condition_2 = create(:condition, max_temperature_f: 400)
+
+      old_max = condition_1.max_temperature_f
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit edit_admin_condition_path(condition_1)
+
+      max = "Bobby"
+      mean = 4000
+      min = 3000
+      fill_in :condition_date, with: Date.today
+      fill_in :condition_max_temperature_f, with: nil
+      fill_in :condition_mean_temperature_f, with: mean
+      fill_in :condition_min_temperature_f, with: ""
+      fill_in :condition_mean_visibility_miles, with: 467
+      fill_in :condition_precipitation_inches, with: 87
+      click_on 'Update Condition'
+
+      expect(page).to have_content("Entry invalid, please fill out all fields")
     end
   end
 end
