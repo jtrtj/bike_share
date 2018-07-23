@@ -13,6 +13,7 @@
     <br>
     <table class="table is-bordered is-striped">
       <thead>
+        <th>Trip #</th>
         <th>Duration</th>
         <th>Start Date</th>
         <th>Start Station</th>
@@ -26,6 +27,7 @@
       <% @trips.each do |trip| %>
         <tbody>
           <tr>
+            <td><%=link_to trip.id, trip_path(trip)%></td>
             <td><%=trip.duration%></td>
             <td><%=trip.start_date%></td>
             <td><%=trip.start_station_id%></td>
@@ -34,6 +36,10 @@
             <td><%=trip.bike_id%></td>
             <td><%=trip.subscription_type%></td>
             <td><%=trip.zip_code%></td>
+            <% if current_admin? %>
+            <td><%= button_to "Edit", edit_admin_trip_path(trip), class: "button is-info" %></td>
+            <td><%= button_to "Delete", admin_trip_path(trip), method: :delete, class: "button is-danger" %></td>
+            <% end %>
           </tr>
         </tbody>
       <% end %>
