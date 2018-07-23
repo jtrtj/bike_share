@@ -47,5 +47,27 @@ describe Trip, type: :model do
       expected_result = trip3
       expect(Trip.shortest_ride).to eq(expected_result)
     end
+
+    it '#station_with_most_rides_originating' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, start_station: station_1, end_station: station_1, duration: 120)
+      trip2 = create(:trip, start_station: station_1, end_station: station_2, duration: 60)
+      trip3 = create(:trip, start_station: station_1, end_station: station_2, duration: 30)
+
+      expect(Trip.station_with_most_rides_originating).to eq(station_1)
+    end
+
+    it '#station_with_most_rides_ending' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, start_station: station_1, end_station: station_1, duration: 120)
+      trip2 = create(:trip, start_station: station_1, end_station: station_2, duration: 60)
+      trip3 = create(:trip, start_station: station_1, end_station: station_2, duration: 30)
+
+      expect(Trip.station_with_most_rides_ending).to eq(station_2)
+    end
   end
 end
