@@ -15,6 +15,21 @@ class Admin::ConditionsController < Admin::BaseController
     end
   end
 
+  def edit
+    @condition = Condition.find(params[:id])
+  end
+
+  def update
+    @condition = Condition.find(params[:id])
+    @condition.update(condition_params)
+    if @condition
+      flash[:notice] = "Condition for #{@condition.date} was updated!"
+      redirect_to conditions_path
+    else
+      redirect_to edit_admin_condition_path(@condition)
+    end
+  end
+
   def destroy
     condition = Condition.find(params[:id])
     deleted_date = condition.date
