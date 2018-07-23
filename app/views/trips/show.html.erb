@@ -12,6 +12,11 @@
           Bike: <%= @trip.bike_id %>
         </h3>
         <div class="level">
+          <% if current_admin? %>
+          <div class="level-item">
+            <p><%= button_to "Edit", edit_admin_trip_path(@trip), class: "button is-info is-inverted" %></p>
+          </div>
+          <% end %>
           <div class="level-item has-text-centered">
             <p class="subtitle is-5">
               Subscription Type: <%= @trip.subscription_type %>
@@ -24,8 +29,7 @@
           </div>
           <% if current_admin? %>
           <div class="level-item">
-            <p><%= button_to "Edit", edit_admin_trip_path(@trip) %></p>
-           <p><%= button_to "Delete", admin_trip_path(@trip), method: :delete %></p>
+           <p><%= button_to "Delete", admin_trip_path(@trip), method: :delete, class: "button is-danger is-inverted" %></p>
           </div>
           <% end %>
         </div>
