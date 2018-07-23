@@ -18,7 +18,7 @@ describe Trip, type: :model do
     it {should belong_to(:start_station)}
   end
 
-  describe 'class method' do
+  describe 'class methods' do
     it 'find average duration of ride' do
       station = create(:station)
       trip = create(:trip, start_station: station, end_station: station, duration: 120)
@@ -27,8 +27,7 @@ describe Trip, type: :model do
 
       expected_result = 70
 
-      expect(Trip.average_duration_trip).to
-      eq(expected_result)
+      expect(Trip.average_duration_trip).to eq(expected_result)
     end
   end
 end
