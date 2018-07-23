@@ -5,9 +5,9 @@ describe 'A registered user' do
     it 'sees the average duration of a ride' do
       user = create(:user)
       station = create(:station)
-      trip = create(:trip, duration: 120)
-      trip = create(:trip, duration: 60)
-      trip = create(:trip, duration: 30)
+      trip = create(:trip, start_station: station, end_station: station, duration: 120)
+      trip = create(:trip, start_station: station, end_station: station, duration: 60)
+      trip = create(:trip, start_station: station, end_station: station, duration: 30)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
