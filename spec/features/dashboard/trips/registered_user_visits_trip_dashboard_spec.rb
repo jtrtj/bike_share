@@ -6,8 +6,8 @@ describe 'A registered user' do
       user = create(:user)
       station = create(:station)
       trip = create(:trip, start_station: station, end_station: station, duration: 120)
-      trip = create(:trip, start_station: station, end_station: station, duration: 60)
-      trip = create(:trip, start_station: station, end_station: station, duration: 30)
+      trip2 = create(:trip, start_station: station, end_station: station, duration: 60)
+      trip3 = create(:trip, start_station: station, end_station: station, duration: 30)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
