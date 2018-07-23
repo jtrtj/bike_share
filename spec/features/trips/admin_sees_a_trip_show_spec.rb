@@ -37,8 +37,8 @@ describe "Admin user" do
     it "users don't see buttons to edit and delete" do
       station = create(:station)
       trip = create(:trip, start_station: station, end_station: station, duration: 120)
-      admin = create(:user, role: 1)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit trip_path(trip)
 
