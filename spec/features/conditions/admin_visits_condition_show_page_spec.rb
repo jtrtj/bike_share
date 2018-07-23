@@ -19,8 +19,8 @@ describe 'An admin' do
       expect(page).to have_content(condition_1.mean_visibility_miles)
       expect(page).to have_content(condition_1.mean_wind_speed_mph)
       expect(page).to have_content(condition_1.precipitation_inches)
-      expect(page).to have_content('Edit')
-      expect(page).to have_content('Delete')
+      expect(page).to have_button('Edit')
+      expect(page).to have_button('Delete')
     end
   end
 end
