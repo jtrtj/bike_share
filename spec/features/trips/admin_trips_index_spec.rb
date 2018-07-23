@@ -44,9 +44,3 @@ describe "Admin user" do
     end
   end
 end
-
-=begin
-As an admin user,
-I see a button next to each trip to edit that trip,
-I also see a button next to each trip to delete that trip.
-=end
