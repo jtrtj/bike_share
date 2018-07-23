@@ -12,7 +12,6 @@ describe 'A registered user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit trips_dashboard_path
-      # visit '/trips-dashboard'
 
       expected_result = 70
 
