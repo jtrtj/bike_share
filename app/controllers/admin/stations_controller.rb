@@ -14,6 +14,23 @@ class Admin::StationsController < Admin::BaseController
     end
   end
 
+  def edit
+    @station = Station.friendly.find(params[:id])
+  end
+
+  def update
+    @station = Station.friendly.find(params[:id])
+    old_station_name = @station.name
+    @station.update(station_params)
+    if @station.save
+      flash[:notice] = "#{old_station_name} has been updated!"
+      redirect_to station_path(@station)
+    else
+      flash[:notice] = "#{old_station_name} has not been updated!"
+      render :edit
+    end
+  end
+
   def destroy
     station = Station.find(params[:id])
     deleted_station_name = station.name
