@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'dashboard#show'
+  get '/trips-dashboard', to: 'trips#dashboard'
 
   resources :users, only: [:new, :create]
 
