@@ -30,18 +30,7 @@ describe "An Admin" do
 
       expect(current_path).to eq(trip_path(trip))
       expect(page).to have_content("123")
+      expect(page).to have_content("#{trip.id} has been updated!") 
     end
   end
 end
-
-=begin
-As an admin user,
-When I visit admin trip edit,
-I fill in a form with all trip attributes,
-When I click "Update Trip",
-I am directed to that trip's show page,
-I see the updated trip's information,
-I also see a flash message that I have updated that trip.
-
-** All Attributes must be present **
-=end
