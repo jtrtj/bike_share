@@ -2,5 +2,6 @@
 <br> <br>
 Total count of stations : <%= @stations.total_count %>
 <br> <br>
-Average bikes available per station : <%= @stations.average_bike_per_station %>
+Average bikes available per station : <%= @stations.average_bike_per_station.round(2) %>
 <br><br>
+Most bikes available at a station : <%= @stations.most_bikes_at_station %>
