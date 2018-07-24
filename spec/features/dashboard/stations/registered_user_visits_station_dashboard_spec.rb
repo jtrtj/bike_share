@@ -12,12 +12,12 @@ describe 'A registered user' do
 
       visit stations_dashboard_path
 
-      expected_result = 60
+      expected_result = 3
 
       expect(page).to have_content("Total count of stations : #{expected_result}")
     end
   end
-end 
+end
 
 =begin
     As a registered user,

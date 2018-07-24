@@ -11,4 +11,17 @@ describe Station, type: :model do
     it {should have_many(:statuses)}
     it {is_expected.to respond_to(:trips)}
   end
+
+  describe 'class methods' do
+    it 'calculate total count of stations' do
+      user = create(:user)
+      station_1 = create(:station, dock_count: 20)
+      station_2 = create(:station, dock_count: 30)
+      station_3 = create(:station, dock_count: 10)
+
+      expected_result = 3
+
+      expect(Station.total_count).to eq(expected_result)
+    end
+  end
 end
