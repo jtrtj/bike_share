@@ -1,5 +1,9 @@
 class Admin::TripsController < Admin::BaseController
 
+  def new
+    @trip = Trip.new
+  end
+
   def update
     @trip = Trip.find(params[:id])
     old_trip_name = @trip.id
