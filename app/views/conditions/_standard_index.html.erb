@@ -23,8 +23,8 @@
         <th>Precipitation (Inches)<th>
       </thead>
 
-      <% @conditions.each do |condition| %>
-        <tbody>
+      <tbody>
+        <% @conditions.each do |condition| %>
           <tr>
             <td><%= condition.date %></td>
             <td><%= condition.max_temperature_f %></td>
@@ -35,8 +35,8 @@
             <td><%= condition.mean_wind_speed_mph %></td>
             <td><%= condition.precipitation_inches%></td>
           </tr>
-        </tbody>
       <% end %>
+    </tbody>
     </table>
   </div>
 </div>
