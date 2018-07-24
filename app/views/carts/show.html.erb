@@ -1,0 +1,16 @@
+<table class='table'>
+  <thead>
+    <th></th>
+    <th>Item</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+    <% @cart.items.each do |item| %>
+    <tr><%= image_tag(item.image), class: 'image is-48x48'%></tr>
+    <tr><%= item.title  %></tr>
+    <tr><%= number_to_currency(item.price) %></tr>
+    <tr></tr>
+  </tbody>
+</table>

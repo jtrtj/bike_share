@@ -10,4 +10,7 @@ class CartsController < ApplicationController
     flash[:notice] = "You now have #{pluralize(quantity, item.title)} in your cart!"
     redirect_to bike_shop_path
   end
+
+  def show
+  end 
 end
