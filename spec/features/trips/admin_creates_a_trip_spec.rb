@@ -26,26 +26,16 @@ describe "An admin user" do
       click_on "Create Trip"
 
       expect(current_path).to eq(trip_path(Trip.last))
-      expect(page).to have_content(120)
+      expect(page).to have_content("2 Minutes")
       expect(page).to have_content(Date.today)
-      expect(page).to have_content("Station 1")
-      expect(page).to have_content("5")
-      expect(page).to have_content("Station 2")
-      expect(page).to have_content(10)
+      expect(page).to have_content(station.name)
+      expect(page).to have_content(station.id)
+      expect(page).to have_content(station.name)
+      expect(page).to have_content(station.id)
       expect(page).to have_content(15)
       expect(page).to have_content("Subscriber")
       expect(page).to have_content(91112)
+      expect(page).to have_content("Trip created!") 
     end
   end
 end
-
-=begin
-As an admin user,
-When I visit admin trip new,
-I fill in a form with all trip attributes,
-When I click "Create Trip",
-I am directed to that trip's show page.
-I also see a flash message that I have created that trip.
-
-** Zip Code is a user-provided field, and may not be present on all records. Otherwise, as with Stations, all attributes of a Trip need to be present to ensure data integrity **
-=end
