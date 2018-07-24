@@ -18,7 +18,7 @@
 
     </div>
       <div class="navbar-end">
-            <p class='navbar-item'>Cart: 0</p>
+            <p class='navbar-item'>Cart: <%= @cart.total_count %></p>
         <% if current_user %>
           <a class='navbar-item'>
             Logged in as <%= current_user.user_name %>
