@@ -8,6 +8,7 @@ describe 'a visitor' do
       item_3 = Item.create(title: "Roldfish", description: 'Whoopity loop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
 
       visit "/bike-shop"
+      save_and_open_page
 
       within "#item-#{item_1.id}" do
         expect(page).to have_button('Add to Cart')
@@ -18,6 +19,7 @@ describe 'a visitor' do
       within "#item-#{item_3.id}" do
         expect(page).to have_button('Add to Cart')
       end
+
 
       expect(page).to have_content(item_1.title)
       expect(page).to have_content(item_2.title)
