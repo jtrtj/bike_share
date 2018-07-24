@@ -10,7 +10,8 @@ class TripsController < ApplicationController
 
   def dashboard
     @trips = Trip.all
-    @station_with_most_rides = Trip.station_with_most_rides_originating
+    @station_with_most_rides_originating = Trip.station_with_most_rides_originating
+    @station_with_most_rides_ending = Trip.station_with_most_rides_ending
   end
 
 end
