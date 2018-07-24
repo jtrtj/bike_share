@@ -13,17 +13,18 @@ describe "An Admin" do
 
       expect(current_path).to eq(edit_admin_trip_path(trip))
 
-      fill_in :duration,	with: "123"
-      fill_in :start_date,	with: trip.start_date 
-      fill_in :start_date,	with: trip.start_station_name 
-      fill_in :start_date,	with: trip.start_station_id 
-      fill_in :start_date,	with: trip.end_date 
-      fill_in :start_date,	with: trip.end_station_name 
-      fill_in :start_date,	with: trip.end_station_id 
-      fill_in :start_date,	with: trip.bike_id 
-      fill_in :start_date,	with: trip.subscription_type
-      fill_in :start_date,	with: trip.zip_code
-      fill_in :start_date,	with: trip.station_id
+      visit edit_admin_trip_path(trip)
+
+      fill_in :trip_duration,	with: "123"
+      fill_in :trip_start_date,	with: trip.start_date 
+      fill_in :trip_start_station_name,	with: trip.start_station_name 
+      fill_in :trip_start_station_id,	with: trip.start_station_id 
+      fill_in :trip_end_date,	with: trip.end_date 
+      fill_in :trip_end_station_name,	with: trip.end_station_name 
+      fill_in :trip_end_station_id,	with: trip.end_station_id 
+      fill_in :trip_bike_id,	with: trip.bike_id 
+      fill_in :trip_subscription_type,	with: trip.subscription_type
+      fill_in :trip_zip_code,	with: trip.zip_code
 
       click_on "Update Trip"
 

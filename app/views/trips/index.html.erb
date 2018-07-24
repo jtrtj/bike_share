@@ -37,7 +37,7 @@
             <td><%=trip.subscription_type%></td>
             <td><%=trip.zip_code%></td>
             <% if current_admin? %>
-            <td><%= button_to "Edit", edit_admin_trip_path(trip), class: "button is-info" %></td>
+            <td><%= button_to "Edit", edit_admin_trip_path(trip), method: :get, class: "button is-info" %></td>
             <td><%= button_to "Delete", admin_trip_path(trip), method: :delete, class: "button is-danger" %></td>
             <% end %>
           </tr>
