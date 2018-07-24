@@ -16,6 +16,18 @@ describe 'A registered user' do
 
       expect(page).to have_content("Total count of stations : #{expected_result}")
     end
+    it 'sees the Average bikes available per station based on docks' do
+      user = create(:user)
+      station_1 = create(:station, dock_count: 20)
+      station_2 = create(:station, dock_count: 30)
+      station_3 = create(:station, dock_count: 10)
+
+      visit stations_dashboard_path
+
+      expected_result = 20
+
+      expect(page).to have_content("Average bikes available per station : #{expected_result}")
+    end
   end
 end
 
