@@ -16,6 +16,8 @@ describe 'A registered user' do
 
       expect(page).to have_content("Total count of stations : #{expected_result}")
     end
+  end
+end 
 
 =begin
     As a registered user,
