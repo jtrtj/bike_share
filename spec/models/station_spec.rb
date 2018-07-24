@@ -9,8 +9,7 @@ describe Station, type: :model do
   end
   describe 'relationships' do
     it {should have_many(:statuses)}
-    it { should have_many(:trips_started) } 
-    it { should have_many(:trips_ended) } 
-    it {is_expected.to respond_to(:trips)}
+    it { should have_many(:trips_started_at) } 
+    it { should have_many(:trips_ended_at) } 
   end
 end
