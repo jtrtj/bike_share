@@ -9,4 +9,7 @@ class Station < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  def self.total_count
+    count
+  end
 end
