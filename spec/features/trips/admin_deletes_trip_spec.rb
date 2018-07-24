@@ -17,12 +17,3 @@ describe "An admin" do
     end
   end
 end
-
-
-=begin
-As an admin user,
-When I visit the trips index,
-And I click delete next to a trip,
-I do not see the trip on the index.
-I also see a flash message that I have deleted that trip.
-=end
