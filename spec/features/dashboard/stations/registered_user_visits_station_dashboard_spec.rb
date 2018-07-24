@@ -30,10 +30,3 @@ describe 'A registered user' do
     end
   end
 end
-
-=begin
-    As a registered user,
-When I visit '/stations-dashboard',
-I see the Total count of stations,
-I see the Average bikes available per station (based on docks),
-=end
