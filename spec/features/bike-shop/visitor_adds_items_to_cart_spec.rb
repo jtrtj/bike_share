@@ -25,6 +25,23 @@ describe 'a visitor' do
       expect(page).to have_content(item_1.description)
       expect(page).to have_content(item_2.description)
       expect(page).to have_content(item_3.description)
+      expect(page).to have_content(item_1.price)
+      expect(page).to have_content(item_2.price)
+      expect(page).to have_content(item_3.price)
+    end
+    it 'can add an item to its cart' do
+      item_1 = Item.create(title: "Goldfish", description: 'Whoopity scoop', image: 'http://via.placeholder.com/100x100', price: 400, active: true)
+
+      visit "/bike-shop"
+
+      expect(page).to have_content('Cart: 0')
+
+      within "#item-#{item_1.id}" do
+        click_button('Add to Cart')
+      end
+
+      expect(page).to have_content("You have added 1 #{item_1.title} to your cart!")
+      expect(page).to have_content('Cart: 1')
     end
   end
 end
