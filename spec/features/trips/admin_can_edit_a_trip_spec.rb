@@ -13,8 +13,6 @@ describe "An Admin" do
 
       expect(current_path).to eq(edit_admin_trip_path(trip))
 
-      visit edit_admin_trip_path(trip)
-
       fill_in :trip_duration,	with: "123"
       fill_in :trip_start_date,	with: trip.start_date 
       fill_in :trip_start_station_name,	with: trip.start_station_name 
