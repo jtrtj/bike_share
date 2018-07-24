@@ -32,6 +32,13 @@ class Admin::TripsController < Admin::BaseController
     end
   end
 
+  def destroy
+    trip = Trip.find(params[:id])
+    trip.destroy
+    flash[:notice] = "Trip #{trip.id} was deleted."
+    redirect_to trips_path
+  end
+
   private
 
   def trip_params
