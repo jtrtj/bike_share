@@ -17,6 +17,16 @@ class Trip < ApplicationRecord
   end
 
   def self.station_with_most_rides_originating
-   select(:start_station_id).group(:start_station_id)
+   desired_station = select("start_station_id, COUNT(start_station_id) AS trips")
+   .group("start_station_id")
+   .order("trips DESC").limit(1)
+   Station.find(desired_station.first.start_station_id)
+  end
+
+  def self.station_with_most_rides_ending
+   desired_station = select("end_station_id, COUNT(end_station_id) AS trips")
+   .group("end_station_id")
+   .order("trips DESC").limit(1)
+   Station.find(desired_station.first.end_station_id)
   end
 end
