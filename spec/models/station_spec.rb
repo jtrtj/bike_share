@@ -33,5 +33,14 @@ describe Station, type: :model do
 
       expect(Station.average_bike_per_station).to eq(expected_result)
     end
+    it 'find most bike at a station' do
+      user = create(:user)
+      station_1 = create(:station, dock_count: 20)
+      station_2 = create(:station, dock_count: 30)
+      station_3 = create(:station, dock_count: 10)
+
+      expected_result = 30
+      expect(Station.maximum_bike_station).to eq(expected_result)
+    end
   end
 end
