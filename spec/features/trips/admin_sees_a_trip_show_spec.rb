@@ -47,12 +47,3 @@ describe "Admin user" do
     end
   end
 end
-
-=begin
-As an admin user,
-When I visit the trip show,
-I see a button to delete this trip,
-I also see a button to edit this trip.
-
-** All Attributes must be present **
-=end
