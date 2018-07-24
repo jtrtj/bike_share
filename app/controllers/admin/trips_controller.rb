@@ -4,21 +4,32 @@ class Admin::TripsController < Admin::BaseController
     @trip = Trip.new
   end
 
-  def update
-    @trip = Trip.find(params[:id])
-    old_trip_name = @trip.id
-    @trip.update(trip_params)
+  def create
+    @trip = Trip.create(trip_params)
     if @trip.save
-      flash[:notice] = "#{old_trip_name} has been updated!"
       redirect_to trip_path(@trip)
+      flash[:notice] = "Trip created!"
     else
-      flash[:notice] = "#{old_trip_name} has not been updated!"
-      render :edit
+      flash[:notice] = "One or more fields are invalid"
+      render :new
     end
   end
 
   def edit
     @trip = Trip.find(params[:id])
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    old_trip_name = @trip.id
+    @trip.update(trip_params)
+    if @trip.save
+      flash[:notice] = "Trip #{old_trip_name} has been updated!"
+      redirect_to trip_path(@trip)
+    else
+      flash[:notice] = "#{old_trip_name} has not been updated!"
+      render :edit
+    end
   end
 
   private
