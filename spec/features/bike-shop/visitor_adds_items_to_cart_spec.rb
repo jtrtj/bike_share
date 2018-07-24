@@ -41,8 +41,15 @@ describe 'a visitor' do
         click_button('Add to Cart')
       end
 
-      expect(page).to have_content("You have added 1 #{item_1.title} to your cart!")
+      expect(page).to have_content("You now have 1 #{item_1.title} in your cart!")
       expect(page).to have_content('Cart: 1')
+
+      within "#item-#{item_1.id}" do
+        click_button('Add to Cart')
+      end
+
+      expect(page).to have_content("You now have 2 #{item_1.title}es in your cart!")
+      expect(page).to have_content("Cart: 2")
     end
   end
 end
