@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :stations, only: [:index, :show]
 
+  resources :carts, only: [:create]
+
   namespace :admin do
     resources :stations, only: [:new, :create, :edit, :update, :destroy]
     resources :conditions, only: [:new, :create, :edit, :update, :destroy]
