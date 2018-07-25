@@ -3,7 +3,7 @@ class CartsController < ApplicationController
   
   def show
   end 
-  
+
   def create
     item = Item.find(params[:item_id])
     @cart = Cart.new(session[:cart])
@@ -14,8 +14,13 @@ class CartsController < ApplicationController
     redirect_to bike_shop_path
   end
 
-  def remove_item
-    @cart.remove_item(params[:item_id])
+  def update
+    if params[:todo] == 'remove'
+      @cart.remove_item(params[:item_id])
+    elsif params[:todo] == 'decrease'
+      @cart.decrease_item(params[:item_id])
+    end
+    redirect_to cart_path
   end
 
 end

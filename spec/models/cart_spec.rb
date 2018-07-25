@@ -41,4 +41,14 @@ describe Cart do
 
     expect(@cart.contents).to eq(expected_result)
   end
+
+  it '#decrease_item' do
+    @cart.decrease_item(@item_1.id)
+    expected_result = {
+      "1" => 3,
+      "2" => 8,
+      "3" => 5
+      }
+    expect(@cart.contents).to eq(expected_result)
+  end
 end
