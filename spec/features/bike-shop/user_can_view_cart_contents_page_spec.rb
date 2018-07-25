@@ -6,6 +6,7 @@ describe 'a visitor' do
       item_1 = Item.create(title: "Goldfish", description: 'Whoopity scoop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
       item_2 = Item.create(title: "Boldfish", description: 'Whoopity doop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
       item_3 = Item.create(title: "Roldfish", description: 'Whoopity loop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
+      expected_total = "$2,400.00"
 
       visit "/bike-shop"
 
@@ -30,10 +31,9 @@ describe 'a visitor' do
 
       click_on "Cart: "
 
-      save_and_open_page
-
       expect(page).to have_content('Quantity')
       expect(page).to have_content('Subtotal')
+      expect(page).to have_content(expected_total)
     end
   end
 end

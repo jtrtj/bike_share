@@ -17,7 +17,13 @@
       </tr>
     <% end %>
     <tr colspan='5' align='right'>
-      <td>Total: <%= number_to_currency(@cart.total_price_all_items) %></td>
+      <td align='right'>Total: <%= number_to_currency(@cart.total_price_all_items) %></td>
+      <% if current_user %>
+        <td><%= button_to 'Checkout', '/dashboard' %></td>
+      <% else %>
+        <td><%= button_to 'Checkout', login_path %></td>
+      <% end %>
     </tr>
   </tbody>
+
 </table>
