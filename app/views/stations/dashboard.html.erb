@@ -11,3 +11,7 @@ Station with most bikes : <% @stations.stations_name_most_bikes.each do |station
 <% end %>
 <br><br>
 Fewest bikes available at a station : <%= @stations.fewest_bikes_at_station %>
+<br><br>
+Station with fewest bikes : <% @stations.stations_name_fewest_bikes.each do |station| %>
+<%= station.name %>
+<% end %>
