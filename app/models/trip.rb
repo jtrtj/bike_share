@@ -31,10 +31,10 @@ class Trip < ApplicationRecord
   end
 
   def self.year_by_year
-    Trip.group("date_trunc('month', start_date)").count
+    wuh = Trip.group("date_trunc('year', start_date)").count
   end
 
   def month_by_month(year)
-    Trip.select(:start_date).where(year: year)
+    Trip.group("date_trunc('month', start_date)").count
   end
 end

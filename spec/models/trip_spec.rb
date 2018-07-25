@@ -81,7 +81,8 @@ describe Trip, type: :model do
       trip5 = create(:trip, start_date: DateTime.strptime('7/7/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
       trip6 = create(:trip, start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
 
-      expect(Trip.year_by_year).to eq({'2016' => 3, '2017' => 3})
+      expect(Trip.year_by_year).to eq(Time.new(2016-01-01) => 3, Time.new(2017-01-01) => 3)
+      # expect(Trip.month_by_month).to eq({'2016' => 3, '2017' => 3})
     end
   end
 end
