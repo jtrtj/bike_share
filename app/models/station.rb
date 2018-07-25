@@ -42,8 +42,10 @@ class Station < ApplicationRecord
   end
 
   def most_frequent_origin
-    yuh = Trip.group(:start_station_id, :id).where('count(start_station_id) DESC').limit(1).first
-
+    trips_ended_at.group(:end_station_id, :id)
+                    .order('count(end_station_id)')
+                    .first
+                    .start_station
   end
 
 end
