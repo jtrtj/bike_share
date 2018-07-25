@@ -9,4 +9,36 @@ class Station < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  def self.total_count
+    count
+  end
+
+  def self.average_bike_per_station
+    average(:dock_count)
+  end
+
+  def self.most_bikes_at_station
+    maximum(:dock_count)
+  end
+
+  def self.stations_name_most_bikes
+    where(dock_count: most_bikes_at_station)
+  end
+
+  def self.fewest_bikes_at_station
+    minimum(:dock_count)
+  end
+
+  def self.stations_name_fewest_bikes
+    where(dock_count: fewest_bikes_at_station)
+  end
+
+  def self.newest_installation
+    order('installation_date DESC').first.name
+  end
+
+  def self.oldest_installation
+    order(:installation_date).first.name
+  end
 end
+

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :stations, only: [:index, :show]
 
+  get '/stations-dashboard', to: 'stations#dashboard'
   resources :carts, only: [:create]
 
   namespace :admin do
