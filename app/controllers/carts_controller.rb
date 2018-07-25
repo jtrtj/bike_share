@@ -17,6 +17,8 @@ class CartsController < ApplicationController
   def update
     if params[:todo] == 'remove'
       @cart.remove_item(params[:item_id])
+    elsif params[:todo] == 'increase'
+      @cart.add_item(params[:item_id])
     elsif params[:todo] == 'decrease'
       @cart.decrease_item(params[:item_id])
     end
