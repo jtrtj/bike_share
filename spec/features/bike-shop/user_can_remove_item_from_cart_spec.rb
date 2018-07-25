@@ -28,7 +28,7 @@ describe 'a visitor' do
 
       within ".flash" do
         expect(page).to have_link(item_1.title)
-        expect(page).to have_content("You removed #{item.title} from your cart!")
+        expect(page).to have_content("You removed #{item_1.title} from your cart.")
       end
 
       within "#item-#{item_2.id}" do
