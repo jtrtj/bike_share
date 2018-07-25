@@ -77,8 +77,11 @@ describe Station, type: :model do
       trip_1 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
       trip_2 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
       trip_3 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
+      trip_4 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
+      trip_5 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
+      trip_6 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
 
-      expect(station_1.most_frequent_origin).to eq(station_2)
+      expect(station_1.most_frequent_origin).to eq(station_3)
     end
 
     it '#most_frequent_destination' do
@@ -88,8 +91,11 @@ describe Station, type: :model do
       trip_1 = create(:trip, start_station_id: station_1.id, end_station_id: station_3.id)
       trip_2 = create(:trip, start_station_id: station_1.id, end_station_id: station_3.id)
       trip_3 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_4 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_5 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_6 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
 
-      expect(station_1.most_frequent_destination).to eq(station_3)
+      expect(station_1.most_frequent_destination).to eq(station_2)
     end
   end
 end
