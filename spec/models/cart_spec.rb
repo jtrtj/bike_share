@@ -37,7 +37,7 @@ describe Cart do
 
   it '#remove_item' do
     @cart.remove_item(@item_1.id)
-    expected_result {"2" => 8, "3" => 5}
+    expected_result = {"2" => 8, "3" => 5}
 
     expect(@cart.contents).to eq(expected_result)
   end
