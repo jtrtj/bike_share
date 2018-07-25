@@ -40,5 +40,10 @@ class Station < ApplicationRecord
   def self.oldest_installation
     order(:installation_date).first.name
   end
-end
 
+  def most_frequent_origin
+    yuh = Trip.group(:start_station_id, :id).where('count(start_station_id) DESC').limit(1).first
+
+  end
+
+end

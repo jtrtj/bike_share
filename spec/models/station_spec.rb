@@ -61,7 +61,23 @@ describe Station, type: :model do
       expect(Station.oldest_installation).to eq("#{@station_3.name}")
     end
     it '#trips_started_at' do
-      
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip,start_station_id: station_2.id, end_station_id: station_1.id)
+
+      expect(station_1.trips_started_at.length).to eq(2)
+      expect(station_1.trips_ended_at.length).to eq(1)
+    end
+    it '#most_frequent_origin' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
+
+      expect(station_1.most_frequent_origin).to eq(station_1)
     end
   end
 end
