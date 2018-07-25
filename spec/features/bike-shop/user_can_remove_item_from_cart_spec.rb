@@ -28,7 +28,7 @@ describe 'a visitor' do
         click_button('+')
       end
 
-      within ".quantity" do
+      within "##{item_2.id}-quantity" do
         expect(page).to have_content(2)
       end
 
@@ -36,10 +36,9 @@ describe 'a visitor' do
         click_button('-')
       end
 
-      within ".quantity" do
+      within "##{item_2.id}-quantity" do
         expect(page).to have_content(1)
       end
-
     end
   end
 end

@@ -8,12 +8,13 @@
   </thead>
   <tbody>
     <% @cart.items.each do |item| %>
-      <tr>
+      <tr id="item-<%= item.id %>">
       <td><img src="<%= item.image %>" class='image is-48x48'></td>
       <td><%= item.title  %></td>
       <td><%= number_to_currency(item.price) %></td>
       <td><%= @cart.quantity_by_item(item.id) %></td>
       <td><%= number_to_currency(@cart.quantity_by_item(item.id) * item.price) %></td>
+      <td><%= button_to  "Remove", cart_path(item_id: item.id), method: :patch %>
       </tr>
     <% end %>
     <tr colspan='5' align='right'>

@@ -11,6 +11,11 @@ class CartsController < ApplicationController
     redirect_to bike_shop_path
   end
 
+  def remove_item
+    @cart.remove_item(params[:item_id])
+  end
+
+
   def show
   end 
 end

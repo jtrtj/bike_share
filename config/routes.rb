@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   get '/bike-shop', to: 'items#index'
   get '/cart', to: 'carts#show'
+  patch '/cart', to: 'carts#remove_item'
   get '/:id', to: 'stations#show'
   get '/:id', to: 'trips#show'
 end
