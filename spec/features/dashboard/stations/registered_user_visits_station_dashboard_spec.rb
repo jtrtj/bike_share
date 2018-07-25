@@ -50,5 +50,16 @@ describe 'A registered user' do
       expect(page).to have_content("Fewest bikes available at a station : #{station_3.dock_count}")
       expect(page).to have_content("Station with fewest bikes : #{station_3.name}")
     end
+    it 'sees the most recently installed station and the oldest station' do
+      user = create(:user)
+      station_1 = create(:station, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
+      station_2 = create(:station, name: 'pier 44', installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
+      station_3 = create(:station, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+
+      visit stations_dashboard_path
+
+      expect(page).to have_content("Newest station : #{station_2.name}")
+      expect(page).to have_content("Oldest station : #{station_3.name}")
+    end
   end
 end
