@@ -69,5 +69,19 @@ describe Trip, type: :model do
 
       expect(Trip.station_with_most_rides_ending).to eq(station_2)
     end
+
+    it '#year_by_year_breakdown' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
+      trip2 = create(:trip, start_date: DateTime.strptime('4/5/2016', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
+      trip3 = create(:trip, start_date: DateTime.strptime('5/5/2016', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
+      trip4 = create(:trip, start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
+      trip5 = create(:trip, start_date: DateTime.strptime('7/7/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
+      trip6 = create(:trip, start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
+
+      expect(Trip.year_by_year).to eq({'2016' => 3, '2017' => 3})
+    end
   end
 end

@@ -47,17 +47,17 @@ describe 'A registered user' do
     end
 
     it 'sees the station with the most rides originating from it and the station with the most rides ending at it' do
-    user = create(:user)
-    station_1 = create(:station, name: 'Omlette')
-    station_2 = create(:station, name: 'Fromage')
-    trip = create(:trip, start_station: station_1, end_station: station_1, duration: 120)
-    trip2 = create(:trip, start_station: station_1, end_station: station_2, duration: 60)
-    trip3 = create(:trip, start_station: station_1, end_station: station_2, duration: 30)
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, start_station: station_1, end_station: station_1, duration: 120)
+      trip2 = create(:trip, start_station: station_1, end_station: station_2, duration: 60)
+      trip3 = create(:trip, start_station: station_1, end_station: station_2, duration: 30)
 
-    visit trips_dashboard_path
+      visit trips_dashboard_path
 
-    expect(page).to have_content("Station with most rides originating: #{station_1.name}")
-    expect(page).to have_content("Station with most rides ending: #{station_2.name}")
+      expect(page).to have_content("Station with most rides originating: #{station_1.name}")
+      expect(page).to have_content("Station with most rides ending: #{station_2.name}")
     end
   end
 end

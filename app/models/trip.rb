@@ -29,4 +29,12 @@ class Trip < ApplicationRecord
    .order("trips DESC").limit(1)
    Station.find(desired_station.first.end_station_id)
   end
+
+  def self.year_by_year
+    Trip.group("date_trunc('month', start_date)").count
+  end
+
+  def month_by_month(year)
+    Trip.select(:start_date).where(year: year)
+  end
 end
