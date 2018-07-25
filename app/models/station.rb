@@ -32,4 +32,12 @@ class Station < ApplicationRecord
   def self.stations_name_fewest_bikes
     where(dock_count: fewest_bikes_at_station)
   end
+
+  def self.newest_installation
+    order('installation_date DESC').first.name
+  end
+
+  def self.oldest_installation
+    order(:installation_date).first.name
+  end
 end
