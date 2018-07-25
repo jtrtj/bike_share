@@ -40,7 +40,7 @@ describe Station, type: :model do
       station_3 = create(:station, dock_count: 10)
 
       expected_result = 30
-      expect(Station.maximum_bike_station).to eq(expected_result)
+      expect(Station.most_bikes_at_station).to eq(expected_result)
     end
   end
 end
