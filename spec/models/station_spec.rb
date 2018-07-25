@@ -50,5 +50,14 @@ describe Station, type: :model do
 
       expect(Station.stations_name_most_bikes).to eq([station_2])
     end
+    it 'find station with fewest bikes' do
+      user = create(:user)
+      station_1 = create(:station, dock_count: 20)
+      station_2 = create(:station, dock_count: 30)
+      station_3 = create(:station, dock_count: 10)
+
+      expected_result = 10
+      expect(Station.fewest_bikes_at_station).to eq(expected_result)
+    end
   end
 end
