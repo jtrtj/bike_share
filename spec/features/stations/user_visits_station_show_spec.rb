@@ -35,5 +35,20 @@ describe 'A visitor' do
       expect(page).to have_content("Number of rides started at this station #{station_1.trips_started_here.length}")
       expect(page).to have_content("Number of rides ended at this station #{station_1.trips_ended_here.length}")
     end
+
+    it 'sees the most frequent destination and origin for rides that being at this station' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+
+      trip_1 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      trip_3 = create(:trip,start_station_id: station_2.id, end_station_id: station_1.id)
+
+      visit station_path(station_1)
+
+      expect(page).to have_content("Most frequent destination station from here #{station_1.most_frequent_destination.name}")
+      expect(page).to have_content("Most frequent origin station to here #{station_1.most_frequent_origin.name}")
+    end
   end
 end
