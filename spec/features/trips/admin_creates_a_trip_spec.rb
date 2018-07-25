@@ -24,8 +24,7 @@ describe "An admin user" do
 
       click_on "Create Trip"
 
-      trip = Trip.last
-      expect(current_path).to eq(trip_path(trip))
+      expect(current_path).to eq(trip_path(Trip.last))
       expect(page).to have_content("2 Minutes")
       expect(page).to have_content(Date.today)
       expect(page).to have_content(station1.name)

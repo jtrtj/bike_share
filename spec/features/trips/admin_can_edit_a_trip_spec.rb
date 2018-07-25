@@ -14,11 +14,11 @@ describe "An Admin" do
       expect(current_path).to eq(edit_admin_trip_path(trip))
 
       fill_in :trip_duration,	with: "123"
-      fill_in :trip_start_date,	with: trip.start_date 
+      fill_in :trip_start_date,	with: trip.start_date
       select(station.name, from: 'Start station')
-      fill_in :trip_end_date,	with: trip.end_date 
+      fill_in :trip_end_date,	with: trip.end_date
       select(station.name, from: 'End station')
-      fill_in :trip_bike_id,	with: trip.bike_id 
+      fill_in :trip_bike_id,	with: trip.bike_id
       fill_in :trip_subscription_type,	with: trip.subscription_type
       fill_in :trip_zip_code,	with: trip.zip_code
 

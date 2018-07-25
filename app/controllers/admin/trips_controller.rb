@@ -2,14 +2,10 @@ class Admin::TripsController < Admin::BaseController
 
   def new
     @trip = Trip.new
-    # @stations = Station.all
   end
 
   def create
-    @trip = Trip.create(trip_params)
-    
-    # binding.pry
-    
+    @trip = Trip.new(trip_params)
     if @trip.save
       redirect_to trip_path(@trip)
       flash[:notice] = "Trip created!"
@@ -49,10 +45,8 @@ class Admin::TripsController < Admin::BaseController
   def trip_params
     params.require(:trip).permit(:duration,
                                  :start_date,
-                                 :start_station_name,
                                  :start_station_id,
                                  :end_date,
-                                 :end_station_name,
                                  :end_station_id,
                                  :bike_id,
                                  :subscription_type,
