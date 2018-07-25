@@ -48,7 +48,7 @@ describe Station, type: :model do
       station_2 = create(:station, name: 'pier 44', dock_count: 30)
       station_3 = create(:station, name: 'airport', dock_count: 10)
 
-      expect(Station.station_name_most_bikes).to eq("#{station_2.name}")
+      expect(Station.stations_name_most_bikes).to eq([station_2])
     end
   end
 end

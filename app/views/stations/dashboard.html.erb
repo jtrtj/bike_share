@@ -6,4 +6,6 @@ Average bikes available per station : <%= @stations.average_bike_per_station.rou
 <br><br>
 Most bikes available at a station : <%= @stations.most_bikes_at_station %>
 <br><br>
-Station with most bikes : <%= @stations.station_name_most_bikes %>
+Station with most bikes : <% @stations.stations_name_most_bikes.each do |station| %>
+<%= station.name %>
+<% end %>
