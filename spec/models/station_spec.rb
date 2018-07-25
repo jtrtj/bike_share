@@ -9,8 +9,8 @@ describe Station, type: :model do
   end
   describe 'relationships' do
     it { should have_many(:statuses) }
-    it { should have_many(:trips_started_at) } 
-    it { should have_many(:trips_ended_at) } 
+    it { should have_many(:trips_started_at) }
+    it { should have_many(:trips_ended_at) }
   end
 
   describe 'class methods' do
@@ -59,6 +59,9 @@ describe Station, type: :model do
     it 'find oldest installation station' do
 
       expect(Station.oldest_installation).to eq("#{@station_3.name}")
+    end
+    it '#trips_started_at' do
+      
     end
   end
 end
