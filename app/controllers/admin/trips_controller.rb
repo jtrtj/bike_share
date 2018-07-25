@@ -2,11 +2,14 @@ class Admin::TripsController < Admin::BaseController
 
   def new
     @trip = Trip.new
-    @stations = Station.all
+    # @stations = Station.all
   end
 
   def create
     @trip = Trip.create(trip_params)
+    
+    # binding.pry
+    
     if @trip.save
       redirect_to trip_path(@trip)
       flash[:notice] = "Trip created!"

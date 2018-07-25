@@ -15,11 +15,9 @@ describe "An Admin" do
 
       fill_in :trip_duration,	with: "123"
       fill_in :trip_start_date,	with: trip.start_date 
-      fill_in :trip_start_station_name,	with: trip.start_station_name 
-      fill_in :trip_start_station_id,	with: trip.start_station_id 
+      select(station.name, from: 'Start station')
       fill_in :trip_end_date,	with: trip.end_date 
-      fill_in :trip_end_station_name,	with: trip.end_station_name 
-      fill_in :trip_end_station_id,	with: trip.end_station_id 
+      select(station.name, from: 'End station')
       fill_in :trip_bike_id,	with: trip.bike_id 
       fill_in :trip_subscription_type,	with: trip.subscription_type
       fill_in :trip_zip_code,	with: trip.zip_code

@@ -41,13 +41,13 @@
         <div class="field">
           <div class="control">
             <%= f.label :start_station_id %>
-            <%= f.collection_select(:start_station_id, @stations, :id, :name, {class: "select"}) %>
+            <%= f.collection_select(:start_station_id, Station.all, :id, :name) %>
           </div>
         </div>
         <div class="field">
           <div class="control">
             <%= f.label :end_station_id %>
-            <%= f.collection_select(:start_station_id, @stations, :id, :name, {class: "select"}) %>
+            <%= f.collection_select(:end_station_id, Station.all, :id, :name) %>
           </div>
         </div>
         <%= f.submit class: "button is-block is-info is-small is-fullwidth" %>
