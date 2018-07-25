@@ -2,6 +2,7 @@ class Admin::TripsController < Admin::BaseController
 
   def new
     @trip = Trip.new
+    @stations = Station.all
   end
 
   def create
@@ -17,6 +18,7 @@ class Admin::TripsController < Admin::BaseController
 
   def edit
     @trip = Trip.find(params[:id])
+    @stations = Station.all
   end
 
   def update
@@ -42,7 +44,7 @@ class Admin::TripsController < Admin::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:duration, 
+    params.require(:trip).permit(:duration,
                                  :start_date,
                                  :start_station_name,
                                  :start_station_id,
