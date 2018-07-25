@@ -30,15 +30,14 @@ describe 'A registered user' do
     end
     it 'sees the most bikes available at a station (based on docks) and the station(s) for it,' do
       user = create(:user)
-      station_1 = create(:station, dock_count: 20)
-      station_2 = create(:station, dock_count: 30)
-      station_3 = create(:station, dock_count: 10)
+      station_1 = create(:station, name: 'city hall', dock_count: 20)
+      station_2 = create(:station, name: 'pier 44', dock_count: 30)
+      station_3 = create(:station, name: 'airport', dock_count: 10)
 
       visit stations_dashboard_path
 
-      expected_result = 30
-
-      expect(page).to have_content("Most bikes available at a station : #{expected_result}")
+      expect(page).to have_content("Most bikes available at a station : #{station_2.dock_count}")
+      expect(page).to have_content("Station with most bikes : #{station_2.name}")
     end
   end
 end
