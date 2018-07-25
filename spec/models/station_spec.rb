@@ -13,75 +13,51 @@ describe Station, type: :model do
   end
 
   describe 'class methods' do
-    it 'calculate total count of stations' do
+    before :each do
       user = create(:user)
-      station_1 = create(:station, dock_count: 20)
-      station_2 = create(:station, dock_count: 30)
-      station_3 = create(:station, dock_count: 10)
+      @station_1 = create(:station, dock_count: 20, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
+      @station_2 = create(:station, dock_count: 30, name: 'pier 44',  installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
+      @station_3 = create(:station, dock_count: 10, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+    end
+    it 'calculate total count of stations' do
 
       expected_result = 3
 
       expect(Station.total_count).to eq(expected_result)
     end
     it 'calculate average bike per station' do
-      user = create(:user)
-      station_1 = create(:station, dock_count: 20)
-      station_2 = create(:station, dock_count: 30)
-      station_3 = create(:station, dock_count: 10)
 
       expected_result = 20
 
       expect(Station.average_bike_per_station).to eq(expected_result)
     end
     it 'find most bike at a station' do
-      user = create(:user)
-      station_1 = create(:station, dock_count: 20)
-      station_2 = create(:station, dock_count: 30)
-      station_3 = create(:station, dock_count: 10)
 
       expected_result = 30
+
       expect(Station.most_bikes_at_station).to eq(expected_result)
     end
     it 'find station name with the most bikes' do
-      user = create(:user)
-      station_1 = create(:station, name: 'city hall', dock_count: 20)
-      station_2 = create(:station, name: 'pier 44', dock_count: 30)
-      station_3 = create(:station, name: 'airport', dock_count: 10)
 
-      expect(Station.stations_name_most_bikes).to eq([station_2])
+      expect(Station.stations_name_most_bikes).to eq([@station_2])
     end
     it 'find station with fewest bikes' do
-      user = create(:user)
-      station_1 = create(:station, dock_count: 20)
-      station_2 = create(:station, dock_count: 30)
-      station_3 = create(:station, dock_count: 10)
 
       expected_result = 10
+
       expect(Station.fewest_bikes_at_station).to eq(expected_result)
     end
     it 'find station name with the lewest bikes' do
-      user = create(:user)
-      station_1 = create(:station, name: 'city hall', dock_count: 20)
-      station_2 = create(:station, name: 'pier 44', dock_count: 30)
-      station_3 = create(:station, name: 'airport', dock_count: 10)
 
-      expect(Station.stations_name_fewest_bikes).to eq([station_3])
+      expect(Station.stations_name_fewest_bikes).to eq([@station_3])
     end
     it 'find newest installation station' do
-      user = create(:user)
-      station_1 = create(:station, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
-      station_2 = create(:station, name: 'pier 44', installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
-      station_3 = create(:station, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
 
-      expect(Station.newest_installation).to eq("#{station_2.name}")
+      expect(Station.newest_installation).to eq("#{@station_2.name}")
     end
     it 'find oldest installation station' do
-      user = create(:user)
-      station_1 = create(:station, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
-      station_2 = create(:station, name: 'pier 44', installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
-      station_3 = create(:station, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
 
-      expect(Station.oldest_installation).to eq("#{station_3.name}")
+      expect(Station.oldest_installation).to eq("#{@station_3.name}")
     end
   end
 end
