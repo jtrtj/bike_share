@@ -34,4 +34,11 @@ describe Cart do
   it '#total_price_all_items' do
     expect(@cart.total_price_all_items).to eq(6800)
   end
+
+  it '#remove_item' do
+    @cart.remove_item(@item_1.id)
+    expected_result {"2" => 8, "3" => 5}
+
+    expect(@cart.contents).to eq(expected_result)
+  end
 end
