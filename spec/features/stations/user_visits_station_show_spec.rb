@@ -31,7 +31,7 @@ describe 'A visitor' do
       trip_3 = create(:trip,start_station_id: station_2.id, end_station_id: station_1.id)
 
       visit station_path(station_1)
-
+      save_and_open_page
       expect(page).to have_content("Trips started at this station 2")
       expect(page).to have_content("Trips ended at this station 1")
     end
