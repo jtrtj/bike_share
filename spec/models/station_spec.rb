@@ -67,5 +67,21 @@ describe Station, type: :model do
 
       expect(Station.stations_name_fewest_bikes).to eq([station_3])
     end
+    it 'find newest installation station' do
+      user = create(:user)
+      station_1 = create(:station, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
+      station_2 = create(:station, name: 'pier 44', installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
+      station_3 = create(:station, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+
+      expect(Station.newest_installation).to eq("#{station_2.name}")
+    end
+    it 'find oldest installation station' do
+      user = create(:user)
+      station_1 = create(:station, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
+      station_2 = create(:station, name: 'pier 44', installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
+      station_3 = create(:station, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+
+      expect(Station.oldest_installation).to eq("#{station_3.name}")
+    end
   end
 end
