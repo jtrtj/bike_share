@@ -39,5 +39,16 @@ describe 'A registered user' do
       expect(page).to have_content("Most bikes available at a station : #{station_2.dock_count}")
       expect(page).to have_content("Station with most bikes : #{station_2.name}")
     end
+    it 'sees the fewest bikes available at a station (based on docks) and the name of the stations' do
+      user = create(:user)
+      station_1 = create(:station, name: 'city hall', dock_count: 20)
+      station_2 = create(:station, name: 'pier 44', dock_count: 30)
+      station_3 = create(:station, name: 'airport', dock_count: 10)
+
+      visit stations_dashboard_path
+
+      expect(page).to have_content("Fewest bikes available at a station : #{station_3.dock_count}")
+      expect(page).to have_content("Station with fewest bikes : #{station_3.name}")
+    end
   end
 end
