@@ -42,5 +42,13 @@ describe Station, type: :model do
       expected_result = 30
       expect(Station.most_bikes_at_station).to eq(expected_result)
     end
+    it 'find station name with the most bikes' do
+      user = create(:user)
+      station_1 = create(:station, name: 'city hall', dock_count: 20)
+      station_2 = create(:station, name: 'pier 44', dock_count: 30)
+      station_3 = create(:station, name: 'airport', dock_count: 10)
+
+      expect(Station.station_name_most_bikes).to eq("#{station_2.name}")
+    end
   end
 end
