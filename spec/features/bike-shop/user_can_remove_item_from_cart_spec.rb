@@ -20,7 +20,7 @@ describe 'a visitor' do
       within "#item-#{item_1.id}" do
         click_button('Remove')
       end
-      
+
       within ".cart" do
         expect(page).to_not have_content(item_1.title)
         expect(page).to have_content(item_2.title)
