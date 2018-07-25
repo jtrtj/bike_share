@@ -17,4 +17,15 @@ class Cart
   def quantity_by_item(item_id)
     @contents[item_id.to_s]
   end
+
+  def items
+    Item.where(id: @contents.keys)
+  end
+
+  def total_price_all_items
+    items.inject(0) do |total, item|
+      total += (item.price * quantity_by_item(item.id))
+      total
+    end
+  end
 end

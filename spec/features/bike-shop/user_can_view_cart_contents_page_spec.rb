@@ -12,6 +12,15 @@ describe 'a visitor' do
       within "#item-#{item_1.id}" do
         click_button('Add to Cart')
       end
+      within "#item-#{item_1.id}" do
+        click_button('Add to Cart')
+      end
+      within "#item-#{item_2.id}" do
+        click_button('Add to Cart')
+      end
+      within "#item-#{item_2.id}" do
+        click_button('Add to Cart')
+      end
       within "#item-#{item_2.id}" do
         click_button('Add to Cart')
       end
@@ -21,7 +30,10 @@ describe 'a visitor' do
 
       click_on "Cart: "
 
-      
+      save_and_open_page
+
+      expect(page).to have_content('Quantity')
+      expect(page).to have_content('Subtotal')
     end
   end
 end

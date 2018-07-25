@@ -1,4 +1,4 @@
-<table class='table'>
+<table class='table is-fullwidth'>
   <thead>
     <th></th>
     <th>Item</th>
@@ -8,9 +8,16 @@
   </thead>
   <tbody>
     <% @cart.items.each do |item| %>
-    <tr><%= image_tag(item.image), class: 'image is-48x48'%></tr>
-    <tr><%= item.title  %></tr>
-    <tr><%= number_to_currency(item.price) %></tr>
-    <tr></tr>
+      <tr>
+      <td><img src="<%= item.image %>" class='image is-48x48'></td>
+      <td><%= item.title  %></td>
+      <td><%= number_to_currency(item.price) %></td>
+      <td><%= @cart.quantity_by_item(item.id) %></td>
+      <td><%= number_to_currency(@cart.quantity_by_item(item.id) * item.price) %></td>
+      </tr>
+    <% end %>
+    <tr colspan='5' align='right'>
+      <td>Total: <%= number_to_currency(@cart.total_price_all_items) %></td>
+    </tr>
   </tbody>
 </table>
