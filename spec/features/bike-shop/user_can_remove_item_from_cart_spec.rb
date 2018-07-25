@@ -25,6 +25,10 @@ describe 'a visitor' do
         expect(page).to_not have_content(item_1.title)
         expect(page).to have_content(item_2.title)
       end
+      within ".flash" do
+        expect(page).to have_link(item_1.title)
+        expect(page).to have_content("You removed #{item.title} from your cart!")
+      end
 
       within "#item-#{item_2.id}" do
         click_button('+')
