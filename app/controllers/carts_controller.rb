@@ -18,7 +18,7 @@ class CartsController < ApplicationController
     if params[:todo] == 'remove'
       @cart.remove_item(params[:item_id])
       item = Item.find(params[:item_id])
-      flash[:notice] = "You removed #{item.title} from your cart!"
+      flash[:notice] = "You removed #{view_context.link_to item.title, item_path(item)} from your cart."
     elsif params[:todo] == 'increase'
       @cart.add_item(params[:item_id])
     elsif params[:todo] == 'decrease'
