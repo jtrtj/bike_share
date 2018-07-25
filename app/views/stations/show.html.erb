@@ -11,7 +11,7 @@
     <td><%= @station.city %></td>
     <td><%= @station.installation_date %></td>
     <% if current_admin? %>
-      <td><%= button_to  "Edit", edit_admin_station_path(@station) %></td>
+      <td><%= button_to  "Edit", edit_admin_station_path(@station.id), method: :get %></td>
       <td><%= button_to  "Delete", admin_station_path(@station), method: :delete %></td>
     <% end %>
   </tr>

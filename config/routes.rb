@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :stations, only: [:index, :show]
 
   get '/stations-dashboard', to: 'stations#dashboard'
+  resources :carts, only: [:create]
 
   namespace :admin do
     resources :stations, only: [:new, :create, :edit, :update, :destroy]
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
 
   resources :conditions, only: [:index, :show]
 
+  get '/bike-shop', to: 'items#index'
+  get '/cart', to: 'carts#show'
+  post'/cart', to: 'carts#update'
   get '/:id', to: 'stations#show'
   get '/:id', to: 'trips#show'
 end
