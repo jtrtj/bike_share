@@ -1,6 +1,9 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
-
+  
+  def show
+  end 
+  
   def create
     item = Item.find(params[:item_id])
     @cart = Cart.new(session[:cart])
@@ -15,7 +18,4 @@ class CartsController < ApplicationController
     @cart.remove_item(params[:item_id])
   end
 
-
-  def show
-  end 
 end
