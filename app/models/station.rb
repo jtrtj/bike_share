@@ -24,4 +24,8 @@ class Station < ApplicationRecord
   def self.stations_name_most_bikes
     where(dock_count: most_bikes_at_station)
   end
+
+  def self.fewest_bikes_at_station
+    minimum(:dock_count)
+  end
 end
