@@ -2,13 +2,15 @@ require 'rails_helper'
 
 describe 'A registered user' do
   context 'visiting stations dashboard' do
-    it 'sees the total count of stations' do
+    before :each do
       user = create(:user)
-      station_1 = create(:station, dock_count: 20)
-      station_2 = create(:station, dock_count: 30)
-      station_3 = create(:station, dock_count: 10)
+      @station_1 = create(:station, dock_count: 20, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
+      @station_2 = create(:station, dock_count: 30, name: 'pier 44',  installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
+      @station_3 = create(:station, dock_count: 10, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    end
+    it 'sees the total count of stations' do
 
       visit stations_dashboard_path
 
@@ -17,10 +19,6 @@ describe 'A registered user' do
       expect(page).to have_content("Total count of stations : #{expected_result}")
     end
     it 'sees the Average bikes available per station based on docks' do
-      user = create(:user)
-      station_1 = create(:station, dock_count: 20)
-      station_2 = create(:station, dock_count: 30)
-      station_3 = create(:station, dock_count: 10)
 
       visit stations_dashboard_path
 
@@ -29,37 +27,25 @@ describe 'A registered user' do
       expect(page).to have_content("Average bikes available per station : #{expected_result}")
     end
     it 'sees the most bikes available at a station (based on docks) and the station(s) for it,' do
-      user = create(:user)
-      station_1 = create(:station, name: 'city hall', dock_count: 20)
-      station_2 = create(:station, name: 'pier 44', dock_count: 30)
-      station_3 = create(:station, name: 'airport', dock_count: 10)
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Most bikes available at a station : #{station_2.dock_count}")
-      expect(page).to have_content("Station with most bikes : #{station_2.name}")
+      expect(page).to have_content("Most bikes available at a station : #{@station_2.dock_count}")
+      expect(page).to have_content("Station with most bikes : #{@station_2.name}")
     end
     it 'sees the fewest bikes available at a station (based on docks) and the name of the stations' do
-      user = create(:user)
-      station_1 = create(:station, name: 'city hall', dock_count: 20)
-      station_2 = create(:station, name: 'pier 44', dock_count: 30)
-      station_3 = create(:station, name: 'airport', dock_count: 10)
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Fewest bikes available at a station : #{station_3.dock_count}")
-      expect(page).to have_content("Station with fewest bikes : #{station_3.name}")
+      expect(page).to have_content("Fewest bikes available at a station : #{@station_3.dock_count}")
+      expect(page).to have_content("Station with fewest bikes : #{@station_3.name}")
     end
     it 'sees the most recently installed station and the oldest station' do
-      user = create(:user)
-      station_1 = create(:station, name: 'city hall', installation_date: DateTime.strptime('8/15/2016 16:45', '%m/%d/%Y'))
-      station_2 = create(:station, name: 'pier 44', installation_date: DateTime.strptime('8/15/2018 16:45', '%m/%d/%Y'))
-      station_3 = create(:station, name: 'airport', installation_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
-      
+
       visit stations_dashboard_path
 
-      expect(page).to have_content("Newest station : #{station_2.name}")
-      expect(page).to have_content("Oldest station : #{station_3.name}")
+      expect(page).to have_content("Newest station : #{@station_2.name}")
+      expect(page).to have_content("Oldest station : #{@station_3.name}")
     end
   end
 end
