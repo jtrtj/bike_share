@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   resources :conditions, only: [:index, :show]
 
+  resources :items, only: [:show]
+
   get '/bike-shop', to: 'items#index'
   get '/cart', to: 'carts#show'
   post'/cart', to: 'carts#update'

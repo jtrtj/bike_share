@@ -20,9 +20,16 @@ describe 'a visitor' do
       within "#item-#{item_1.id}" do
         click_button('Remove')
       end
+      save_and_open_page
+      within ".cart" do
+        expect(page).to_not have_content(item_1.title)
+        expect(page).to have_content(item_2.title)
+      end
 
-      expect(page).to_not have_content(item_1.title)
-      expect(page).to have_content(item_2.title)
+      within ".flash" do
+        expect(page).to have_link(item_1.title)
+        expect(page).to have_content("You removed #{item_1.title} from your cart.")
+      end
 
       within "#item-#{item_2.id}" do
         click_button('+')
