@@ -8,6 +8,25 @@
 require 'csv'
 require File.expand_path('../config/environment', __dir__)
 
+User.create(user_name: 'John', password: 'john', role: 1)
+User.create(user_name: 'Claire', password: '123', role: 1)
+User.create(user_name: 'Eliot', password: 'idk', role: 1)
+User.create(user_name: 'BILLY MAYS', password: 'ugh', role: 1)
+User.create(user_name: 'Bobby', password: 'bobby', role: 0)
+
+Item.create(title: "Jetpack", description: 'Sounds great', image: '#', price: 400, status: 1)
+Item.create(title: "Mr. Jones", description: 'and me', image: '#', price: 300, status: 1)
+Item.create(title: "Counting Crows", description: 'Dead meme', image: '#', price: 500, status: 0)
+Item.create(title: "Tom Hardy", description: "He's Bane", image: '#', price: 3400, status: 1)
+Item.create(title: "Agent K", description: 'Tommy Lee Jones', image: '#', price: 900, status: 1)
+Item.create(title: "Agent J", description: 'Will Smith', image: '#', price: 490, status: 1)
+Item.create(title: "Lonliness", description: 'Unlimited supply', image: '#', price: 100, status: 1)
+Item.create(title: "A mediocre-looking Couch", description: 'You can burn it', image: '#', price: 490, status: 1)
+Item.create(title: "TRAMPOLINE", description: 'He does not know what that is', image: '#', price: 480, status: 1)
+Item.create(title: "CANARY", description: 'Not really', image: '#', price: 470, status: 0)
+Item.create(title: "Ke$ha's Career", description: 'Get it? Because it is dead!', image: '#', price: 400, status: 1)
+Item.create(title: "为什么？", description: '你妈讨厌我', image: '#', price: 430, status: 1)
+
 stations = CSV.open('./db/csv/stations.csv',
                     headers: true,
                     header_converters: :symbol)
@@ -70,5 +89,17 @@ statuses.each do |status|
     bikes_available: status[:bikes_available],
     docks_available: status[:docks_available],
     time:            status[:time]
+  )
+end
+
+users = CSV.open('./db/csv/users.csv',
+                  headers: true,
+                  header_converters: :symbol)
+
+users.each do |user|
+  User.create(
+    user_name:        user[:user_name],
+    password:         user[:password],
+    role:             user[:role]
   )
 end
