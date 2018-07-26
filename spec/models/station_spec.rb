@@ -117,5 +117,15 @@ describe Station, type: :model do
 
       expect(station_1.most_frequent_origin_zip_code).to eq(80220)
     end
+
+    it "#most_frequent_origin_bike_id" do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, bike_id: 22, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, bike_id: 22, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip, bike_id: 11, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      expect(station_1.mmost_frequent_origin_bike_id).to eq(11)
+    end
   end
 end
