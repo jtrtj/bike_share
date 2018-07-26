@@ -42,6 +42,6 @@ class Admin::ConditionsController < Admin::BaseController
 
   private
   def condition_params
-    params.require(:condition).permit(:date, :max_temperature_f, :mean_temperature_f, :min_temperature_f, :mean_humidity, :mean_visibility_miles, :mean_wind_speed_mph, :precipitation_inches)
+    params.require(:condition).permit(:date, :max_temperature_f, :mean_temperature_f, :min_temperature_f, :mean_humidity, :mean_visibility_miles, :mean_wind_speed_mph, :precipitation_inches, :zip_code)
   end
 end

@@ -14,7 +14,7 @@ describe 'an admin' do
       mean = 8000
       min = 7000
 
-      select Date.today, from: "condition[date]"
+      fill_in :condition_date, with: Time.now
       fill_in :condition_max_temperature_f, with: max
       fill_in :condition_mean_temperature_f, with: mean
       fill_in :condition_min_temperature_f, with: min
