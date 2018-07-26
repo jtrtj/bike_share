@@ -76,4 +76,15 @@ class Trip < ApplicationRecord
   def self.date_most_trips
     Trip.where(start_date: date_with_most_trips).length
   end
+
+  def self.date_with_least_trips
+    select('trips.start_date, count(trips.start_date) AS date_trip_count')
+    .group(:start_date)
+    .order('date_trip_count ASC')
+    .limit(1).last.start_date
+  end
+
+  def self.date_least_trips
+    Trip.where(start_date: date_with_least_trips).length
+  end
 end
