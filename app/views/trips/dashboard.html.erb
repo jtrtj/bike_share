@@ -17,3 +17,5 @@ Monthly Breakdown:
             <% @trips_by_month.each_pair do |month, count| %>
               Total trips for <%= month.strftime('%B') %> of <%= month.year %>
             <% end %>
+
+The ID of the most ridden bike is <%= @most_ridden_bike %>, with <%= @most_bike_rides %> number of rides

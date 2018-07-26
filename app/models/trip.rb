@@ -37,4 +37,15 @@ class Trip < ApplicationRecord
   def self.month_by_month
     group("date_trunc('month', start_date)").count
   end
+
+  def self.most_ridden_bike
+    Trip.select('trips.bike_id, count(trips.bike_id) AS bike_id_count')
+    .group(:bike_id)
+    .order('bike_id_count DESC')
+    .limit(1).first.bike_id
+  end
+
+  def self.most_bike_rides
+    Trip.where(bike_id: most_ridden_bike).count
+  end
 end
