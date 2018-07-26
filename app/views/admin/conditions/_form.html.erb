@@ -52,6 +52,12 @@
                                   <%= f.number_field :precipitation_inches, class: "input is-medium", placeholder: "Precipitation (inches)" %>
                                 </div>
                             </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :zip_code %>
+                                  <%= f.number_field :zip_code, class: "input is-medium", placeholder: "Zip Code" %>
+                                </div>
+                            </div>
                             <%= f.submit class: "button is-block is-info is-large is-fullwidth" %>
                         <% end %>
                     </div>

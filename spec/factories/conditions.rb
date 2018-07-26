@@ -8,5 +8,6 @@ FactoryBot.define do
     mean_visibility_miles 6.0
     mean_wind_speed_mph 14.0
     precipitation_inches 1.0
+    zip_code 8675309
   end
 end

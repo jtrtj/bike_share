@@ -9,8 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20180726212903) do
+ActiveRecord::Schema.define(version: 20180726231801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180726212903) do
     t.decimal "precipitation_inches"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "zip_code"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -74,13 +74,6 @@ ActiveRecord::Schema.define(version: 20180726212903) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-  end
-
-  create_table "statuses", force: :cascade do |t|
-    t.integer "station_id"
-    t.integer "bikes_available"
-    t.integer "docks_available"
-    t.datetime "time"
   end
 
   create_table "trips", force: :cascade do |t|

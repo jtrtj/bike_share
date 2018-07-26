@@ -9,10 +9,12 @@ describe 'an admin' do
 
       visit new_admin_condition_path
 
+      save_and_open_page
       max = 9000
       mean = 8000
       min = 7000
-      fill_in :condition_date, with: Date.today
+
+      fill_in :condition_date, with: Time.now
       fill_in :condition_max_temperature_f, with: max
       fill_in :condition_mean_temperature_f, with: mean
       fill_in :condition_min_temperature_f, with: min
@@ -20,7 +22,9 @@ describe 'an admin' do
       fill_in :condition_mean_visibility_miles, with: 467
       fill_in :condition_mean_wind_speed_mph, with: 888
       fill_in :condition_precipitation_inches, with: 87
+      fill_in :condition_zip_code, with: 7777777
       click_on 'Create Condition'
+
 
       expect(current_path).to eq(condition_path(Condition.last))
       expect(page).to have_content(max)
