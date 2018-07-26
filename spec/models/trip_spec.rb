@@ -131,5 +131,23 @@ describe Trip, type: :model do
       expect(Trip.least_ridden_bike).to eq(2)
       expect(Trip.least_bike_rides).to eq(2)
     end
+    it '#subscription breakdown' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip2 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip3 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip4 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip5 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
+      trip6 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
+      expected_result_1 = '66.6%'
+      expected_result_2 = '33.3%'
+      expected_result_3 = 4
+      expected_result_4 = 2
+
+      expect(Trip.subscription_type_by_count[0].subscription_type_count).to eq(2)
+      expect(Trip.subscription_type_by_count[1].subscription_type_count).to eq(4)
+    end
   end
 end

@@ -60,4 +60,8 @@ class Trip < ApplicationRecord
     Trip.where(bike_id: least_ridden_bike).count
   end
 
+  def self.subscription_type_by_count
+    Trip.select('trips.subscription_type, count(trips.subscription_type) AS subscription_type_count')
+    .group(:subscription_type)
+  end
 end

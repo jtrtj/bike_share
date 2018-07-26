@@ -113,5 +113,21 @@ describe 'A registered user' do
 
       expect(page).to have_content("The ID  of the least ridden bike is #{special_bike}, with #{rides} number of rides")
     end
+    it 'sees subscription type breakdown (with both count and percentage)' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip2 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip3 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip4 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
+      trip5 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
+      trip6 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
+
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Subscription Type - Admin Boi, 4, 66.6%")
+      expect(page).to have_content("Subscription Type - Slug Boi, 2, 33.3%")      
+    end
   end
 end
