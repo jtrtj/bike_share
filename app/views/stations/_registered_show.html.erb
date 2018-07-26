@@ -47,7 +47,11 @@
     </tr>
     <tr>
       <td>Date with the highest number of trips started here</td>
-      <td><%= @station.most_popular_date.date %></td>
+      <% if @station.trips_started_at.empty? %>
+        <td>None</td>
+      <% else %>
+        <td><%= @station.most_popular_date %></td>
+      <% end %>
     </tr>
     <tr>
       <td>Most Frequent Zip Code</td>
