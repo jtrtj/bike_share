@@ -15,7 +15,6 @@ describe Trip, type: :model do
     it {should belong_to(:end_station)}
     it {should belong_to(:start_station)}
   end
-
   describe 'class methods' do
     it 'find average duration of ride' do
       station = create(:station)
