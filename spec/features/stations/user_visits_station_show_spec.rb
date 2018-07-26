@@ -88,7 +88,7 @@ describe 'A visitor' do
 
       visit station_path(station_1)
 
-      expect(page).to have_content("Most frequent zip code for users of this station 38112")
+      expect(page).to have_content("Most Frequent Zip Code 38112")
     end
 
     it 'sees the bike id most frequently starting trips at the station' do
