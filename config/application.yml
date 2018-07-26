@@ -1,0 +1,14 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+SECRET_KEY_BASE: f96c71f5133ea8fbb955e8fb38fa35b7a98dd14aa835e8bcd41fdafb38a581f62b9c613114c57a5ee783b5775be4ff5e7e9a7bdf99b1bdecaad9ee0c48a2ccf9
+RAILS_SERVE_STATIC_FILES: yes
