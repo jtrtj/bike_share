@@ -10,7 +10,7 @@ describe 'An admin' do
     end
     it 'sees link to view all items' do
 
-      visit admin_dashboard_path
+      visit admin_dashboard_index_path
 
       expect(page).to have_link('All Items')
     end
