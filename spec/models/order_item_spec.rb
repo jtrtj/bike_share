@@ -7,7 +7,7 @@ describe OrderItem, type: :model do
     it {should validate_presence_of(:quantity)}
   end
   context 'relationships' do
-    it {should have_many(:items)}
+    it {should belong_to(:item)}
     it {should belong_to(:order)}
   end
 end
