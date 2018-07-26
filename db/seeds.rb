@@ -14,6 +14,8 @@ User.create(user_name: 'Eliot', password: 'idk', role: 1)
 User.create(user_name: 'BILLY MAYS', password: 'ugh', role: 1)
 User.create(user_name: 'Bobby', password: 'bobby', role: 0)
 
+puts "#{User.count} Users added to db"
+
 Item.create(title: "Jetpack", description: 'Sounds great', image: 'wilford.jpeg', price: 400, status: 1)
 Item.create(title: "Mr. Jones", description: 'and me', image: 'wilford.jpeg', price: 300, status: 1)
 Item.create(title: "Counting Crows", description: 'Dead meme', image: 'wilford.jpeg', price: 500, status: 0)
@@ -26,6 +28,8 @@ Item.create(title: "TRAMPOLINE", description: 'He does not know what that is', i
 Item.create(title: "CANARY", description: 'Not really', image: 'wilford.jpeg', price: 470, status: 0)
 Item.create(title: "Ke$ha's Career", description: 'Get it? Because it is dead!', image: 'wilford.jpeg', price: 400, status: 1)
 Item.create(title: "为什么？", description: '你妈讨厌我', image: 'wilford.jpeg', price: 430, status: 1)
+
+puts "#{Item.count} Items added to db"
 
 stations = CSV.open('./db/csv/stations.csv',
                     headers: true,
@@ -42,6 +46,8 @@ stations.each do |station|
   )
 end
 ActiveRecord::Base.connection.reset_pk_sequence!('stations')
+
+puts "#{Station.count} Stations added to db"
 
 trips = CSV.open('./db/csv/trips.csv',
                   headers: true,
@@ -66,6 +72,8 @@ trips.each do |trip|
   end
 end
 
+puts "#{Trip.count} Trips added to db"
+
 conditions = CSV.open('./db/csv/conditions.csv',
                       headers: true,
                       header_converters: :symbol)
@@ -82,6 +90,8 @@ conditions.each do |condition|
   )
 end
 
+puts "#{Condition.count} Conditions added to db"
+
 statuses = CSV.open('./db/csv/statuses.csv',
                     headers: true,
                     header_converters: :symbol)
@@ -93,3 +103,5 @@ statuses.each do |status|
     time:            status[:time]
   )
 end
+
+puts "#{Status.count} Statuses added to db"
