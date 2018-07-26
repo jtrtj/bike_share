@@ -8,11 +8,16 @@ describe 'An admin' do
       @item2 = Item.create(title: 'wheels', description: 'circle', price: 90, image: 'https://www.elegantthemes.com/blog/wp-content/uploads/2015/02/custom-trackable-short-url-feature.png')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
-    it 'sees link to view all items' do
+    it 'sees link to view all items and click on it current path should be "/admin/bike-shop"' do
 
       visit admin_dashboard_index_path
 
       expect(page).to have_link('All Items')
+      click_link 'All Items'
+      expect(current_path).to eq(admin_bike_shop_path)
+    end
+    it '' do
+
     end
   end
 end
