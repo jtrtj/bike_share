@@ -139,11 +139,13 @@ describe 'A registered user' do
       trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip5 = create(:trip,  start_date: DateTime.strptime('2/7/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
-      expected_result = "4/4/2016"
+      expected_result_1 = "4/4/2016"
+      expected_result_2 = 3
 
       visit trips_dashboard_path
 
-      expect(page).to have_content("Date with most trips: #{expected_result}")
+      expect(page).to have_content("Date with most trips: #{expected_result_1}")
+      expect(page).to have_content("total number of trips: #{expected_result_2}")
     end
   end
 end
