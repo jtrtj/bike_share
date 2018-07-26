@@ -31,3 +31,7 @@ describe 'An admin' do
     end
   end
 end
+=begin
+Ability to Edit accessory
+Ability to Retire/Reactivate accessory
+=end
