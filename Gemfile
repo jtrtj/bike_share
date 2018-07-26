@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'launchy'
   gem 'pry'
   gem 'rspec-rails'
