@@ -141,8 +141,6 @@ describe Trip, type: :model do
       trip4 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
       trip5 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
       trip6 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
-      expected_result_1 = '66.6%'
-      expected_result_2 = '33.3%'
       expected_result_3 = 4
       expected_result_4 = 2
 

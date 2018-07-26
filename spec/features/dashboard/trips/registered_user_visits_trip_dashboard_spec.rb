@@ -126,8 +126,24 @@ describe 'A registered user' do
 
       visit trips_dashboard_path
 
-      expect(page).to have_content("Subscription Type - Admin Boi, 4, 66.6%")
-      expect(page).to have_content("Subscription Type - Slug Boi, 2, 33.3%")      
+      expect(page).to have_content("Subscription Type - Admin Boi, 4, 66.7%")
+      expect(page).to have_content("Subscription Type - Slug Boi, 2, 33.3%")
+    end
+    it 'sees date with highest number of trips' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip2 = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip3 = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip5 = create(:trip,  start_date: DateTime.strptime('2/7/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      expected_result = "4/4/2016"
+
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Date with most trips: #{expected_result}")
     end
   end
 end
