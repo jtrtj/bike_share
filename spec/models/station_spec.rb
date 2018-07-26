@@ -125,7 +125,7 @@ describe Station, type: :model do
       trip_2 = create(:trip, bike_id: 22, start_station_id: station_1.id, end_station_id: station_2.id)
       trip_3 = create(:trip, bike_id: 11, start_station_id: station_1.id, end_station_id: station_2.id)
 
-      expect(station_1.mmost_frequent_origin_bike_id).to eq(11)
+      expect(station_1.most_frequent_origin_bike_id).to eq(22)
     end
   end
 end
