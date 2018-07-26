@@ -62,4 +62,10 @@ class Station < ApplicationRecord
                     .limit(1).first.start_date
   end
 
+  def most_frequent_origin_zip_code
+    trips_started_at.select("trips.zip_code, count(zip_code) AS zip_code_count")
+                    .group(:zip_code, :id)
+                    .order("zip_code_count")
+                    .limit(1).first.zip_code
+  end
 end
