@@ -93,15 +93,3 @@ statuses.each do |status|
     time:            status[:time]
   )
 end
-
-users = CSV.open('./db/csv/users.csv',
-                  headers: true,
-                  header_converters: :symbol)
-
-users.each do |user|
-  User.create(
-    user_name:        user[:user_name],
-    password:         user[:password],
-    role:             user[:role]
-  )
-end
