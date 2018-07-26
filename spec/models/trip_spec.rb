@@ -147,5 +147,21 @@ describe Trip, type: :model do
       expect(Trip.subscription_type_by_count[0].subscription_type_count).to eq(2)
       expect(Trip.subscription_type_by_count[1].subscription_type_count).to eq(4)
     end
+    it '#date_with_most_trips' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip2 = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip3 = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip5 = create(:trip,  start_date: DateTime.strptime('2/7/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      expected_result_1 = DateTime.strptime('4/4/2016', '%m/%d/%Y')
+      expected_result_2 = 3
+
+      expect(Trip.date_with_most_trips).to eq(expected_result_1)
+      expect(Trip.date_most_trips).to eq(expected_result_2)
+    end
   end
 end
