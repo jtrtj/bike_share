@@ -4,7 +4,7 @@ describe 'An admin' do
   context 'visits condition show' do
     it "sees an edit button and a delete button" do
       admin = create(:user, role: 1)
-      condition_1 = Condition.create!(date: Time.now, max_temperature_f: 90.0, mean_temperature_f: 80.0, min_temperature_f: 70.0, mean_humidity: 60.0, mean_visibility_miles: 70.0, mean_wind_speed_mph: 30.0, precipitation_inches: 25.0)
+      condition_1 = Condition.create!(date: Time.now, max_temperature_f: 90.0, mean_temperature_f: 80.0, min_temperature_f: 70.0, mean_humidity: 60.0, mean_visibility_miles: 70.0, mean_wind_speed_mph: 30.0, precipitation_inches: 25.0, zip_code: 888888)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -19,6 +19,7 @@ describe 'An admin' do
       expect(page).to have_content(condition_1.mean_visibility_miles)
       expect(page).to have_content(condition_1.mean_wind_speed_mph)
       expect(page).to have_content(condition_1.precipitation_inches)
+      expect(page).to have_content(condition_1.zip_code)
       expect(page).to have_button('Edit')
       expect(page).to have_button('Delete')
     end

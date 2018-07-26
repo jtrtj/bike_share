@@ -21,6 +21,7 @@
         <th>Avg. Visibility (Miles)</th>
         <th>Avg. Wind Speed (Mph)</th>
         <th>Precipitation (Inches)</th>
+        <th>Zip Code</th>
       </thead>
 
       <tbody>
@@ -34,6 +35,7 @@
             <td><%= condition.mean_visibility_miles %></td>
             <td><%= condition.mean_wind_speed_mph %></td>
             <td><%= condition.precipitation_inches%></td>
+            <td><%= condition.zip_code%></td>
             <td><%= button_to 'Edit', edit_admin_condition_path(condition), method: :get %></td>
             <td><%= button_to 'Delete', admin_condition_path(condition), method: :delete %></td>
           </tr>
