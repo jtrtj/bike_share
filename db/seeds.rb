@@ -47,21 +47,23 @@ trips = CSV.open('./db/csv/trips.csv',
                   headers: true,
                   header_converters: :symbol)
 trips.each do |trip|
-  Trip.create(
-    id:                               trip[:id],
-    duration:                         trip[:duration],
-    start_date:                       DateTime.strptime(trip[:start_date], '%m/%d/%Y'),
-    start_station_name:               trip[:start_station_name],
-    start_station_id:                 trip[:start_station_id],
-    end_date:                         trip[:end_date],
-    end_station_name:                 trip[:end_station_name],
-    end_station_id:                   trip[:end_station_id],
-    bike_id:                          trip[:bike_id],
-    subscription_type:                trip[:subscription_type],
-    zip_code:                         trip[:zip_code],
-    created_at:                       trip[:created_at],
-    updated_at:                       trip[:updated_at]
-  )
+  if trip[:id].to_i % 5 == 0
+    Trip.create(
+      id:                               trip[:id],
+      duration:                         trip[:duration],
+      start_date:                       DateTime.strptime(trip[:start_date], '%m/%d/%Y'),
+      start_station_name:               trip[:start_station_name],
+      start_station_id:                 trip[:start_station_id],
+      end_date:                         trip[:end_date],
+      end_station_name:                 trip[:end_station_name],
+      end_station_id:                   trip[:end_station_id],
+      bike_id:                          trip[:bike_id],
+      subscription_type:                trip[:subscription_type],
+      zip_code:                         trip[:zip_code],
+      created_at:                       trip[:created_at],
+      updated_at:                       trip[:updated_at]
+    )
+  end
 end
 
 conditions = CSV.open('./db/csv/conditions.csv',

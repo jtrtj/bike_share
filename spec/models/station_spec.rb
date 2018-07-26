@@ -9,8 +9,8 @@ describe Station, type: :model do
   end
   describe 'relationships' do
     it { should have_many(:statuses) }
-    it { should have_many(:trips_started_at) } 
-    it { should have_many(:trips_ended_at) } 
+    it { should have_many(:trips_started_at) }
+    it { should have_many(:trips_ended_at) }
   end
 
   describe 'class methods' do
@@ -59,6 +59,73 @@ describe Station, type: :model do
     it 'find oldest installation station' do
 
       expect(Station.oldest_installation).to eq("#{@station_3.name}")
+    end
+    it '#trips_started_at' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip,start_station_id: station_2.id, end_station_id: station_1.id)
+
+      expect(station_1.trips_started_at.length).to eq(2)
+      expect(station_1.trips_ended_at.length).to eq(1)
+    end
+    it '#most_frequent_origin' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      station_3 = create(:station, name: 'moes')
+      trip_1 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
+      trip_2 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
+      trip_3 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
+      trip_4 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
+      trip_5 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
+      trip_6 = create(:trip, start_station_id: station_3.id, end_station_id: station_1.id)
+
+      expect(station_1.most_frequent_origin).to eq(station_3)
+    end
+
+    it '#most_frequent_destination' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      station_3 = create(:station, name: 'moes')
+      trip_1 = create(:trip, start_station_id: station_1.id, end_station_id: station_3.id)
+      trip_2 = create(:trip, start_station_id: station_1.id, end_station_id: station_3.id)
+      trip_3 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_4 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_5 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_6 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      expect(station_1.most_frequent_destination).to eq(station_2)
+    end
+
+    it '#most_popular_date' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, start_date: Date.today, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, start_date: Date.today, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip, start_date: Date.yesterday, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      expect(station_1.most_popular_date).to eq(Date.today)
+    end
+
+    it "#most_frequent_origin_zip_code" do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, zip_code: 80220, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, zip_code: 80220, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip, zip_code: 80030, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      expect(station_1.most_frequent_origin_zip_code).to eq(80220)
+    end
+
+    it "#most_frequent_origin_bike_id" do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, bike_id: 22, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, bike_id: 22, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip, bike_id: 11, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      expect(station_1.most_frequent_origin_bike_id).to eq(22)
     end
   end
 end
