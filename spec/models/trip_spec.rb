@@ -99,5 +99,21 @@ describe Trip, type: :model do
 
       expect(Trip.month_by_month.first[0].month).to eq(4)
     end
+    it '#most_ridden_bike' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip2 = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip3 = create(:trip, bike_id: 2, start_station: station_1, end_station: station_2)
+      trip4 = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip5 = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip6 = create(:trip, bike_id: 2, start_station: station_1, end_station: station_2)
+      special_bike = 3
+      rides = 4
+
+      expect(Trip.most_ridden_bike).to eq(3)
+      expect(Trip.most_bike_rides).to eq(4)
+    end
   end
 end

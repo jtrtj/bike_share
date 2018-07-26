@@ -79,5 +79,22 @@ describe 'A registered user' do
       expect(page).to have_content("Total trips for May of 2016")
       expect(page).to have_content("Total trips for July of 2017")
     end
+    it 'shows most ridden bike with number of rides' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip2 = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip3 = create(:trip, bike_id: 2, start_station: station_1, end_station: station_2)
+      trip4 = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip5 = create(:trip, bike_id: 3, start_station: station_1, end_station: station_2)
+      trip6 = create(:trip, bike_id: 2, start_station: station_1, end_station: station_2)
+      special_bike = 3
+      rides = 4
+
+      visit trips_dashboard_path
+
+      expect(page).to have_content("The ID  of the most ridden bike is #{special_bike}, with #{rides} number of rides")
+    end
   end
 end
