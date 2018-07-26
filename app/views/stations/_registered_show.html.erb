@@ -30,7 +30,7 @@
       <td><%= @station.trips_ended_at.length %></td>
     </tr>
     <tr>
-      <td>Most frequent destination station from here</td>
+      <td>Most frequent origin station to here</td>
       <% if @station.trips_ended_at.empty? %>
         <td>None</td>
       <% else %>
@@ -38,7 +38,7 @@
       <% end %>
     </tr>
     <tr>
-      <td>Most frequent origin station to here</td>
+      <td>Most frequent destination station from here</td>
       <% if @station.trips_started_at.empty? %>
         <td>None</td>
       <% else %>
@@ -63,7 +63,11 @@
     </tr>
     <tr>
       <td>ID of bike most frequently starting trips here</td>
-      <td><%= @station.most_frequent_origin_bike_id %></td>
+      <% if @station.trips_started_at.empty? %>
+        <td>None</td>
+      <% else %>
+        <td><%= @station.most_frequent_origin_bike_id %></td>
+      <% end %>
     </tr>
   </tbody>
 </table>

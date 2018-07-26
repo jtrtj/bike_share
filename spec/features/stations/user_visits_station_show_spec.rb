@@ -36,7 +36,7 @@ describe 'A visitor' do
       expect(page).to have_content("Trips ended at this station 1")
     end
 
-    it 'sees the most frequent destination and origin for rides that being at this station' do
+    it 'sees the most frequent destination for rides that begin at this station' do
       station_1 = create(:station)
       station_2 = create(:station, name: 'Union')
       station_3 = create(:station, name: 'Moes')
@@ -44,15 +44,25 @@ describe 'A visitor' do
       trip_1 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
       trip_2 = create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
       trip_3 = create(:trip, start_station_id: station_1.id, end_station_id: station_3.id)
-
       trip_4 = create(:trip,start_station_id: station_3.id, end_station_id: station_1.id)
-      trip_5 = create(:trip,start_station_id: station_3.id, end_station_id: station_1.id)
-      trip_6 = create(:trip,start_station_id: station_2.id, end_station_id: station_1.id)
 
       visit station_path(station_1)
 
       expect(page).to have_content("Most frequent destination station from here #{station_2.name}")
-      expect(page).to have_content("Most frequent origin station to here #{station_3.name}")
+    end
+    it 'sees the most frequent origin for rides that end at this station' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'Union')
+      station_3 = create(:station, name: 'Moes')
+
+      trip_1 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
+      trip_2 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
+      trip_3 = create(:trip, start_station_id: station_2.id, end_station_id: station_1.id)
+      trip_4 = create(:trip,start_station_id: station_3.id, end_station_id: station_1.id)
+
+      visit station_path(station_1)
+
+      expect(page).to have_content("Most frequent origin station to here #{station_2.name}")
     end
 
     it 'seees the date with the most trips starting at the station' do
@@ -91,7 +101,7 @@ describe 'A visitor' do
 
       visit station_path(station_1)
 
-      expect(page).to have_content("Id of bike most frequently starting trips here 1")
+      expect(page).to have_content("ID of bike most frequently starting trips here 1")
     end
   end
 end
