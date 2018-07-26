@@ -40,7 +40,7 @@ describe 'a visitor' do
       click_button 'Sign Up'
 
       expect(current_path).to eq(dashboard_path)
-      
+
       within '.navbar' do
         expect(page).to have_content("Logged in as #{user_name}")
       end
