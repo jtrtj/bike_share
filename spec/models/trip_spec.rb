@@ -80,9 +80,24 @@ describe Trip, type: :model do
       trip4 = create(:trip, start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
       trip5 = create(:trip, start_date: DateTime.strptime('7/7/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
       trip6 = create(:trip, start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
+      expected_result_1 = (2016)
+      expected_result_2 = (2017)
 
-      expect(Trip.year_by_year).to eq(Time.new(2016-01-01) => 3, Time.new(2017-01-01) => 3)
-      # expect(Trip.month_by_month).to eq({'2016' => 3, '2017' => 3})
+      expect(Trip.year_by_year.first[0].year).to eq(expected_result_1)
+    end
+    it '#year_by_year_breakdown' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip, start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
+      trip2 = create(:trip, start_date: DateTime.strptime('4/5/2016', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
+      trip3 = create(:trip, start_date: DateTime.strptime('5/5/2016', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
+      trip4 = create(:trip, start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
+      trip5 = create(:trip, start_date: DateTime.strptime('7/7/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
+      trip6 = create(:trip, start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
+      expected_result = 4
+
+      expect(Trip.month_by_month.first[0].month).to eq(4)
     end
   end
 end
