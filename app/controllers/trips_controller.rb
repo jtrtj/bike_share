@@ -21,6 +21,8 @@ class TripsController < ApplicationController
     @subscription_type_by_count = Trip.subscription_type_by_count
     @most_trips_date = Trip.date_with_most_trips
     @date_trips_most = Trip.date_most_trips
+    @least_trips_date = Trip.date_with_least_trips
+    @date_trips_least = Trip.date_least_trips
   end
 
 end

@@ -157,7 +157,7 @@ describe 'A registered user' do
       trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip5 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
-      expected_result_1 = "7/8/2016"
+      expected_result_1 = "7/8/2017"
       expected_result_2 = 1
 
       visit trips_dashboard_path
