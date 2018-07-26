@@ -106,6 +106,12 @@ ActiveRecord::Schema.define(version: 20180726212903) do
     t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "street_address"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
   end
 
   add_foreign_key "order_items", "items"
