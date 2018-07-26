@@ -1,63 +1,52 @@
 require 'rails_helper'
 
-describe Trip, type: :model do
-  describe 'validations' do
-    it {should validate_presence_of(:bike_id)}
-    it {should validate_presence_of(:subscription_type)}
-    it {should validate_presence_of(:duration)}
-    it {should validate_presence_of(:zip_code)}
-    it {should validate_presence_of(:start_date)}
-    it {should validate_presence_of(:end_date)}
-    it {should validate_presence_of(:start_station_id)}
-    it {should validate_presence_of(:end_station_id)}
-  end
-  describe 'relationships' do
-    it {should belong_to(:end_station)}
-    it {should belong_to(:start_station)}
-  end
-
-  describe 'class methods' do
-    it 'find average duration of ride' do
+describe 'A registered user' do
+  context 'visiting trips dashboard' do
+    it 'sees the average duration of a ride' do
+      user = create(:user)
       station = create(:station)
       trip = create(:trip, start_station: station, end_station: station, duration: 120)
       trip2 = create(:trip, start_station: station, end_station: station, duration: 60)
       trip3 = create(:trip, start_station: station, end_station: station, duration: 30)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit trips_dashboard_path
 
       expected_result = 70
 
-      expect(Trip.average_duration_trip).to eq(expected_result)
+      expect(page).to have_content("Average duration of a ride : #{expected_result}")
     end
-    it 'find longest ride' do
+
+    it 'sees the longest duration trip' do
+      user = create(:user)
       station = create(:station)
       trip = create(:trip, start_station: station, end_station: station, duration: 120)
       trip2 = create(:trip, start_station: station, end_station: station, duration: 60)
       trip3 = create(:trip, start_station: station, end_station: station, duration: 30)
+
+      visit trips_dashboard_path
 
       expected_result = trip
-      expect(Trip.longest_ride).to eq(expected_result)
+
+      expect(page).to have_content("Longest ride : #{expected_result.id}")
+
     end
-    it 'find shortest ride' do
+
+    it 'sees the shortest duration trip' do
+      user = create(:user)
       station = create(:station)
       trip = create(:trip, start_station: station, end_station: station, duration: 120)
       trip2 = create(:trip, start_station: station, end_station: station, duration: 60)
       trip3 = create(:trip, start_station: station, end_station: station, duration: 30)
 
+      visit trips_dashboard_path
+
       expected_result = trip3
-      expect(Trip.shortest_ride).to eq(expected_result)
+      expect(page).to have_content("Shortest ride : #{expected_result.id}")
     end
 
-    it '#station_with_most_rides_originating' do
-      user = create(:user)
-      station_1 = create(:station, name: 'Omlette')
-      station_2 = create(:station, name: 'Fromage')
-      trip = create(:trip, start_station: station_1, end_station: station_1, duration: 120)
-      trip2 = create(:trip, start_station: station_1, end_station: station_2, duration: 60)
-      trip3 = create(:trip, start_station: station_2, end_station: station_2, duration: 30)
-
-      expect(Trip.station_with_most_rides_originating).to eq(station_1)
-    end
-
-    it '#station_with_most_rides_ending' do
+    it 'sees the station with the most rides originating from it and the station with the most rides ending at it' do
       user = create(:user)
       station_1 = create(:station, name: 'Omlette')
       station_2 = create(:station, name: 'Fromage')
@@ -65,10 +54,12 @@ describe Trip, type: :model do
       trip2 = create(:trip, start_station: station_1, end_station: station_2, duration: 60)
       trip3 = create(:trip, start_station: station_1, end_station: station_2, duration: 30)
 
-      expect(Trip.station_with_most_rides_ending).to eq(station_2)
-    end
+      visit trips_dashboard_path
 
-    it '#year_by_year_breakdown' do
+      expect(page).to have_content("Station with most rides originating: #{station_1.name}")
+      expect(page).to have_content("Station with most rides ending: #{station_2.name}")
+    end
+    it 'sees a month by month breakdown of trips with a yearly subtotal' do
       user = create(:user)
       station_1 = create(:station, name: 'Omlette')
       station_2 = create(:station, name: 'Fromage')
@@ -78,26 +69,17 @@ describe Trip, type: :model do
       trip4 = create(:trip, start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
       trip5 = create(:trip, start_date: DateTime.strptime('7/7/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
       trip6 = create(:trip, start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
-      expected_result_1 = (2016)
-      expected_result_2 = (2017)
+      year_1 = '2016'
+      year_2 = '2017'
 
-      expect(Trip.year_by_year.first[0].year).to eq(expected_result_1)
-    end
-    it '#year_by_year_breakdown' do
-      user = create(:user)
-      station_1 = create(:station, name: 'Omlette')
-      station_2 = create(:station, name: 'Fromage')
-      trip = create(:trip, start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
-      trip2 = create(:trip, start_date: DateTime.strptime('4/5/2016', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
-      trip3 = create(:trip, start_date: DateTime.strptime('5/5/2016', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
-      trip4 = create(:trip, start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2, duration: 120)
-      trip5 = create(:trip, start_date: DateTime.strptime('7/7/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 60)
-      trip6 = create(:trip, start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_2, end_station: station_1, duration: 30)
-      expected_result = 4
+      visit trips_dashboard_path
 
-      expect(Trip.month_by_month.first[0].month).to eq(4)
+      expect(page).to have_content(year_1)
+      expect(page).to have_content(year_2)
+      expect(page).to have_content("Total trips for May of 2016")
+      expect(page).to have_content("Total trips for July of 2017")
     end
-    it '#most_ridden_bike' do
+    it 'shows most ridden bike with number of rides' do
       user = create(:user)
       station_1 = create(:station, name: 'Omlette')
       station_2 = create(:station, name: 'Fromage')
@@ -110,10 +92,11 @@ describe Trip, type: :model do
       special_bike = 3
       rides = 4
 
-      expect(Trip.most_ridden_bike).to eq(3)
-      expect(Trip.most_bike_rides).to eq(4)
+      visit trips_dashboard_path
+
+      expect(page).to have_content("The ID  of the most ridden bike is #{special_bike}, with #{rides} number of rides")
     end
-    it '#least_ridden_bike' do
+    it 'shows least ridden bike with number of rides' do
       user = create(:user)
       station_1 = create(:station, name: 'Omlette')
       station_2 = create(:station, name: 'Fromage')
@@ -126,10 +109,11 @@ describe Trip, type: :model do
       special_bike = 2
       rides = 2
 
-      expect(Trip.least_ridden_bike).to eq(2)
-      expect(Trip.least_bike_rides).to eq(2)
+      visit trips_dashboard_path
+
+      expect(page).to have_content("The ID  of the least ridden bike is #{special_bike}, with #{rides} number of rides")
     end
-    it '#subscription breakdown' do
+    it 'sees subscription type breakdown (with both count and percentage)' do
       user = create(:user)
       station_1 = create(:station, name: 'Omlette')
       station_2 = create(:station, name: 'Fromage')
@@ -139,13 +123,13 @@ describe Trip, type: :model do
       trip4 = create(:trip, subscription_type: "Admin Boi", start_station: station_1, end_station: station_2)
       trip5 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
       trip6 = create(:trip, subscription_type: "Slug Boi", start_station: station_1, end_station: station_2)
-      expected_result_3 = 4
-      expected_result_4 = 2
 
-      expect(Trip.subscription_type_by_count[0].subscription_type_count).to eq(2)
-      expect(Trip.subscription_type_by_count[1].subscription_type_count).to eq(4)
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Subscription Type - Admin Boi, 4, 66.7%")
+      expect(page).to have_content("Subscription Type - Slug Boi, 2, 33.3%")
     end
-    it '#date_with_most_trips' do
+    it 'sees date with highest number of trips' do
       user = create(:user)
       station_1 = create(:station, name: 'Omlette')
       station_2 = create(:station, name: 'Fromage')
@@ -155,13 +139,15 @@ describe Trip, type: :model do
       trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip5 = create(:trip,  start_date: DateTime.strptime('2/7/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
-      expected_result_1 = DateTime.strptime('4/4/2016', '%m/%d/%Y')
+      expected_result_1 = "4/4/2016"
       expected_result_2 = 3
 
-      expect(Trip.date_with_most_trips).to eq(expected_result_1)
-      expect(Trip.date_most_trips).to eq(expected_result_2)
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Date with most trips: #{expected_result_1}")
+      expect(page).to have_content("total number of trips: #{expected_result_2}")
     end
-    it '#date_with_least_trips' do
+    it 'sees date with lowest number of trips' do
       user = create(:user)
       station_1 = create(:station, name: 'Omlette')
       station_2 = create(:station, name: 'Fromage')
@@ -171,11 +157,13 @@ describe Trip, type: :model do
       trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip5 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
-      expected_result_1 = DateTime.strptime('7/8/2017', '%m/%d/%Y')
+      expected_result_1 = "7/8/2017"
       expected_result_2 = 1
 
-      expect(Trip.date_with_least_trips).to eq(expected_result_1)
-      expect(Trip.date_least_trips).to eq(expected_result_2)
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Date with least trips: #{expected_result_1}")
+      expect(page).to have_content("total number of trips: #{expected_result_2}")
     end
   end
 end

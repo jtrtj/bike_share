@@ -1,0 +1,28 @@
+Average duration of a ride : <%=  @trips.average_duration_trip %>
+
+Longest ride : <%= @trips.longest_ride.id %>
+
+Shortest ride : <%= @trips.shortest_ride.id %>
+
+Station with most rides originating: <%= @station_with_most_rides_originating.name %>
+Station with most rides ending: <%= @station_with_most_rides_ending.name %>
+
+Yearly Breakdown:
+            <% @trips_by_year.each_pair do |year, count| %>
+              <%= year.year %>: <%= count %>
+            <% end %>
+
+
+Monthly Breakdown:
+            <% @trips_by_month.each_pair do |month, count| %>
+              Total trips for <%= month.strftime('%B') %> of <%= month.year %>
+            <% end %>
+
+The ID of the most ridden bike is <%= @most_ridden_bike %>, with <%= @most_bike_rides %> number of rides <br>
+The ID of the least ridden bike is <%= @least_ridden_bike %>, with <%= @least_bike_rides %> number of rides
+<% @subscription_type_by_count.each do |trip| %>
+  Subscription Type - <%= trip.subscription_type %>, <%= trip.subscription_type_count %>, <%= ((trip.subscription_type_count.to_f / @trips.size.to_f) * 100).round(1) %>
+<% end %>
+
+Date with most trips: <%= @most_trips_date.month %>/<%= @most_trips_date.day %>/<%= @most_trips_date.year %>, total number of trips: <%= @date_trips_most %>
+Date with least trips: <%= @least_trips_date.month %>/<%= @least_trips_date.day %>/<%= @least_trips_date.year %>, total number of trips: <%= @date_trips_least %>
