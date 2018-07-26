@@ -55,4 +55,11 @@ class Station < ApplicationRecord
                     .limit(1).first.end_station
   end
 
+  def most_popular_date
+    trips_started_at.select("trips.start_date, count(start_date) AS date_count")
+                    .group(:start_date, :id)
+                    .order("date_count")
+                    .limit(1).first.start_date
+  end
+
 end

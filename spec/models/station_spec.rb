@@ -97,5 +97,15 @@ describe Station, type: :model do
 
       expect(station_1.most_frequent_destination).to eq(station_2)
     end
+
+    it '#most_popular_date' do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, start_date: Date.today, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, start_date: Date.today, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip, start_date: Date.yesterday, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      expect(station_1.most_popular_date).to eq(Date.today)
+    end
   end
 end
