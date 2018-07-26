@@ -1,18 +1,5 @@
-<table class='table'>
-  <tr>
-    <th>Name</th>
-    <th>Dock Count</th>
-    <th>City</th>
-    <th>Installation Date</th>
-  </tr>
-  <tr>
-    <td><%= @station.name %></td>
-    <td><%= @station.dock_count %></td>
-    <td><%= @station.city %></td>
-    <td><%= @station.installation_date %></td>
-    <% if current_admin? %>
-      <td><%= button_to  "Edit", edit_admin_station_path(@station) %></td>
-      <td><%= button_to  "Delete", admin_station_path(@station), method: :delete %></td>
-    <% end %>
-  </tr>
-</table>
+<% if current_user %>
+  <%= render partial: "registered_show" %>
+<% else %>
+  <%= render partial: 'default_show' %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180721222907) do
+ActiveRecord::Schema.define(version: 20180724212251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20180721222907) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.decimal "price"
+    t.integer "status", default: 1
   end
 
   create_table "stations", force: :cascade do |t|
@@ -68,12 +76,10 @@ ActiveRecord::Schema.define(version: 20180721222907) do
     t.integer "bike_id"
     t.string "subscription_type"
     t.integer "zip_code"
-    t.bigint "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["end_station_id"], name: "index_trips_on_end_station_id"
     t.index ["start_station_id"], name: "index_trips_on_start_station_id"
-    t.index ["station_id"], name: "index_trips_on_station_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,7 +90,6 @@ ActiveRecord::Schema.define(version: 20180721222907) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "trips", "stations"
   add_foreign_key "trips", "stations", column: "end_station_id"
   add_foreign_key "trips", "stations", column: "start_station_id"
 end

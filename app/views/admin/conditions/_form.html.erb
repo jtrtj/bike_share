@@ -1,0 +1,62 @@
+<section class="hero is-white is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                         <%= form_for [:admin, @condition] do |f| %>
+                            <div class="field">
+                              <div class="control">
+                                <%= f.label :date %>
+                                <%= f.date_field :date, class: "input is-medium" %>
+                              </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :max_temperature_f%>
+                                  <%= f.number_field :max_temperature_f, class: "input is-medium", placeholder: "Maximum temperature (Farenheit)" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :mean_temperature_f%>
+                                  <%= f.number_field :mean_temperature_f, class: "input is-medium", placeholder: "Mean temperature (Farenheit)" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :min_temperature_f%>
+                                  <%= f.number_field :min_temperature_f, class: "input is-medium", placeholder: "Minimum temperature (Farenheit)" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :mean_humidity%>
+                                  <%= f.number_field :mean_humidity, class: "input is-medium", placeholder: "Mean humidity" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :mean_visibility_miles%>
+                                  <%= f.number_field :mean_visibility_miles, class: "input is-medium", placeholder: "Mean visibility (miles)" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :mean_wind_speed_mph%>
+                                  <%= f.number_field :mean_wind_speed_mph, class: "input is-medium", placeholder: "Mean wind speed (mph)" %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                  <%=f.label :precipitation_inches%>
+                                  <%= f.number_field :precipitation_inches, class: "input is-medium", placeholder: "Precipitation (inches)" %>
+                                </div>
+                            </div>
+                            <%= f.submit class: "button is-block is-info is-large is-fullwidth" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script async type="text/javascript" src="../js/bulma.js"></script>

@@ -12,6 +12,11 @@
           Bike: <%= @trip.bike_id %>
         </h3>
         <div class="level">
+          <% if current_admin? %>
+          <div class="level-item">
+            <p><%= button_to "Edit", edit_admin_trip_path(@trip), method: :get, class: "button is-info is-inverted is-medium" %></p>
+          </div>
+          <% end %>
           <div class="level-item has-text-centered">
             <p class="subtitle is-5">
               Subscription Type: <%= @trip.subscription_type %>
@@ -22,6 +27,11 @@
               Zip Code: <%= @trip.zip_code %>
             </p>
           </div>
+          <% if current_admin? %>
+          <div class="level-item">
+           <p><%= button_to "Delete", admin_trip_path(@trip), method: :delete, class: "button is-danger is-inverted is-medium" %></p>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -32,14 +42,14 @@
       <div class="tile is-parent">
         <article class="tile is-child has-text-centered notification is-success">
           <p class="title">Start Station</p>
-          <p class="subtitle">Name: <%= @trip.start_station_name %></p>
+          <p class="subtitle">Name: <%= @trip.start_station.name %></p>
           <p class="subtitle">Date: <%= @trip.start_date %></p>
           <p class="subtitle">ID: <%= @trip.start_station_id %></p>
         </article>
         <br>
         <article class="tile is-child has-text-centered notification is-danger">
           <p class="title">End Station</p>
-          <p class="subtitle">Name: <%= @trip.end_station_name %></p>
+          <p class="subtitle">Name: <%= @trip.end_station.name %></p>
           <p class="subtitle">Date: <%= @trip.end_date %></p>
           <p class="subtitle">ID: <%= @trip.end_station_id %></p>
         </article>

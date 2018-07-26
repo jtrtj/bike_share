@@ -24,5 +24,5 @@ class TripsController < ApplicationController
     @least_trips_date = Trip.date_with_least_trips
     @date_trips_least = Trip.date_least_trips
   end
-
 end
+

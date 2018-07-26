@@ -8,6 +8,25 @@
 require 'csv'
 require File.expand_path('../config/environment', __dir__)
 
+User.create(user_name: 'John', password: 'john', role: 1)
+User.create(user_name: 'Claire', password: '123', role: 1)
+User.create(user_name: 'Eliot', password: 'idk', role: 1)
+User.create(user_name: 'BILLY MAYS', password: 'ugh', role: 1)
+User.create(user_name: 'Bobby', password: 'bobby', role: 0)
+
+Item.create(title: "Jetpack", description: 'Sounds great', image: 'wilford.jpeg', price: 400, status: 1)
+Item.create(title: "Mr. Jones", description: 'and me', image: 'wilford.jpeg', price: 300, status: 1)
+Item.create(title: "Counting Crows", description: 'Dead meme', image: 'wilford.jpeg', price: 500, status: 0)
+Item.create(title: "Tom Hardy", description: "He's Bane", image: 'wilford.jpeg', price: 3400, status: 1)
+Item.create(title: "Agent K", description: 'Tommy Lee Jones', image: 'wilford.jpeg', price: 900, status: 1)
+Item.create(title: "Agent J", description: 'Will Smith', image: 'wilford.jpeg', price: 490, status: 1)
+Item.create(title: "Lonliness", description: 'Unlimited supply', image: 'wilford.jpeg', price: 100, status: 1)
+Item.create(title: "A mediocre-looking Couch", description: 'You can burn it', image: 'wilford.jpeg', price: 490, status: 1)
+Item.create(title: "TRAMPOLINE", description: 'He does not know what that is', image: 'wilford.jpeg', price: 480, status: 1)
+Item.create(title: "CANARY", description: 'Not really', image: 'wilford.jpeg', price: 470, status: 0)
+Item.create(title: "Ke$ha's Career", description: 'Get it? Because it is dead!', image: 'wilford.jpeg', price: 400, status: 1)
+Item.create(title: "为什么？", description: '你妈讨厌我', image: 'wilford.jpeg', price: 430, status: 1)
+
 stations = CSV.open('./db/csv/stations.csv',
                     headers: true,
                     header_converters: :symbol)
@@ -28,21 +47,23 @@ trips = CSV.open('./db/csv/trips.csv',
                   headers: true,
                   header_converters: :symbol)
 trips.each do |trip|
-  Trip.create(
-    id:                               trip[:id],
-    duration:                         trip[:duration],
-    start_date:                       DateTime.strptime(trip[:start_date], '%m/%d/%Y'),
-    start_station_name:               trip[:start_station_name],
-    start_station_id:                 trip[:start_station_id],
-    end_date:                         trip[:end_date],
-    end_station_name:                 trip[:end_station_name],
-    end_station_id:                   trip[:end_station_id],
-    bike_id:                          trip[:bike_id],
-    subscription_type:                trip[:subscription_type],
-    zip_code:                         trip[:zip_code],
-    created_at:                       trip[:created_at],
-    updated_at:                       trip[:updated_at]
-  )
+  if trip[:id].to_i % 5 == 0
+    Trip.create(
+      id:                               trip[:id],
+      duration:                         trip[:duration],
+      start_date:                       DateTime.strptime(trip[:start_date], '%m/%d/%Y'),
+      start_station_name:               trip[:start_station_name],
+      start_station_id:                 trip[:start_station_id],
+      end_date:                         trip[:end_date],
+      end_station_name:                 trip[:end_station_name],
+      end_station_id:                   trip[:end_station_id],
+      bike_id:                          trip[:bike_id],
+      subscription_type:                trip[:subscription_type],
+      zip_code:                         trip[:zip_code],
+      created_at:                       trip[:created_at],
+      updated_at:                       trip[:updated_at]
+    )
+  end
 end
 
 conditions = CSV.open('./db/csv/conditions.csv',
@@ -70,5 +91,17 @@ statuses.each do |status|
     bikes_available: status[:bikes_available],
     docks_available: status[:docks_available],
     time:            status[:time]
+  )
+end
+
+users = CSV.open('./db/csv/users.csv',
+                  headers: true,
+                  header_converters: :symbol)
+
+users.each do |user|
+  User.create(
+    user_name:        user[:user_name],
+    password:         user[:password],
+    role:             user[:role]
   )
 end

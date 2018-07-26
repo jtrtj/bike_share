@@ -1,10 +1,16 @@
 <div class="container">
   <section class="hero is-small is-primary is-bold">
-    <div class="hero-body">
+    <div class="hero-body has-text-centered">
       <div class="container">
-        <h1 class="title is-size-1 has-text-centered has-text-weight-bold">Trips</h1>
+        <h1 class="title is-size-1 has-text-weight-bold">Trips</h1>
       </div>
     </div>
+    <div class="has-text-centered">
+      <div class="container">
+      <%= button_to "Create Trip", new_admin_trip_path, class: "button is-large is-inverted is-bordered is-success", method: :get %>
+      </div>
+    </div>
+    <br>
   </section>
 <br>
 <br>
@@ -13,6 +19,7 @@
     <br>
     <table class="table is-bordered is-striped">
       <thead>
+        <th>Trip #</th>
         <th>Duration</th>
         <th>Start Date</th>
         <th>Start Station</th>
@@ -26,6 +33,7 @@
       <% @trips.each do |trip| %>
         <tbody>
           <tr>
+            <td><%=link_to trip.id, trip_path(trip)%></td>
             <td><%=trip.duration%></td>
             <td><%=trip.start_date%></td>
             <td><%=trip.start_station_id%></td>
@@ -34,6 +42,10 @@
             <td><%=trip.bike_id%></td>
             <td><%=trip.subscription_type%></td>
             <td><%=trip.zip_code%></td>
+            <% if current_admin? %>
+            <td><%= button_to "Edit", edit_admin_trip_path(trip), method: :get, class: "button is-info" %></td>
+            <td><%= button_to "Delete", admin_trip_path(trip), method: :delete, class: "button is-danger" %></td>
+            <% end %>
           </tr>
         </tbody>
       <% end %>
