@@ -107,5 +107,15 @@ describe Station, type: :model do
 
       expect(station_1.most_popular_date).to eq(Date.today)
     end
+
+    it "#most_frequent_origin_zip_code" do
+      station_1 = create(:station)
+      station_2 = create(:station, name: 'fake')
+      trip_1 = create(:trip, zip_code: 80220, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_2 = create(:trip, zip_code: 80220, start_station_id: station_1.id, end_station_id: station_2.id)
+      trip_3 = create(:trip, zip_code: 80030, start_station_id: station_1.id, end_station_id: station_2.id)
+
+      expect(station_1.most_frequent_origin_zip_code).to eq(80220)
+    end
   end
 end
