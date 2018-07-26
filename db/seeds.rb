@@ -79,7 +79,8 @@ conditions.each do |condition|
       mean_humidity:                condition[:mean_humidity],
       mean_visibility_miles:        condition[:mean_visibility_miles],
       mean_wind_speed_mph:          condition[:mean_wind_speed_mph],
-      precipitation_inches:         condition[:precipitation_inches]
+      precipitation_inches:         condition[:precipitation_inches],
+      zip_code:                     condition[:zip_code]
     )
   end
 end
