@@ -48,4 +48,16 @@ class Trip < ApplicationRecord
   def self.most_bike_rides
     Trip.where(bike_id: most_ridden_bike).count
   end
+
+  def self.least_ridden_bike
+    Trip.select('trips.bike_id, count(trips.bike_id) AS bike_id_count')
+    .group(:bike_id)
+    .order('bike_id_count ASC')
+    .limit(1).first.bike_id
+  end
+
+  def self.least_bike_rides
+    Trip.where(bike_id: least_ridden_bike).count
+  end
+
 end
