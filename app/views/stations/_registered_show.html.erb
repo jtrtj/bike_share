@@ -16,7 +16,7 @@
     <% end %>
   </tr>
 </table>
-<table>
+<table class="table">
   <thead>
     <th>Analysis</th>
   </thead>
@@ -31,11 +31,19 @@
     </tr>
     <tr>
       <td>Most frequent destination station from here</td>
-      <td><%= @station.most_frequent_origin.name %></td>
+      <% if @station.trips_ended_at.empty? %>
+        <td>None</td>
+      <% else %>
+        <td><%= @station.most_frequent_origin.name %></td>
+      <% end %>
     </tr>
     <tr>
       <td>Most frequent origin station to here</td>
-      <td><%= @station.most_frequent_destination.name %></td>
+      <% if @station.trips_started_at.empty? %>
+        <td>None</td>
+      <% else %>
+        <td><%= @station.most_frequent_destination.name %></td>
+      <% end %>
     </tr>
     <tr>
       <td>Date with the highest number of trips started here</td>
