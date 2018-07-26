@@ -55,7 +55,11 @@
     </tr>
     <tr>
       <td>Most Frequent Zip Code</td>
-      <td><%= @station.most_frequent_origin_zip_code %></td>
+      <% if @station.trips_started_at.empty? %>
+        <td>None</td>
+      <% else %>
+        <td><%= @station.most_frequent_origin_zip_code %></td>
+      <% end %>
     </tr>
     <tr>
       <td>ID of bike most frequently starting trips here</td>
