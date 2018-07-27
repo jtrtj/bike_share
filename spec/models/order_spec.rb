@@ -8,6 +8,7 @@ describe Order, type: :model do
   context 'relationships' do
     it {should have_many(:order_items)}
     it {should belong_to(:user)}
+    it {should have_many(:items).through(:order_items)}
   end
   context 'class methods' do
     it '#generate_order_items' do
