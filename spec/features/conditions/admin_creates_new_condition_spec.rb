@@ -9,7 +9,6 @@ describe 'an admin' do
 
       visit new_admin_condition_path
 
-      save_and_open_page
       max = 9000
       mean = 8000
       min = 7000
