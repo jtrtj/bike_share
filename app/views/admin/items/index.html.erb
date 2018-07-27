@@ -1,0 +1,28 @@
+<table class="table-items-admin">
+  <thead>
+    <th>Image<th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Status</th>
+  </thead>
+
+  <tbody>
+
+  <% @items.each do |item| %>
+      <tr id="item-<%= item.id %>">
+        <td> <img src="/assets/<%= item.image %>" alt=""></td>
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= item.price %></td>
+        <td><%= item.status %></td>
+        <td><%= button_to 'Edit', admin_item_path(item), method: :get %></td>
+
+        <% if item.status == 'active' %>
+          <td><%= button_to 'Retire', admin_bike_shop_path, method: :get %></td>
+        <% else %>
+          <td><%= button_to 'Reactivate', admin_bike_shop_path, method: :get %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>

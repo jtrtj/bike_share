@@ -1,0 +1,42 @@
+<div class="container has-text-centered">
+  <div class="column is-4 is-offset-4">
+    <div class="box">
+      <%= form_for [:admin, @item] do |f| %>
+        <div class="field">
+          <div class="control">
+            <%= f.label :image %>
+            <%= f.text_field :image, class: "input is-small,", placeholder: "Item Image" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "input is-small", placeholder: "Item Title" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= f.label :description %>
+            <%= f.text_field :description, class: "input is-small", placeholder: "Item Description" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= f.label :price %>
+            <%= f.number_field :price, class: "input is-small", placeholder: "Item Price" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= f.label :status %>
+            <%= f.select :status, ['active', 'retired'], class: "input is-small", placeholder: "Item Status" %>
+          </div>
+        </div>
+
+        <%= f.submit class: "button is-block is-info is-small is-fullwidth" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script async type="text/javascript" src="../js/bulma.js"></script>

@@ -1,0 +1,10 @@
+
+<div class='item-show'>
+  <ul>
+  <li><%= image_tag (@item.image) %></li><br>
+  <li><%= @item.title %></li><br>
+  <li><%= @item.description %></li><br>
+  <li><%= @item.price %></li><br>
+</div>
+
+<%= button_to 'Add to Cart', carts_path(item_id: @item.id)%>
