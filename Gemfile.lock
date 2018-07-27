@@ -225,8 +225,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   factory_bot_rails
-  figaro
   faker
+  figaro
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
   launchy
