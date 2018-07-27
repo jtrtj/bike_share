@@ -1,10 +1,15 @@
-
 <% @items.each do |item| %>
   <div id="item-<%= item.id %>">
     <%= image_tag(item.image) %>
-    <h1 class='title'><%= item.title %></h1>
-    <h1 class='subtitle'><%= item.description %></h1>
-    <h1 class='subtitle'><%= item.price %></h1>
-    <%= button_to 'Add to Cart', carts_path(item_id: item.id) %>
+      <h1 class='title'>
+        <%= link_to  item.title, item_path(item) %>
+      </h1>
+      <h1 class='subtitle'>
+        <%= item.description %>
+      </h1>
+      <h1 class='subtitle'>
+        <%= item.price %>
+      </h1>
+      <%= button_to 'Add to Cart', carts_path(item_id: item.id) %>
   </div>
-<% end %>
+  <% end %>
