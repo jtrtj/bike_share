@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
   def generate_order_items(cart)
     cart.each do |item_id, quantity|
-      self.order_items.create(item_id: item_id, quantity: quantity)
+      order_items.create(item_id: item_id, quantity: quantity)
     end
   end
 end
