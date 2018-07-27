@@ -20,6 +20,14 @@ class Admin::ItemsController < Admin::BaseController
     end
   end
 
+  def new
+    @item = Item.new
+  end
+
+  def create
+    
+  end
+
   private
 
   def item_params
