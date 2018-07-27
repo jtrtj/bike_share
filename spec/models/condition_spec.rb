@@ -10,6 +10,7 @@ describe Condition, type: :model do
     it {should validate_presence_of(:mean_visibility_miles)}
     it {should validate_presence_of(:mean_wind_speed_mph)}
     it {should validate_presence_of(:precipitation_inches)}
+    it {should validate_presence_of(:zip_code)}
   end
   describe 'relationships' do
   end

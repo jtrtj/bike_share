@@ -36,25 +36,25 @@ stations.each do |station|
     name:               station[:name],
     dock_count:         station[:dock_count],
     city:               station[:city],
-    installation_date:  DateTime.strptime(station[:installation_date], '%m/%d/%Y'),
+    installation_date:  Date.strptime(station[:installation_date], '%m/%d/%Y'),
     created_at:         station[:created_at],
     updated_at:         station[:updated_at]
   )
 end
 ActiveRecord::Base.connection.reset_pk_sequence!('stations')
 
-trips = CSV.open('./db/csv/trips.csv',
+trips = CSV.open('./db/csv/trip.csv',
                   headers: true,
                   header_converters: :symbol)
 trips.each do |trip|
-  if trip[:id].to_i % 5 == 0
+  if $. % 200 == 0
     Trip.create(
       id:                               trip[:id],
       duration:                         trip[:duration],
-      start_date:                       DateTime.strptime(trip[:start_date], '%m/%d/%Y'),
+      start_date:                       Date.strptime(trip[:start_date], '%m/%d/%Y'),
       start_station_name:               trip[:start_station_name],
       start_station_id:                 trip[:start_station_id],
-      end_date:                         trip[:end_date],
+      end_date:                         Date.strptime(trip[:end_date], '%m/%d/%Y'),
       end_station_name:                 trip[:end_station_name],
       end_station_id:                   trip[:end_station_id],
       bike_id:                          trip[:bike_id],
@@ -66,30 +66,21 @@ trips.each do |trip|
   end
 end
 
-conditions = CSV.open('./db/csv/conditions.csv',
+conditions = CSV.open('./db/csv/weather.csv',
                       headers: true,
                       header_converters: :symbol)
 conditions.each do |condition|
-  Condition.create(
-    date:                         condition[:date],
-    max_temperature_f:            condition[:max_temperature_f],
-    mean_temperature_f:           condition[:mean_temperature_f],
-    min_temperature_f:            condition[:min_temperature_f],
-    mean_humidity:                condition[:mean_humidity],
-    mean_visibility_miles:        condition[:mean_visibility_miles],
-    mean_wind_speed_mph:          condition[:mean_wind_speed_mph],
-    precipitation_inches:         condition[:precipitation_inches]
-  )
-end
-
-statuses = CSV.open('./db/csv/statuses.csv',
-                    headers: true,
-                    header_converters: :symbol)
-statuses.each do |status|
-  Status.create(
-    station_id:      status[:station_id],
-    bikes_available: status[:bikes_available],
-    docks_available: status[:docks_available],
-    time:            status[:time]
-  )
+  if $. % 2 == 0
+    Condition.create(
+      date:                         Date.strptime(condition[:date], '%m/%d/%Y'),
+      max_temperature_f:            condition[:max_temperature_f],
+      mean_temperature_f:           condition[:mean_temperature_f],
+      min_temperature_f:            condition[:min_temperature_f],
+      mean_humidity:                condition[:mean_humidity],
+      mean_visibility_miles:        condition[:mean_visibility_miles],
+      mean_wind_speed_mph:          condition[:mean_wind_speed_mph],
+      precipitation_inches:         condition[:precipitation_inches],
+      zip_code:                     condition[:zip_code]
+    )
+  end
 end

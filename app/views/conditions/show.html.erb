@@ -11,6 +11,7 @@
       <th>Avg. Visibility (Miles)</th>
       <th>Avg. Wind Speed (Mph)</th>
       <th>Precipitation (Inches)</th>
+      <th>Zip Code</th>
     </tr>
       <tr>
         <td><%= @condition.date %></td>
@@ -21,6 +22,7 @@
         <td><%= @condition.mean_visibility_miles %></td>
         <td><%= @condition.mean_wind_speed_mph %></td>
         <td><%= @condition.precipitation_inches%></td>
+        <td><%= @condition.zip_code%></td>
         <% if current_admin? %>
           <%= button_to 'Edit', edit_admin_condition_path(@condition), method: :get %>
           <%= button_to 'Delete', admin_condition_path(@condition), method: :delete %>

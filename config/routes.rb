@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
+  resources :users do
+    resources :orders, only: [:create]
+  end
+
   resources :trips, only: [:index, :show]
 
   resources :stations, only: [:index, :show]

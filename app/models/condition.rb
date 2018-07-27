@@ -7,4 +7,5 @@ class Condition < ApplicationRecord
   validates_presence_of :mean_visibility_miles
   validates_presence_of :mean_wind_speed_mph
   validates_presence_of :precipitation_inches
+  validates_presence_of :zip_code
 end
