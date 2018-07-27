@@ -44,8 +44,3 @@ describe "A user" do
     end
   end
 end
-
-=begin
-I do not see a link for "Login",
-I see a link for "Logout".
-=end
