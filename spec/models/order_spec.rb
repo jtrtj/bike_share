@@ -22,9 +22,9 @@ describe Order, type: :model do
 
       expect(order.order_items[0].item_id).to eq(item_1.id)
       expect(order.order_items[1].item_id).to eq(item_2.id)
-      
-      expect(order.order_items[0].quantity.to eq(1)
-      expect(order.order_items[1].quantity.to eq(2)     
+
+      expect(order.order_items[0].quantity).to eq(1)
+      expect(order.order_items[1].quantity).to eq(2)     
     end
   end
 end
