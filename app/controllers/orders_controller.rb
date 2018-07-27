@@ -5,6 +5,5 @@ class OrdersController < ApplicationController
     order.generate_order_items(session[:cart])
     redirect_to dashboard_path
     flash[:notice] = "Successfully submited your order totaling #{view_context.number_to_currency(order.total)}"
-    require 'pry'; binding.pry
   end
 end
