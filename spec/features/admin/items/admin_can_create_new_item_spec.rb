@@ -38,14 +38,3 @@ describe 'An admin' do
     end
   end
 end
-
-=begin
-As an admin user,
-When I visit admin bikeshop new
-I can create an accessory,
-An accessory must have a title, description and price,
-The title and description cannot be empty,
-The title must be unique for all accessories in the system,
-The price must be a valid decimal numeric value and greater than zero,
-The photo is optional. If not present, a stand-in photo is used. (PAPERCLIP)
-=end

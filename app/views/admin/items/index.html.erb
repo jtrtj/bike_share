@@ -8,9 +8,10 @@
   </thead>
 
   <tbody>
+
   <% @items.each do |item| %>
       <tr id="item-<%= item.id %>">
-        <td><%= image_tag (item.image) %></td>
+        <td> <img src="/assets/<%= item.image %>" alt=""></td>
         <td><%= item.title %></td>
         <td><%= item.description %></td>
         <td><%= item.price %></td>

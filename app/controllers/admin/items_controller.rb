@@ -25,7 +25,14 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def create
-    
+    @item = Item.create(item_params)
+    if @item.save
+      redirect_to admin_bike_shop_path
+      flash[:notice] = 'You created a new item'
+    else
+      flash[:notice] = 'Item cannot be created, please make sure to fill the form correctly'
+      render :new
+    end
   end
 
   private
