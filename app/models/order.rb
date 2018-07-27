@@ -9,7 +9,7 @@ class Order < ApplicationRecord
     end
   end
 
-  def total_price
-    
+  def total
+    order_items.joins(:item).select("sum(items.price * order_items.quantity) AS total")[0].total
   end
 end
