@@ -15,6 +15,10 @@
         <td><%= item.description %></td>
         <td><%= item.price %></td>
         <td><%= item.status %></td>
+        <td><%= button_to 'Edit', admin_item_path(item), method: :get %></td>
+        <td><%= button_to 'Retire', admin_bike_shop_path(item), method: :post %></td>
+        <td><%= button_to 'Reactivate', admin_bike_shop_path(item), method: :post %></td>
+
       </tr>
     <% end %>
   </tbody>
