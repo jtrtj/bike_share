@@ -8,4 +8,8 @@ class Order < ApplicationRecord
       order_items.create(item_id: item_id, quantity: quantity)
     end
   end
+
+  def total_price
+    
+  end
 end
