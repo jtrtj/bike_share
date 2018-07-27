@@ -28,5 +28,18 @@ describe Order, type: :model do
       
       expect(user.orders.size).to eq(1)
     end
+
+    it '#total_price' do
+      user = create(:user)
+      item_1 = Item.create(title: "Goldfish", description: 'Whoopity scoop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
+      item_2 = Item.create(title: "Boldfish", description: 'Whoopity doop', image: 'http://via.placeholder.com/100x100', price: 100, status: 1)
+      order = user.orders.create
+
+      cart = {item_1.id.to_s => 1, item_2.id.to_s => 2}
+      order.generate_order_items(cart)
+
+
+      expect(order.total_price).to eq(600)
+    end
   end
 end
