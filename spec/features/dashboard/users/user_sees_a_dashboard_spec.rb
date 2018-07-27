@@ -32,11 +32,20 @@ describe "A user" do
       expect(page).to have_content(user.state) 
       expect(page).to have_content(user.zip) 
     end
+
+    it "Doesn't see a link to log in" do
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit dashboard_path
+
+      expect(page).to_not have_content("Log In") 
+      expect(page).to have_content("Log Out") 
+    end
   end
 end
 
 =begin
-I see my profile information,
 I do not see a link for "Login",
 I see a link for "Logout".
 =end
