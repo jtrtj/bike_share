@@ -9,7 +9,7 @@ describe 'a registered user' do
   end
   context 'can place an order' do
     it 'puts items in cart, views cart, clicks checkout and sees the new order on the dashboard' do
-      
+      expected = "$#{@item_1.price + @item_2.price}"
       visit '/bike-shop'
 
       within "#item-#{@item_1.id}" do
@@ -19,6 +19,12 @@ describe 'a registered user' do
         click_on 'Add to Cart'
       end
       
+      visit cart_path
+
+      click_on 'Checkout'
+
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content("Successfully submited your order totalling #{expected}}")
     end
   end
 end
