@@ -8,6 +8,8 @@ validates_presence_of :password,
                       :zip
   validates :user_name, uniqueness: true, presence: true
 
+  has_many :orders
+  
   has_secure_password
 
   enum role: %w(default admin)
