@@ -5,7 +5,7 @@ describe 'a registered user' do
     @user = create(:user)
     @item_1 = Item.create(title: "Goldfish", description: 'Whoopity scoop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
     @item_2 = Item.create(title: "Boldfish", description: 'Whoopity doop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
-    
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
   context 'can place an order' do
     it 'puts items in cart, views cart, clicks checkout and sees the new order on the dashboard' do

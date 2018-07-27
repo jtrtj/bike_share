@@ -6,7 +6,6 @@ describe 'a registered user' do
   end
   context 'logs in to their account' do
     it 'has a functional username and password' do
-      # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
       visit root_path
 
       click_link 'Log In'
