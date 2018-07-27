@@ -24,7 +24,7 @@ describe 'a registered user' do
       click_on 'Checkout'
 
       expect(current_path).to eq(dashboard_path)
-      expect(page).to have_content("Successfully submited your order totalling #{expected}}")
+      expect(page).to have_content("Successfully submited your order totaling #{expected}")
     end
   end
 end
