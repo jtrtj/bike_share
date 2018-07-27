@@ -9,8 +9,13 @@ describe "A user" do
 
       click_on "Log In"
 
+      fill_in :user_name, with: user.user_name
+      fill_in :password, with: user.password
+
+      click_on "Login"
+
       expect(current_path).to eq('/dashboard')
-      expect(page).to have_content "Logged in as #{user}"
+      expect(page).to have_content "Logged in as #{user.user_name}"
     end
   end
 end
