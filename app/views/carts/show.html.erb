@@ -24,7 +24,7 @@
     <tr colspan='5' align='right'>
       <td align='right'>Total: <%= number_to_currency(@cart.total_price_all_items) %></td>
       <% if current_user %>
-        <td><%= button_to 'Checkout', new_user_order_path(current_user, cart_contents: session[:cart]) %></td>
+        <td><%= button_to 'Checkout', user_orders_path(current_user, cart_contents: session[:cart]), method: :post %></td>
       <% else %>
         <td><%= button_to 'Checkout', login_path %></td>
       <% end %>
