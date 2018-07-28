@@ -62,5 +62,22 @@ describe 'an admin' do
       expect(page).to have_content('Log Out')
       expect(page).to_not have_content('Login')
     end
+    it 'can logout' do
+      visit root_path
+
+      click_link 'Log In'
+      expect(current_path).to eq(login_path)
+      expect(page).to have_button('Login')
+
+      fill_in :user_name, with: @admin.user_name
+      fill_in :password, with: @admin.password
+      click_on 'Login'
+
+      click_on 'Log Out'
+
+      expect(current_path).to eq(root_path)
+      expect(page).to_not have_content('Log Out')
+      expect(page).to have_content('Log In')
+    end
   end
 end
