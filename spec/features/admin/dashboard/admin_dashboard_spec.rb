@@ -14,7 +14,7 @@ describe 'an admin' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
-    it 'sees a list of all orders' do
+    it 'sees a list of all orders and a link for each order' do
       visit admin_dashboard_index_path
 
       expect(page).to have_content(@order_1.status)
@@ -25,10 +25,11 @@ describe 'an admin' do
     it 'see the total number of orders for each status ("Ordered", "Paid", "Cancelled", "Completed")' do
       visit admin_dashboard_index_path
 
-      expect(page).to have_content('Total orders ordered : 2')
-      expect(page).to have_content('Total orders paid : 2')
-      expect(page).to have_content('Total orders cancelled : 1')
-      expect(page).to have_content('Total orders completed : 1')
+      expect(page).to have_content('Ordered : 2')
+      expect(page).to have_content('Paid : 2')
+      expect(page).to have_content('Cancelled : 1')
+      expect(page).to have_content('Completed : 1')
     end
+
   end
 end

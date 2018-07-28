@@ -53,19 +53,22 @@
   <table class='table'>
     <thead>
       <tr>
-        <th>Ordered</th>
-        <th>Paid</th>
-        <th>Cancelled</th>
-        <th>Completed</th>
+        <th>Orders by status</th>
       </tr>
     </thead>
-    <tbody>
+      <tbody>
         <tr>
-          <td><%= @orders.count_by_status("ordered") %></td>
-          <td><%= @orders.count_by_status("paid") %></td>
-          <td><%= @orders.count_by_status("cancelled") %></td>
-          <td><%= @orders.count_by_status("completed") %></td>
+          <td>Ordered : <%= @orders.count_by_status("ordered") %></td>
         </tr>
-    </tbody>
+        <tr>
+          <td>Paid : <%= @orders.count_by_status("paid") %></td>
+        </tr>
+        <tr>
+          <td>Cancelled : <%= @orders.count_by_status("cancelled") %></td>
+        </tr>
+        <tr>
+          <td>Completed : <%= @orders.count_by_status("completed") %></td>
+        </tr>
+      </tbody>
   </table>
 </section>
