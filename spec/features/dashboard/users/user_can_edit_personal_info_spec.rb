@@ -15,10 +15,12 @@ describe "A user" do
       fill_in :user_city,	with: new_city
       fill_in :user_zip,	with: new_zip
 
+      click_on 'Update Info'
+
       expect(current_path).to eq(dashboard_path)
-      expect(page).to have_content(new_address) 
-      expect(page).to have_content(new_city) 
-      expect(page).to have_content(new_zip) 
+      expect(page).to have_content(new_address)
+      expect(page).to have_content(new_city)
+      expect(page).to have_content(new_zip)
     end
   end
 end
