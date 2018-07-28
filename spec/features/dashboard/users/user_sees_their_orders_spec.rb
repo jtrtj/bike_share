@@ -7,6 +7,8 @@ describe "A user" do
     @item_2 = Item.create(title: "Boldfish", description: 'Whoopity doop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
     @item_3 = Item.create(title: "Roldfish", description: 'Whoopity loop', image: 'http://via.placeholder.com/100x100', price: 400, status: 1)
 
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
     visit '/bike-shop'
 
     within "#item-#{@item_1.id}" do
@@ -23,17 +25,19 @@ describe "A user" do
 
     click_on 'Checkout'
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
   context "logs in" do
     it 'sees all orders' do
-      expected_number = 1
+      expected_number = @user.orders.first.id
 
-      expect(page).to have_content(expected_number)
+      expect(page).to have_link("Order Number #{expected_number}")
     end
     it 'can click on an order and view order information' do
-      expected_number = 1
+      order_1 = @user.orders.first
 
+      click_on order_1.id
+
+      expect(current_path).to eq(order_path(order_1))
       expect(page).to have_content(expected_number)
     end
   end

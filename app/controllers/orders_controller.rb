@@ -6,4 +6,8 @@ class OrdersController < ApplicationController
     redirect_to dashboard_path
     flash[:notice] = "Successfully submited your order totaling #{view_context.number_to_currency(order.total)}"
   end
+
+  def show 
+    @order = Order.find(params[:id])
+  end
 end
