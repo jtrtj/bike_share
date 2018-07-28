@@ -48,3 +48,24 @@
     </tbody>
   </table>
 </section>
+
+<section class='orders_status'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Ordered</th>
+        <th>Paid</th>
+        <th>Cancelled</th>
+        <th>Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= @order.count_by_status("ordered") %></td>
+          <td><%= @order.count_by_status("paid") %></td>
+          <td><%= @order.count_by_status("cancelled") %></td>
+          <td><%= @order.count_by_status("completed") %></td>
+        </tr>
+    </tbody>
+  </table>
+</section>

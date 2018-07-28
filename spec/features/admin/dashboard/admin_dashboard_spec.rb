@@ -22,5 +22,13 @@ describe 'an admin' do
       expect(page).to have_link(@order_1.id)
       expect(page).to have_link(@order_2.id)
     end
+    it 'see the total number of orders for each status ("Ordered", "Paid", "Cancelled", "Completed")' do
+      visit admin_dashboard_index_path
+
+      expect(page).to have_content('Total orders ordered : 2')
+      expect(page).to have_content('Total orders paid : 2')
+      expect(page).to have_content('Total orders cancelled : 1')
+      expect(page).to have_content('Total orders completed : 1')
+    end
   end
 end

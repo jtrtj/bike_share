@@ -26,7 +26,7 @@ describe Order, type: :model do
 
       expect(order.order_items[0].quantity).to eq(1)
       expect(order.order_items[1].quantity).to eq(2)
-      
+
       expect(user.orders.size).to eq(1)
     end
 
@@ -41,6 +41,21 @@ describe Order, type: :model do
       order.generate_order_items(cart)
 
       expect(order.total).to eq(1150)
+    end
+
+    it 'count order by status' do
+      user = create(:user)
+      order_1 = create(:order, status: 'ordered', user_id: user.id)
+      order_2 = create(:order, status: 'ordered', user_id: user.id)
+      order_3 = create(:order, status: 'paid', user_id: user.id)
+      order_4 = create(:order, status: 'paid', user_id: user.id)
+      order_5 = create(:order, status: 'cancelled', user_id: user.id)
+      order_6 = create(:order, status: 'completed', user_id: user.id)
+
+      expect(Order.count_by_status('ordered')).to eq(2)
+      expect(Order.count_by_status('paid')).to eq(2)
+      expect(Order.count_by_status('cancelled')).to eq(1)
+      expect(Order.count_by_status('completed')).to eq(1)
     end
   end
 end

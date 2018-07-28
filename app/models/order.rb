@@ -12,4 +12,5 @@ class Order < ApplicationRecord
   def total
     order_items.joins(:item).select("sum(items.price * order_items.quantity) AS total")[0].total
   end
+
 end
