@@ -30,6 +30,32 @@ describe 'an admin' do
       expect(page).to have_content('Cancelled : 1')
       expect(page).to have_content('Completed : 1')
     end
+    it 'can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")' do
+      visit admin_dashboard_index_path
 
+      within "#status-filter" do
+        click_on('Ordered')
+      end
+      expect(page).to have_content(@order_1.id)
+      expect(page).to_not have_content(@order_5.id)
+
+      within "#status-filter" do
+        click_on('Paid')
+      end
+      expect(page).to have_content(@order_3.id)
+      expect(page).to_not have_content(@order_1.id)
+
+      within "#status-filter" do
+        click_on('Cancelled')
+      end
+      expect(page).to have_content(@order_5.id)
+      expect(page).to_not have_content(@order_3.id)
+
+      within "#status-filter" do
+        click_on('Completed')
+      end
+      expect(page).to have_content(@order_6.id)
+      expect(page).to_not have_content(@order_5.id)  
+    end
   end
 end
