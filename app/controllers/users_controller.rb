@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    
+  end
+
   private
 
   def user_params
@@ -25,4 +29,5 @@ class UsersController < ApplicationController
                                  :state,
                                  :zip)
   end
+
 end
