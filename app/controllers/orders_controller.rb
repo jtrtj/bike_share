@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :order_auth?, only: [:show]
+
   def create
     user = current_user
     order = user.orders.create
@@ -7,7 +9,6 @@ class OrdersController < ApplicationController
     flash[:notice] = "Successfully submited your order totaling #{view_context.number_to_currency(order.total)}"
   end
 
-  def show 
-    @order = Order.find(params[:id])
+  def show
   end
 end

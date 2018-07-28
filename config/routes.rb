@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     patch '/bike-shop/:id', to: 'items#update'
   end
 
-
+  get 'conditions/dashboard', to: 'stations#dashboard'
   resources :conditions, only: [:index, :show]
 
   resources :items, only: [:index, :show]

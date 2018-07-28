@@ -7,15 +7,21 @@ I see the Breakout of average number of rides, highest number of rides, and lowe
 describe 'A registered user' do
   context 'visiting dashboard' do
     before :each do
-      condition = create(:condition, date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 93)
-      trip_1 = create(:trip, start_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
-      trip_2 = create(:trip, start_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
-      trip_3 = create(:trip, start_date: DateTime.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+      @condition = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 93)
+      @condition = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 91)
+      @condition = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 90)
+      @condition = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 87)
+      @condition = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 86)
+      @condition = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 84)
+      @condition = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 74)
+      @trip_1 = create(:trip, start_date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+      @trip_2 = create(:trip, start_date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+      @trip_3 = create(:trip, start_date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'))
     end
     it 'sees the average number of rides, highest number of rides, and lowest number of rides on days with a high temperature in 10 degree chunks' do
+      visit conditions_dashboard
 
-
-
+      expect(page).to have_content
     end
   end
 end
