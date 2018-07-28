@@ -17,11 +17,13 @@ describe 'an admin' do
       expect(page).to have_content("Status: #{order.status}")
       expect(page).to have_content("#{order.created_at}")
       expect(page).to have_link("#{item.title}")
-      expect(page).to have_content("#{item.quantity}")
+      expect(page).to have_content("#{order.order_items[0].quantity}")
       expect(page).to have_content("$400.00")
       expect(page).to have_content(user.first_name)
       expect(page).to have_content(user.last_name)
-      expect(page).to have_content(user.address)
+      expect(page).to have_content(user.street_address)
+      expect(page).to have_content(user.state)
+      expect(page).to have_content(user.zip)
     end
   end
 end
