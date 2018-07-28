@@ -36,26 +36,35 @@ describe 'an admin' do
       within "#status-filter" do
         click_on('Ordered')
       end
-      expect(page).to have_content(@order_1.id)
-      expect(page).to_not have_content(@order_5.id)
+      within ".orders-admin" do
+        expect(page).to have_content(@order_1.id)
+        expect(page).to_not have_content(@order_5.id)
+      end
+
 
       within "#status-filter" do
         click_on('Paid')
       end
-      expect(page).to have_content(@order_3.id)
-      expect(page).to_not have_content(@order_1.id)
+      within ".orders-admin" do
+        expect(page).to have_content(@order_3.id)
+        expect(page).to_not have_content(@order_1.id)
+      end
 
       within "#status-filter" do
         click_on('Cancelled')
       end
-      expect(page).to have_content(@order_5.id)
-      expect(page).to_not have_content(@order_3.id)
+      within ".orders-admin" do
+        expect(page).to have_content(@order_5.id)
+        expect(page).to_not have_content(@order_3.id)
+      end
 
       within "#status-filter" do
         click_on('Completed')
       end
-      expect(page).to have_content(@order_6.id)
-      expect(page).to_not have_content(@order_5.id)  
+      within ".orders-admin" do
+        expect(page).to have_content(@order_6.id)
+        expect(page).to_not have_content(@order_5.id)
+      end 
     end
   end
 end

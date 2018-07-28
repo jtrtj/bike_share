@@ -28,7 +28,7 @@
 
 <br><br>
 
-<section class='orders_admin'>
+<section class='orders-admin'>
   <table class='table'>
     <thead>
       <tr>
@@ -75,4 +75,12 @@
         </tr>
       </tbody>
   </table>
+
+  <div id="status-filter">
+    <h1 class="title is-6">Filters order by</h1>
+    <%= link_to 'Ordered', admin_dashboard_index_path(filter: "ordered") %>
+    <%= link_to 'Paid', admin_dashboard_index_path(filter: "paid") %>
+    <%= link_to 'Cancelled', admin_dashboard_index_path(filter: "cancelled") %>
+    <%= link_to 'Completed', admin_dashboard_index_path(filter: "completed") %>
+  </div>
 </section>
