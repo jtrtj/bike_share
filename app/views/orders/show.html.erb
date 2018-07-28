@@ -1,5 +1,18 @@
-<% @order.order_items.each do |order_item| %>
-  <%= order_item.item.name %>
-  <%= order_item.quantity %>
-  <%= order_item.quantity %>
-<% end %>
+<h1 class='title'>Order #<%= @order.id %></h1> for <%= @order.user.first_name %>
+<h2 class='subtitle'>Total Amount: <%= @order.total %></h2>
+<table class='table'>
+  <thead>
+    <th>Accessory</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= link_to order_item.item.title, item_path(order_item.item) %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= number_to_currency(order_item.quantity * order_item.item.price) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

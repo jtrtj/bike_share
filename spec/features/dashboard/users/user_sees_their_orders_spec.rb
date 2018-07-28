@@ -37,6 +37,8 @@ describe "A user" do
 
       click_on order_1.id
 
+      save_and_open_page
+
       expect(current_path).to eq(order_path(order_1))
       expect(page).to have_content(expected_number)
     end
