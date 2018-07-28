@@ -13,4 +13,7 @@ class Order < ApplicationRecord
     order_items.joins(:item).select("sum(items.price * order_items.quantity) AS total")[0].total
   end
 
+  def self.count_by_status(status)
+    where(status: status).count
+  end
 end

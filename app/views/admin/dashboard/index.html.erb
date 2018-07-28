@@ -61,10 +61,10 @@
     </thead>
     <tbody>
         <tr>
-          <td><%= @order.count_by_status("ordered") %></td>
-          <td><%= @order.count_by_status("paid") %></td>
-          <td><%= @order.count_by_status("cancelled") %></td>
-          <td><%= @order.count_by_status("completed") %></td>
+          <td><%= @orders.count_by_status("ordered") %></td>
+          <td><%= @orders.count_by_status("paid") %></td>
+          <td><%= @orders.count_by_status("cancelled") %></td>
+          <td><%= @orders.count_by_status("completed") %></td>
         </tr>
     </tbody>
   </table>
