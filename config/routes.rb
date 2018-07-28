@@ -29,10 +29,11 @@ Rails.application.routes.draw do
     resources :trips, only: [:new, :create, :edit, :update, :destroy]
     resources :dashboard, only: [:index]
     resources :items, only: [:new, :create]
-    
+
     get '/bike-shop', to: 'items#index'
     get '/bike-shop/:id', to: 'items#edit', as: 'item'
     patch '/bike-shop/:id', to: 'items#update'
+
   end
 
 

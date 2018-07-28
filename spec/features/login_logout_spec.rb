@@ -57,7 +57,7 @@ describe 'an admin' do
       fill_in :password, with: @admin.password
       click_on 'Login'
 
-      expect(current_path).to eq(admin_dashboard_path)
+      expect(current_path).to eq(admin_dashboard_index_path)
       expect(page).to have_content("Logged in as Admin User: #{@admin.user_name}")
       expect(page).to have_content('Log Out')
       expect(page).to_not have_content('Login')
