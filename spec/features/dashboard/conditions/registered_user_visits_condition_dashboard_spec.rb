@@ -25,7 +25,6 @@ describe 'A registered user' do
       @trip_8 = create(:trip, start_date: Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
       @trip_9 = create(:trip, start_date: Date.strptime('8/20/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
     end
-    end
     it 'sees the average number of rides, highest number of rides, and lowest number of rides on days with a high temperature in 10 degree chunks' do
       visit conditions_dashboard
       expected_number_1 = 2
