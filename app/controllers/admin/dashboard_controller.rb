@@ -1,4 +1,6 @@
 class Admin::DashboardController < Admin::BaseController
   def index
-  end 
+    @user = current_user
+    @orders = Order.all
+  end
 end

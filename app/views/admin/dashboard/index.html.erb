@@ -1,1 +1,50 @@
 <%= link_to 'All Items', admin_bike_shop_path %>
+
+<br><br>
+
+<h1>Welcome,
+  <%= @user.user_name %>
+</h1>
+
+<h3>Account Information</h3>
+<p>First Name:
+  <%= @user.first_name %>
+</p>
+<p>Last Name:
+  <%= @user.last_name %>
+</p>
+<p>Address:
+  <%= @user.street_address %>
+</p>
+<p>City:
+  <%= @user.city %>
+</p>
+<p>State:
+  <%= @user.state %>
+</p>
+<p>Zip Code:
+  <%= @user.zip %>
+</p>
+
+<section class='orders_admin'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Order Id</th>
+        <th>User Id</th>
+        <th>Total</th>
+        <th>Order Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, order_path(order) %></td>
+          <td><%= order.user_id %></td>
+          <td><%= order.total %></td>
+          <td><%= order.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

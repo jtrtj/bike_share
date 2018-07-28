@@ -19,7 +19,12 @@
     </div>
       <div class="navbar-end">
         <%= link_to "Cart: #{@cart.total_count}", cart_path, class: "navbar-item" %>
-        <% if current_user %>
+        <% if current_admin? %>
+        <a class='navbar-item'>
+          Logged in as Admin User: <%= current_user.user_name %>
+        </a>
+        <%= link_to 'Log Out', logout_path, class: 'navbar-item'%>
+        <% elsif current_user %>
           <a class='navbar-item'>
             Logged in as <%= current_user.user_name %>
           </a>
