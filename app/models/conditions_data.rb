@@ -45,6 +45,14 @@ class ConditionsData
     by_tens.sum.to_f / by_tens.count.to_f
   end
 
+  def all_rides_by_precipitation(all_ranges)
+    all_rides = {}
+    all_ranges.step(0.5) do |range|
+      all_rides[range] = [most_rides_by_precipitation(range), least_rides_by_precipitation(range), average_rides_by_precipitation(range)]
+    end
+    all_rides
+  end
+
   def most_rides_by_precipitation(rain_range)
     by_halves = {}
     @relevant_query.select do |key, value|
@@ -56,7 +64,7 @@ class ConditionsData
     {most_rides_rain_val => by_halves.invert[most_rides_rain_val]}
   end
 
-  def least_rides_by_precipitation(range)
+  def least_rides_by_precipitation(rain_range)
     by_halves = {}
     @relevant_query.select do |key, value|
       if key[1] >= rain_range && key[1] < rain_range + 0.5
@@ -65,5 +73,15 @@ class ConditionsData
     end
     least_rides_rain_val = by_halves.values.min
     {least_rides_rain_val => by_halves.invert[least_rides_rain_val]}
-  end 
+  end
+
+  def average_rides_by_precipitation(rain_range)
+    by_halves = []
+    @relevant_query.select do |key, value|
+      if key[1] >= rain_range && key[1] <= rain_range + 10
+        by_halves << value
+      end
+    end
+    (by_halves.sum.to_f / by_halves.count.to_f).round(1)
+  end
 end

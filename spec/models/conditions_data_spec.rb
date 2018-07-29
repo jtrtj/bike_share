@@ -75,30 +75,29 @@ describe ConditionsData do
       range = (3.0)
       expected_number = 1
 
-      expect(data.least_rides_in_temp_range(range).keys[0]).to eq(expected_number)
-      expect(data.least_rides_in_temp_range(range).values[0][0]).to eq(Date.strptime('8/16/2015 16:45', '%m/%d/%Y'))
+      expect(data.least_rides_by_precipitation(range).keys[0]).to eq(expected_number)
+      expect(data.least_rides_by_precipitation(range).values[0][0]).to eq(Date.strptime('8/16/2015 16:45', '%m/%d/%Y'))
     end
-    xit '#avg_rides_by_temp_range(range)' do
-      data = ConditionsData.new(Condition.trip_numbers_by_temp_range, Condition.trip_numbers_by_temp_range)
-      range = (90)
+    it '#avg_rides_by_precipitation(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_precipitation)
+      range = (3.0)
 
-      expect(data.average_rides_in_temp_range(range)).to eq(1.5)
+      expect(data.average_rides_by_precipitation(range)).to eq(1.5)
     end
-    xit '#all_rides_by_temp_range(range)' do
-      data = ConditionsData.new(Condition.trip_numbers_by_temp_range,
-        Condition.trip_numbers_by_temp_range)
-      range = (70..99)
+    it '#all_rides_by_pre(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_precipitation)
+      range = (2.0..3.0)
 
-      expect(data.all_rides_by_temp_range(range)).to eq({90 => [{2 => [Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), 93]},
-                                                                            {1 => [Date.strptime('8/16/2015 16:45', '%m/%d/%Y'), 91]},
-                                                                            1.5],
-                                                                80 => [{2 => [Date.strptime('8/17/2015 16:45', '%m/%d/%Y'), 87]},
-                                                                            {1 => [Date.strptime('8/18/2015 16:45', '%m/%d/%Y'), 86]},
-                                                                            1.5],
-                                                                70 => [{2 => [Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), 74]},
-                                                                             {1 => [Date.strptime('8/20/2015 16:45', '%m/%d/%Y'), 72]},
-                                                                             1.5]
-                                                                })
+      expect(data.all_rides_by_precipitation(range)).to eq({3.0 => [{2 => [@condition_1.date, 3.2]},
+                                                                          {1 => [@condition_2.date, 3.1]},
+                                                                          1.5],
+                                                            2.5 => [{2 => [@condition_3.date, 2.8]},
+                                                                          {1 => [@condition_4.date, 2.6]},
+                                                                          1.5],
+                                                            2.0 => [{2 => [@condition_5.date, 2.4]},
+                                                                          {1 => [@condition_6.date, 2.3]},
+                                                                          1.5]
+                                                            })
     end
 
 
