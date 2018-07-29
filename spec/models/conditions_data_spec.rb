@@ -24,6 +24,7 @@ describe ConditionsData do
     it '#most_rides_in_temp_range(range)' do
       data = ConditionsData.new(Condition.max_trip_numbers_by_temp_range)
       range = (90..99)
+
       expect(data.most_rides_in_temp_range(range)).to eq(2)
     end
   end
