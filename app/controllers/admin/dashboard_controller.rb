@@ -9,5 +9,4 @@ class Admin::DashboardController < Admin::BaseController
       @orders = Order.all
     end
   end
-
 end

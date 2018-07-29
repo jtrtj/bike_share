@@ -11,4 +11,12 @@ class OrdersController < ApplicationController
 
   def show
   end
+
+  def update
+    order = Order.find(params[:id])
+    order.update(status: params[:set_status])
+    redirect_to admin_dashboard_index_path(current_user)
+    flash[:notice] = "Status has been updated"
+  end
+
 end

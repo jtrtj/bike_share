@@ -30,7 +30,7 @@ describe 'an admin' do
       expect(page).to have_content('Cancelled : 1')
       expect(page).to have_content('Completed : 1')
     end
-    it 'can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")' do
+    it 'can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed") and with links' do
       visit admin_dashboard_index_path
 
       within "#status-filter" do
@@ -64,7 +64,48 @@ describe 'an admin' do
       within ".orders-admin" do
         expect(page).to have_content(@order_6.id)
         expect(page).to_not have_content(@order_5.id)
-      end 
+      end
+    end
+
+    it 'can change an order status to cancelled' do
+      order = create(:order, status: 'ordered', user_id: @user.id)
+
+      visit admin_dashboard_index_path
+
+      within "#order-#{order.id}" do
+        click_link 'Cancel'
+      end
+
+      within "#order-#{order.id}" do
+        expect(page).to have_content('cancelled')
+      end
+    end
+
+    it 'can change an order status to paid' do
+      order = create(:order, status: 'ordered', user_id: @user.id)
+
+      visit admin_dashboard_index_path
+
+      within "#order-#{order.id}" do
+        click_link 'Mark as paid'
+      end
+      within "#order-#{order.id}" do
+        expect(page).to have_content('paid')
+      end
+    end
+
+    it 'can click on mark as completed for paid order' do
+      order = create(:order, status: 'paid', user_id: @user.id)
+
+      visit admin_dashboard_index_path
+
+      within "#order-#{order.id}" do
+          click_link 'Mark as completed'
+      end
+
+      within "#order-#{order.id}" do
+          expect(page).to have_content('completed')
+      end
     end
   end
 end
