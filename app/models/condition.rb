@@ -10,7 +10,7 @@ class Condition < ApplicationRecord
   validates_presence_of :zip_code
 
   def self.trip_numbers_by_temp_range
-    joins('INNER JOIN trips ON conditions.date = trips.start_date')
+    wuh = joins('INNER JOIN trips ON conditions.date = trips.start_date')
     .group(:date, :max_temperature_f).count
   end
 end

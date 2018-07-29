@@ -18,8 +18,6 @@ class ConditionsData
     @trip_count_by_temp.select do |key, value|
       if key[1] >= temp_range && key[1] <= temp_range + 10
         by_tens[key] = value
-      else
-        0
       end
     end
     most_rides_max_temp_val = by_tens.values.max
@@ -31,8 +29,6 @@ class ConditionsData
     @trip_count_by_temp.select do |key, value|
       if key[1] >= temp_range && key[1] <= temp_range + 10
         by_tens[key] = value
-      else
-        0
       end
     end
     least_rides_max_temp_val = by_tens.values.min
@@ -44,8 +40,6 @@ class ConditionsData
     @trip_count_by_temp.select do |key, value|
       if key[1] >= temp_range && key[1] <= temp_range + 10
         by_tens << value
-      else
-        0
       end
     end
     by_tens.sum.to_f / by_tens.count.to_f

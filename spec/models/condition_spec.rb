@@ -13,7 +13,7 @@ describe Condition, type: :model do
     it {should validate_presence_of(:zip_code)}
   end
   describe 'class methods' do
-    it 'max_trip_numbers_by_temp_range' do
+    before(:each) do
       @station_1 = create(:station, id: 25)
       @station_2 = create(:station, id: 56)
       @condition_1 = create(:condition, date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), max_temperature_f: 93)
@@ -25,18 +25,18 @@ describe Condition, type: :model do
       @trip_1 = create(:trip, start_date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
       @trip_2 = create(:trip, start_date: Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
       @trip_3 = create(:trip, start_date: Date.strptime('8/16/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
-      @trip_4 = create(:trip, start_date: Date.strptime('8/17/2015 16:45', '%m/%d/%Y'), start_station: 'Japantown', end_station: 'Santa Clara at Almaden')
-      @trip_5 = create(:trip, start_date: Date.strptime('8/17/2015 16:45', '%m/%d/%Y'), start_station: 'Japantown', end_station: 'Santa Clara at Almaden')
-      @trip_6 = create(:trip, start_date: Date.strptime('8/18/2015 16:45', '%m/%d/%Y'), start_station: 'Japantown', end_station: 'Santa Clara at Almaden')
-      @trip_7 = create(:trip, start_date: Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), start_station: 'Japantown', end_station: 'Santa Clara at Almaden')
-      @trip_8 = create(:trip, start_date: Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), start_station: 'Japantown', end_station: 'Santa Clara at Almaden')
-      @trip_9 = create(:trip, start_date: Date.strptime('8/20/2015 16:45', '%m/%d/%Y'), start_station: 'Japantown', end_station: 'Santa Clara at Almaden')
+      @trip_4 = create(:trip, start_date: Date.strptime('8/17/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
+      @trip_5 = create(:trip, start_date: Date.strptime('8/17/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
+      @trip_6 = create(:trip, start_date: Date.strptime('8/18/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
+      @trip_7 = create(:trip, start_date: Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
+      @trip_8 = create(:trip, start_date: Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
+      @trip_9 = create(:trip, start_date: Date.strptime('8/20/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
+    end
+    it '#trip_numbers_by_temp_range' do
+      expected_number = 1
 
-    #   expect(Condition.max_trip_numbers_by_temp_range).to eq({90..99 => {2 => [Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), 93]},
-    #                                                                     {}
-    # },
-    #                                                         {}
-    #                                                         )
+      expect(Condition.trip_numbers_by_temp_range.first.first[0]).to eq(Date.strptime('8/18/2015 16:45', '%m/%d/%Y'))
+      expect(Condition.trip_numbers_by_temp_range.first.first[1]).to eq(@condition_4.max_temperature_f)
     end
   end
 end
