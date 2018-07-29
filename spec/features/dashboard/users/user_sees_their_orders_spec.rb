@@ -66,8 +66,6 @@ describe "A user" do
 
       visit order_path(order_1)
 
-      save_and_open_page
-
       expect(page).to have_content("404")
     end
   end

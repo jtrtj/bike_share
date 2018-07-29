@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create]
   end
 
-  resources :orders, only: [:show]
+  resources :orders, only: [:show, :update]
 
   resources :trips, only: [:index, :show]
 
@@ -35,7 +35,6 @@ Rails.application.routes.draw do
     get '/bike-shop', to: 'items#index'
     get '/bike-shop/:id', to: 'items#edit', as: 'item'
     patch '/bike-shop/:id', to: 'items#update'
-
   end
 
   get 'conditions/dashboard', to: 'stations#dashboard'

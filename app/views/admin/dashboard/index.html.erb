@@ -26,7 +26,9 @@
   <%= @user.zip %>
 </p>
 
-<section class='orders_admin'>
+<br><br>
+
+<section class='orders-admin'>
   <table class='table'>
     <thead>
       <tr>
@@ -38,13 +40,56 @@
     </thead>
     <tbody>
       <% @orders.each do |order| %>
-        <tr>
+        <tr id="order-<%= order.id %>">
           <td><%= link_to order.id, order_path(order) %></td>
           <td><%= order.user_id %></td>
           <td><%= order.total %></td>
-          <td><%= order.status %></td>
+          <td class='status'><%= order.status %></td>
+          <td>
+          <% if order.status == 'paid' %>
+            <td><%= link_to 'Cancel', order_path(order, set_status: 'cancelled'), method: :patch %></td>
+            <td><%= link_to 'Mark as completed', order_path(order, set_status: 'completed'), method: :patch %></td>
+          <% elsif order.status == 'ordered' %>
+            <td><%= link_to 'Cancel', order_path(order, set_status: 'cancelled'), method: :patch %></td>
+            <td><%= link_to 'Mark as paid', order_path(order, set_status: 'paid'), method: :patch %></td>
+          <% end  %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</section>
+
+<br> <br>
+
+<section class='orders_status'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Orders by status</th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr>
+          <td>Ordered : <%= @orders.count_by_status("ordered") %></td>
+        </tr>
+        <tr>
+          <td>Paid : <%= @orders.count_by_status("paid") %></td>
+        </tr>
+        <tr>
+          <td>Cancelled : <%= @orders.count_by_status("cancelled") %></td>
+        </tr>
+        <tr>
+          <td>Completed : <%= @orders.count_by_status("completed") %></td>
+        </tr>
+      </tbody>
+  </table>
+
+  <div id="status-filter">
+    <h1 class="title is-6">Filters order by</h1>
+    <%= link_to 'Ordered', admin_dashboard_index_path(filter: "ordered") %>
+    <%= link_to 'Paid', admin_dashboard_index_path(filter: "paid") %>
+    <%= link_to 'Cancelled', admin_dashboard_index_path(filter: "cancelled") %>
+    <%= link_to 'Completed', admin_dashboard_index_path(filter: "completed") %>
+  </div>
 </section>
