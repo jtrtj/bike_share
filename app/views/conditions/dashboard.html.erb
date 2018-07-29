@@ -8,6 +8,7 @@
     Average rides per day for <%= temp %> degree weather: <%= ride[2].round(1) %> <br><br>
   <% end %>
 <% end %>
+
 <% @all_trips_by_precipitation.each_pair do |inches, ride| %>
   <h2 class='subtitle'>Trip Stats for Precipitation between <%= inches %> and <%= inches + 0.5 %> inches</h2>
   <% if ride[0].keys[0] != nil %>
@@ -16,5 +17,27 @@
     Average daily rides for this precipitation: <%= ride[2].round(1) %> <br>
   <% else %>
     No rides at this precipitation
+  <% end %><br><br>
+<% end %>
+
+<% @all_trips_by_wind_speed.each_pair do |miles, ride| %>
+  <h2 class='subtitle'>Trip Stats for Wind Speeds between <%= miles %> and <%= miles + 4.0 %> miles</h2>
+  <% if ride[0].keys[0] != nil %>
+    Most rides: <%= ride[0].keys[0] %> on <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at <%= ride[0].values[0][1].round(1) %> miles <br>
+    Least rides: <%= ride[1].keys[0] %> on <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at <%= ride[1].values[0][1].round(1) %> miles <br>
+    Average daily rides for this wind speed: <%= ride[2].round(1) %> <br>
+  <% else %>
+    No rides at this wind speed
+  <% end %><br><br>
+<% end %>
+
+<% @all_trips_by_visibility.each_pair do |miles, ride| %>
+  <h2 class='subtitle'>Trip Stats for Visibility between <%= miles %> and <%= miles + 4.0 %> miles</h2>
+  <% if ride[0].keys[0] != nil %>
+    Most rides: <%= ride[0].keys[0] %> on <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at <%= ride[0].values[0][1].round(1) %> miles <br>
+    Least rides: <%= ride[1].keys[0] %> on <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at <%= ride[1].values[0][1].round(1) %> miles <br>
+    Average daily rides for this visibility: <%= ride[2].round(1) %> <br>
+  <% else %>
+    No rides at this visibility
   <% end %><br><br>
 <% end %>

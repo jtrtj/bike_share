@@ -48,12 +48,13 @@ describe 'A registered user' do
     end
     it 'sees average, highest and lowest number of rides for precipitation for increments of 0.5 inches' do
       visit conditions_dashboard_path
+      expected_maxes = 2
+      expected_mins = 1
 
-      expect(page).to have_content("Most rides: #{@condition_1.precipitation_inches}")
-      expect(page).to have_content("Least rides: #{@condition_2.precipitation_inches}")
-      expect(page).to have_content("Most rides: #{@condition_1.mean_wind_speed_mph}")
-      expect(page).to have_content("Least rides: #{@condition_2.mean_wind_speed_mph}")
-      expect(page).to have_content("Most rides: #{@condition_1.mean_visibility_miles}")
-      expect(page).to have_content("Least rides: #{@condition_2.mean_visibility_miles}")
+      expect(page).to have_content("Most rides: #{expected_maxes}")
+      expect(page).to have_content("Least rides: #{expected_mins}")
+      expect(page).to have_content("Trip Stats for Visibility between")
+      expect(page).to have_content("Trip Stats for Wind Speeds between")
+    end
   end
 end
