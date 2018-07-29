@@ -25,8 +25,8 @@ describe ConditionsData do
       data = ConditionsData.new(Condition.max_trip_numbers_by_temp_range)
       range = (90..99)
 
-      expect(data.most_rides_in_temp_range(range)[1]).to eq(2)
-      expect(data.most_rides_in_temp_range(range)[0]).to eq(Date.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+      expect(data.most_rides_in_temp_range(range).keys[0]).to eq(2)
+      expect(data.most_rides_in_temp_range(range).values[0][0]).to eq(Date.strptime('8/15/2015 16:45', '%m/%d/%Y'))
     end
   end
 end
