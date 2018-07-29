@@ -16,9 +16,32 @@ describe 'a visitor' do
     it 'will be asked to log in when clicking checkout from cart' do
       visit cart_path
 
-      click on 'Checkout'
+      click_on 'Checkout'
 
       expect(current_path).to eq(login_path)
+    end
+
+    it 'cannot view admin screens or use admin functionality' do
+      visit admin_dashboard_index_path
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+
+      visit admin_bike_shop_path
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+
+      visit admin_items_path
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+
+      visit new_admin_item_path
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+
+      visit new_admin_trip_path
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+
+      visit new_admin_condition_path
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+
+      visit new_admin_station_path
+      expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   end
 end
