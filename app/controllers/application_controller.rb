@@ -21,11 +21,12 @@ class ApplicationController < ActionController::Base
 
   def order_auth?
     @order = Order.find(params[:id])
-    if current_user.id == @order.user_id || current_admin?
+    if current_user.nil?
+      render file: 'public/404.html'
+    elsif current_user.id == @order.user_id || current_admin?
       render :show
     else
       render file: 'public/404.html'
     end
   end
-
 end
