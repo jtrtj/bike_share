@@ -20,4 +20,4 @@
 coverage
 
 # Ignore application configuration
-db/csv
+#db/csv
