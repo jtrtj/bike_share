@@ -8,7 +8,6 @@ class ConditionsController < ApplicationController
   end
 
   def dashboard
-    @conditions= Condition.all
     by_temp_range = ConditionsData.new(Condition.trip_numbers_by_temp_range)
     @all_trips_by_temp = by_temp_range.all_rides_by_temp_range(40..99)
   end
