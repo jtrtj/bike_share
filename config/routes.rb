@@ -10,9 +10,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#show'
   get '/trips-dashboard', to: 'trips#dashboard'
 
-  resources :users, only: [:new, :create]
-
-  resources :users do
+  resources :users, only: [:new, :create] do
     resources :orders, only: [:create]
   end
 
