@@ -31,9 +31,9 @@ describe 'A registered user' do
       expected_max_90 = 2
       expected_min_90 = 1
       expected_average_90 = 1.5
-      expected_date_1 = Date.strptime('8/15/2015 16:45', '%m/%d/%Y')
+      expected_date_1 = Date.strptime('8/15/2015 16:45', '%m/%d/%Y').strftime("%B %d, %Y")
       expected_temp_1 = 93
-      expected_date_2 = Date.strptime('8/16/2015 16:45', '%m/%d/%Y')
+      expected_date_2 = Date.strptime('8/16/2015 16:45', '%m/%d/%Y').strftime("%B %d, %Y")
       expected_temp_2 = 91
 
       expect(page).to have_content("Trip Stats for Days in the 90s")
