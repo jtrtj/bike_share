@@ -38,7 +38,7 @@ class ConditionsData
   def average_rides_in_temp_range(temp_range)
     by_tens = []
     @relevant_query.select do |key, value|
-      if key[1] >= temp_range && key[1] <= temp_range + 10
+      if key[1] >= temp_range && key[1] < temp_range + 10
         by_tens << value
       end
     end
@@ -78,7 +78,7 @@ class ConditionsData
   def average_rides_by_precipitation(rain_range)
     by_halves = []
     @relevant_query.select do |key, value|
-      if key[1] >= rain_range && key[1] <= rain_range + 10
+      if key[1] >= rain_range && key[1] < rain_range + 0.5
         by_halves << value
       end
     end
