@@ -1,30 +1,22 @@
 require 'rails_helper'
 
-describe 'a visitor' do
-  context 'trying to see user data' do
-    it "cannot view another user's private data" do
-      user = create(:user)
-      order = user.orders.create
-      
-      visit dashboard_path(user)
-      expect(page).to have_content("The page you were looking for doesn't exist.")
+describe 'a registered user' do
+  before :each do
+    @user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+  end
+
+  context "trying to view another user's private data" do
+    it 'gets a 404' do
+      user_2 = create(:user)
+      order = user_2.orders.create
       
       visit order_path(order)
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   end
 
-  context 'trying to checkout' do
-    it 'will be asked to log in when clicking checkout from cart' do
-      visit cart_path
-
-      click_on 'Checkout'
-
-      expect(current_path).to eq(login_path)
-    end
-  end
-
-  context 'trying to do admin stuff' do
+  context 'trying to use admin screens and fucntions' do
     it 'cannot view admin screens or use admin functionality' do
       visit admin_dashboard_index_path
       expect(page).to have_content("The page you were looking for doesn't exist.")
