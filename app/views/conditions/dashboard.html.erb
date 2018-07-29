@@ -1,0 +1,10 @@
+<h1 class='title'>Conditions Dashboard</h1>
+
+<% @all_trips_by_temp.each_pair do |temp, ride| %>
+  <% if ride[0].keys[0] != nil %>
+    <h2 class='subtitle'>Trip Stats for Days in the <%= temp %>s</h2>
+    Most rides for <%= temp %> degree weather: <%= ride[0].keys[0] %>, on <%= ride[0].values[0].to_s %>, at <%= ride[0].values[1] %><br>
+    Least rides for <%= temp %> degree weather: <%= ride[1].keys[0] %>, on <%= ride[1].values[0].to_s %>, at <%= ride[1].values[1] %><br>
+    Average rides per day for <%= temp %> degree weather: <%= ride[2].round(1) %> <br><br>
+  <% end %>
+<% end %>
