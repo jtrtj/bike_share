@@ -5,51 +5,75 @@
         <h1 class="title is-size-1 has-text-weight-bold">Trips</h1>
       </div>
     </div>
-    <div class="has-text-centered">
-      <div class="container">
-      <%= button_to "Create Trip", new_admin_trip_path, class: "button is-large is-inverted is-bordered is-success", method: :get %>
+    <% if current_admin? %>
+      <div class="has-text-centered">
+        <div class="container">
+          <%= button_to "Create Trip", new_admin_trip_path, class: "button is-large is-inverted is-bordered is-success", method: :get %>
+        </div>
       </div>
-    </div>
-    <br>
+      <% end %>
+        <br>
   </section>
-<br>
-<br>
+  <br>
+  <br>
   <div>
     <%= will_paginate %>
-    <br>
-    <table class="table is-bordered is-striped">
-      <thead>
-        <th>Trip #</th>
-        <th>Duration</th>
-        <th>Start Date</th>
-        <th>Start Station</th>
-        <th>End Date</th>
-        <th>End Station</th>
-        <th>Bike</th>
-        <th>Subscription Type</th>
-        <th>Zip Code</th>
-      </thead>
+      <br>
+      <table class="table is-bordered is-striped">
+        <thead>
+          <th>Trip #</th>
+          <th>Duration</th>
+          <th>Start Date</th>
+          <th>Start Station</th>
+          <th>End Date</th>
+          <th>End Station</th>
+          <th>Bike</th>
+          <th>Subscription Type</th>
+          <th>Zip Code</th>
+        </thead>
 
-      <% @trips.each do |trip| %>
-        <tbody>
-          <tr>
-            <td><%=link_to trip.id, trip_path(trip)%></td>
-            <td><%=trip.duration%></td>
-            <td><%=trip.start_date%></td>
-            <td><%=trip.start_station_id%></td>
-            <td><%=trip.end_date%></td>
-            <td><%=trip.end_station_id%></td>
-            <td><%=trip.bike_id%></td>
-            <td><%=trip.subscription_type%></td>
-            <td><%=trip.zip_code%></td>
-            <% if current_admin? %>
-            <td><%= button_to "Edit", edit_admin_trip_path(trip), method: :get, class: "button is-info" %></td>
-            <td><%= button_to "Delete", admin_trip_path(trip), method: :delete, class: "button is-danger" %></td>
-            <% end %>
-          </tr>
-        </tbody>
-      <% end %>
-    </table>
-    </div>
+        <% @trips.each do |trip| %>
+          <tbody>
+            <tr>
+              <td>
+                <%=link_to trip.id, trip_path(trip)%>
+              </td>
+              <td>
+                <%=trip.duration%>
+              </td>
+              <td>
+                <%=trip.start_date%>
+              </td>
+              <td>
+                <%=trip.start_station_id%>
+              </td>
+              <td>
+                <%=trip.end_date%>
+              </td>
+              <td>
+                <%=trip.end_station_id%>
+              </td>
+              <td>
+                <%=trip.bike_id%>
+              </td>
+              <td>
+                <%=trip.subscription_type%>
+              </td>
+              <td>
+                <%=trip.zip_code%>
+              </td>
+              <% if current_admin? %>
+                <td>
+                  <%= button_to "Edit", edit_admin_trip_path(trip), method: :get, class: "button is-info" %>
+                </td>
+                <td>
+                  <%= button_to "Delete", admin_trip_path(trip), method: :delete, class: "button is-danger" %>
+                </td>
+                <% end %>
+            </tr>
+          </tbody>
+          <% end %>
+      </table>
   </div>
+</div>
 </div>

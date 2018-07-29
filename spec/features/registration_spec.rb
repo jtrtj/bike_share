@@ -37,7 +37,7 @@ describe 'a visitor' do
       fill_in :user_state,	with: state
       fill_in :user_zip,	with: zip
 
-      click_button 'Sign Up'
+      click_button 'Create User'
 
       expect(current_path).to eq(dashboard_path)
 

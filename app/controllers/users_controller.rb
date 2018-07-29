@@ -13,6 +13,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    if @user.save
+      flash[:notice] = "#{@user.user_name} was updated!"
+      redirect_to dashboard_path
+    else
+      flash[:notice] = "Entry invalid, please fill out all fields"
+      render :edit
+    end
+
+  end
+
   private
 
   def user_params
@@ -25,4 +42,5 @@ class UsersController < ApplicationController
                                  :state,
                                  :zip)
   end
+
 end
