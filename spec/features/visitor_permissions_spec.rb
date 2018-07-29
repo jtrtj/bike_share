@@ -12,7 +12,9 @@ describe 'a visitor' do
       visit order_path(order)
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
+  end
 
+  context 'trying to checkout' do
     it 'will be asked to log in when clicking checkout from cart' do
       visit cart_path
 
@@ -20,7 +22,9 @@ describe 'a visitor' do
 
       expect(current_path).to eq(login_path)
     end
+  end
 
+  context 'trying to do admin stuff' do
     it 'cannot view admin screens or use admin functionality' do
       visit admin_dashboard_index_path
       expect(page).to have_content("The page you were looking for doesn't exist.")

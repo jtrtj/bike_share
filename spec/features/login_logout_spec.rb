@@ -44,7 +44,6 @@ end
 describe 'an admin' do
   before(:each) do
     @admin = create(:user, role: 1)
-    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
   context 'logs in to their account' do
     it 'has a functional username and password' do
