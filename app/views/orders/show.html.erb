@@ -1,4 +1,14 @@
-<h1 class='title'>Order #<%= @order.id %> for <%= @order.user.first_name %></h1> 
+
+<h1 class='title'>Order #<%= @order.id %> 
+  <% if current_admin? %>
+  for <%= @order.user.first_name %> <%= @order.user.last_name %>
+</h1> 
+<h2>
+  <%= @order.user.street_address %><br>
+  <%= @order.user.city %>, <%= @order.user.state %><br>
+  <%= @order.user.zip %>
+</h2>
+<% end %>
 <h2 class='subtitle'>Total Amount: <%= @order.total %></h2>
 <h2 class='subtitle'>Date Submitted: <%= @order.created_at %></h2>
 <% if @order.status == 'cancelled' || @order.status == 'shipped'%>
