@@ -28,9 +28,6 @@ describe 'a visitor' do
       visit admin_bike_shop_path
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
-      visit admin_items_path
-      expect(page).to have_content("The page you were looking for doesn't exist.")
-
       visit new_admin_item_path
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
@@ -42,6 +39,13 @@ describe 'a visitor' do
 
       visit new_admin_station_path
       expect(page).to have_content("The page you were looking for doesn't exist.")
+    end
+
+    it 'cannot sign up as an admin' do
+      visit new_user_path
+
+      expect(page).to_not have_content("admin")
+      expect(page).to_not have_content("Admin")
     end
   end
 end
