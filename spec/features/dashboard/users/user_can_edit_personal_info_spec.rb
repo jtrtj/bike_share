@@ -7,15 +7,27 @@ describe "A user" do
       new_city = "Greeley"
       new_zip = 80631
       user = create(:user)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit dashboard_path
+      visit root_path
+
+      click_on 'Log In'
+
+      fill_in :user_name, with: user.user_name
+      # fill_in :first_name,	with: user.first_name 
+      # fill_in :last_name,	with: user.last_name 
+      # fill_in :street_address,	with: user.street_address 
+      # fill_in :city,	with: user.city 
+      # fill_in :state,	with: user.state 
+      # fill_in :zip,	with: user.zip 
+      fill_in :password, with: user.password
+
+      click_button 'Login'
 
       click_on "Update My Info"
 
-      fill_in :user_user_name,	with: user.user_name 
-      fill_in :user_first_name,	with: user.first_name 
-      fill_in :user_last_name,	with: user.last_name 
+      fill_in :user_user_name,	with: user.user_name
+      fill_in :user_first_name,	with: user.first_name
+      fill_in :user_last_name,	with: user.last_name
       fill_in :user_street_address,	with: new_address
       fill_in :user_city,	with: new_city
       fill_in :user_zip,	with: new_zip
