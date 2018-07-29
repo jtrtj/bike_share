@@ -124,4 +124,44 @@ class ConditionsData
     end
     (by_quarters.sum.to_f / by_quarters.count.to_f).round(1)
   end
+
+  def all_rides_by_visibility(all_ranges)
+    all_rides = {}
+    all_ranges.step(4.0) do |range|
+      all_rides[range] = [most_rides_by_visibility(range), least_rides_by_visibility(range), average_rides_by_visibility(range)]
+    end
+    all_rides
+  end
+
+  def most_rides_by_visibility(visibility_range)
+    by_quarters = {}
+    @relevant_query.select do |key, value|
+      if key[1] >= visibility_range && key[1] < visibility_range + 4.0
+        by_quarters[key] = value
+      end
+    end
+    most_rides_visibility_val = by_quarters.values.max
+    {most_rides_visibility_val => by_quarters.invert[most_rides_visibility_val]}
+  end
+
+  def least_rides_by_visibility(visibility_range)
+    by_quarters = {}
+    @relevant_query.select do |key, value|
+      if key[1] >= visibility_range && key[1] < visibility_range + 4.0
+        by_quarters[key] = value
+      end
+    end
+    least_rides_visibility_val = by_quarters.values.min
+    {least_rides_visibility_val => by_quarters.invert[least_rides_visibility_val]}
+  end
+
+  def average_rides_by_visibility(visibility_range)
+    by_quarters = []
+    @relevant_query.select do |key, value|
+      if key[1] >= visibility_range && key[1] < visibility_range + 4.0
+        by_quarters << value
+      end
+    end
+    (by_quarters.sum.to_f / by_quarters.count.to_f).round(1)
+  end
 end

@@ -147,7 +147,7 @@ describe ConditionsData do
       expect(data.most_rides_by_visibility(range).keys[0]).to eq(expected_number)
       expect(data.most_rides_by_visibility(range).values[0][0]).to eq(@condition_1.date)
     end
-    xit '#min_rides_by_visibility(range)' do
+    it '#min_rides_by_visibility(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_visibility)
       range = (20.0)
       expected_number = 1
@@ -155,24 +155,24 @@ describe ConditionsData do
       expect(data.least_rides_by_visibility(range).keys[0]).to eq(expected_number)
       expect(data.least_rides_by_visibility(range).values[0][0]).to eq(@condition_2.date)
     end
-    xit '#avg_rides_by_visibility(range)' do
+    it '#avg_rides_by_visibility(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_visibility)
       range = (20.0)
 
       expect(data.average_rides_by_visibility(range)).to eq(1.5)
     end
-    xit '#all_rides_by_visibility(range)' do
+    it '#all_rides_by_visibility(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_visibility)
       range = (12.0..20.0)
 
-      expect(data.all_rides_by_visibility(range)).to eq({20.0 => [{2 => [@condition_1.date, 23.0]},
+      expect(data.all_rides_by_visibility(range)).to eq({20.0 => [{2 => [@condition_1.date, 22.0]},
                                                                           {1 => [@condition_2.date, 21.0]},
                                                                           1.5],
-                                                            16.0 => [{2 => [@condition_3.date, 19.0]},
-                                                                          {1 => [@condition_4.date, 18.0]},
+                                                            16.0 => [{2 => [@condition_3.date, 18.0]},
+                                                                          {1 => [@condition_4.date, 17.0]},
                                                                           1.5],
-                                                            12.0 => [{2 => [@condition_5.date, 14.0]},
-                                                                          {1 => [@condition_6.date, 13.0]},
+                                                            12.0 => [{2 => [@condition_5.date, 15.0]},
+                                                                          {1 => [@condition_6.date, 12.0]},
                                                                           1.5]
                                                             })
     end
