@@ -21,8 +21,7 @@ describe "A user" do
       fill_in :user_zip,	with: new_zip
       fill_in :user_password,	with: user.password
 
-      click_on 'Update Info'
-      save_and_open_page
+      click_on 'Update User'
 
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content(new_address)
