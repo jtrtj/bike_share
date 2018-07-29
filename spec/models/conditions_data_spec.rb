@@ -115,24 +115,24 @@ describe ConditionsData do
       expect(data.least_rides_by_wind_speed(range).keys[0]).to eq(expected_number)
       expect(data.least_rides_by_wind_speed(range).values[0][0]).to eq(@condition_2.date)
     end
-    xit '#avg_rides_by_wind_speed(range)' do
+    it '#avg_rides_by_wind_speed(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
-      range = (3.0)
+      range = (20.0)
 
       expect(data.average_rides_by_wind_speed(range)).to eq(1.5)
     end
-    xit '#all_rides_by_wind_speed(range)' do
+    it '#all_rides_by_wind_speed(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
-      range = (2.0..3.0)
+      range = (12.0..20.0)
 
-      expect(data.all_rides_by_wind_speed(range)).to eq({3.0 => [{2 => [@condition_1.date, 3.2]},
-                                                                          {1 => [@condition_2.date, 3.1]},
+      expect(data.all_rides_by_wind_speed(range)).to eq({20.0 => [{2 => [@condition_1.date, 23.0]},
+                                                                          {1 => [@condition_2.date, 21.0]},
                                                                           1.5],
-                                                            2.5 => [{2 => [@condition_3.date, 2.8]},
-                                                                          {1 => [@condition_4.date, 2.6]},
+                                                            16.0 => [{2 => [@condition_3.date, 19.0]},
+                                                                          {1 => [@condition_4.date, 18.0]},
                                                                           1.5],
-                                                            2.0 => [{2 => [@condition_5.date, 2.4]},
-                                                                          {1 => [@condition_6.date, 2.3]},
+                                                            12.0 => [{2 => [@condition_5.date, 14.0]},
+                                                                          {1 => [@condition_6.date, 13.0]},
                                                                           1.5]
                                                             })
     end
