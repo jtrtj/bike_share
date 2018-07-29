@@ -16,13 +16,16 @@ class ConditionsData
   end
 
   def most_rides_in_temp_range(temp_range)
-    by_degree = @trip_count_by_temp.select do |key, value|
+    by_tens = @trip_count_by_temp.select do |key, value|
       if key[1] >= temp_range.min && key[1] <= temp_range.max
-          [key[0], value]
+        {key[0] => value}
       else
         0
       end
     end
+    most_rides_max_temp_val = by_tens.values.max
+    most_rides_max_temp_date = by_tens.invert[most_rides_max_temp_val]
+    [most_rides_max_temp_val, most_rides_max_temp_date]
   end
 
   def least_rides_in_temp_range(temp)
