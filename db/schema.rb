@@ -77,13 +77,6 @@ ActiveRecord::Schema.define(version: 20180726231801) do
     t.string "slug"
   end
 
-  create_table "statuses", force: :cascade do |t|
-    t.integer "station_id"
-    t.integer "bikes_available"
-    t.integer "docks_available"
-    t.datetime "time"
-  end
-
   create_table "trips", force: :cascade do |t|
     t.integer "duration"
     t.datetime "start_date"

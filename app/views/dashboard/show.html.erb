@@ -23,3 +23,9 @@
   <p>Zip Code:
     <%= @user.zip %>
   </p>
+
+<% if @user.orders.nil? == false %>
+  <% @user.orders.each do |order| %>
+    <%= link_to "Order Number #{order.id}", order_path(order) %>
+  <% end %>
+<% end %>

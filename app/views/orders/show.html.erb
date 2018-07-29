@@ -1,0 +1,34 @@
+
+<h1 class='title'>Order #<%= @order.id %> 
+  <% if current_admin? %>
+  for <%= @order.user.first_name %> <%= @order.user.last_name %>
+</h1> 
+<h2>
+  <%= @order.user.street_address %><br>
+  <%= @order.user.city %>, <%= @order.user.state %><br>
+  <%= @order.user.zip %>
+</h2>
+<% end %>
+<h2 class='subtitle'>Total Amount: <%= @order.total %></h2>
+<h2 class='subtitle'>Date Submitted: <%= @order.created_at %></h2>
+<% if @order.status == 'cancelled' || @order.status == 'shipped'%>
+  <h2 class='subtitle'>Status: <%= @order.status %> on <%= @order.updated_at %></h2>
+<% else %>
+  <h2 class='subtitle'>Status: <%= @order.status %></h2>
+<% end %>
+<table class='table'>
+  <thead>
+    <th>Accessory</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= link_to order_item.item.title, item_path(order_item.item) %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= number_to_currency(order_item.quantity * order_item.item.price) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#show'
   get '/trips-dashboard', to: 'trips#dashboard'
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update] do
+    resources :orders, only: [:create]
+  end
+
+  resources :orders, only: [:show, :update]
 
   resources :trips, only: [:index, :show]
 
@@ -23,8 +27,15 @@ Rails.application.routes.draw do
     resources :stations, only: [:new, :create, :edit, :update, :destroy]
     resources :conditions, only: [:new, :create, :edit, :update, :destroy]
     resources :trips, only: [:new, :create, :edit, :update, :destroy]
+    resources :dashboard, only: [:index]
+    resources :items, only: [:new, :create]
+
+    get '/bike-shop', to: 'items#index'
+    get '/bike-shop/:id', to: 'items#edit', as: 'item'
+    patch '/bike-shop/:id', to: 'items#update'
   end
 
+  get '/conditions-dashboard', to: 'conditions#dashboard'
   resources :conditions, only: [:index, :show]
 
   resources :items, only: [:index, :show]
