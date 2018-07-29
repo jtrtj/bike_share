@@ -41,25 +41,25 @@ describe ConditionsData do
 
       expect(data.average_rides_in_temp_range(range)).to eq(1.5)
     end
-    xit '#max_min_avg_rides_by_temp_range(range)' do
+    it '#max_min_avg_rides_by_temp_range(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
-      range = (90..99)
+      range = (90)
 
       expect(data.max_min_avg_rides_by_temp_range(range)).to eq([{2 => [Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), 93]},
                                                                 {1 => [Date.strptime('8/16/2015 16:45', '%m/%d/%Y'), 91]},
                                                                 1.5])
     end
-    xit '#all_rides_by_temp_range(range)' do
+    it '#all_rides_by_temp_range(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
       range = (70..99)
 
-      expect(data.all_rides_by_temp_range(range)).to eq({90..99 => [{2 => [Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), 93]},
+      expect(data.all_rides_by_temp_range(range)).to eq({90 => [{2 => [Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), 93]},
                                                                             {1 => [Date.strptime('8/16/2015 16:45', '%m/%d/%Y'), 91]},
                                                                             1.5],
-                                                                80..89 => [{2 => [Date.strptime('8/17/2015 16:45', '%m/%d/%Y'), 87]},
+                                                                80 => [{2 => [Date.strptime('8/17/2015 16:45', '%m/%d/%Y'), 87]},
                                                                             {1 => [Date.strptime('8/18/2015 16:45', '%m/%d/%Y'), 86]},
                                                                             1.5],
-                                                                70..79 => [{2 => [Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), 74]},
+                                                                70 => [{2 => [Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), 74]},
                                                                              {1 => [Date.strptime('8/20/2015 16:45', '%m/%d/%Y'), 72]},
                                                                              1.5]
                                                                 })
