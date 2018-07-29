@@ -107,13 +107,13 @@ describe ConditionsData do
       expect(data.most_rides_by_wind_speed(range).keys[0]).to eq(expected_number)
       expect(data.most_rides_by_wind_speed(range).values[0][0]).to eq(@condition_1.date)
     end
-    xit '#min_rides_by_wind_speed(range)' do
+    it '#min_rides_by_wind_speed(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
       range = (20.0)
       expected_number = 1
 
       expect(data.least_rides_by_wind_speed(range).keys[0]).to eq(expected_number)
-      expect(data.least_rides_by_wind_speed(range).values[0][0]).to eq(Date.strptime('8/16/2015 16:45', '%m/%d/%Y'))
+      expect(data.least_rides_by_wind_speed(range).values[0][0]).to eq(@condition_2.date)
     end
     xit '#avg_rides_by_wind_speed(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
