@@ -8,13 +8,9 @@ class ConditionsData
   def all_rides_by_temp_range(all_ranges)
     all_rides = {}
     all_ranges.step(10) do |range|
-      all_rides[range] = max_min_avg_rides_by_temp_range(range)
+      all_rides[range] = [most_rides_in_temp_range(range), least_rides_in_temp_range(range), average_rides_in_temp_range(range)]
     end
     all_rides
-  end
-
-  def max_min_avg_rides_by_temp_range(range)
-    [most_rides_in_temp_range(range), least_rides_in_temp_range(range), average_rides_in_temp_range(range)]
   end
 
   def most_rides_in_temp_range(temp_range)
