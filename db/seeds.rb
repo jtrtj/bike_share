@@ -8,11 +8,11 @@
 require 'csv'
 require File.expand_path('../config/environment', __dir__)
 
-User.create(user_name: 'John', password: 'john', role: 1)
-User.create(user_name: 'Claire', password: '123', role: 1)
-User.create(user_name: 'Eliot', password: 'idk', role: 1)
-User.create(user_name: 'BILLY MAYS', password: 'ugh', role: 1)
-User.create(user_name: 'Bobby', password: 'bobby', role: 0)
+User.create(user_name: 'John', password: 'john', role: 1, first_name: 'John', last_name: 'R', street_address: '1331 17th', city: 'Denver', state: 'CO', zip: '80016')
+User.create(user_name: 'Claire', password: '123', role: 1, first_name: 'Claire', last_name: 'B', street_address: '1331 17th', city: 'Denver', state: 'CO', zip: '80016')
+User.create(user_name: 'Eliot', password: 'idk', role: 1, first_name: 'Eliot', last_name: 'S', street_address: '1331 17th', city: 'Denver', state: 'CO', zip: '80016')
+User.create(user_name: 'BILLY MAYS', password: 'ugh', role: 1, first_name: 'Billy', last_name: 'M', street_address: '1331 17th', city: 'Denver', state: 'CO', zip: '80016')
+User.create(user_name: 'Bobby', password: 'bobby', role: 0, first_name: 'Bobby', last_name: 'B', street_address: '1331 17th', city: 'Denver', state: 'CO', zip: '80016')
 
 Item.create(title: "Jetpack", description: 'Sounds great', image: 'wilford.jpeg', price: 400, status: 1)
 Item.create(title: "Mr. Jones", description: 'and me', image: 'wilford.jpeg', price: 300, status: 1)
