@@ -31,16 +31,15 @@ describe ConditionsData do
     it '#min_rides_by_temp_range(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
       range = (90..99)
-      
+
       expect(data.least_rides_in_temp_range(range).keys[0]).to eq(1)
       expect(data.least_rides_in_temp_range(range).values[0][0]).to eq(Date.strptime('8/16/2015 16:45', '%m/%d/%Y'))
     end
-    xit '#avg_rides_by_temp_range(range)' do
+    it '#avg_rides_by_temp_range(range)' do
       data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
       range = (90..99)
 
-      expect(data.most_rides_in_temp_range(range).keys[0]).to eq(2)
-      expect(data.most_rides_in_temp_range(range).values[0][0]).to eq(Date.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+      expect(data.average_rides_in_temp_range(range)).to eq(1.5)
     end
   end
 end
