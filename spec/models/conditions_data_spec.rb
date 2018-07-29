@@ -21,8 +21,22 @@ describe ConditionsData do
       @trip_8 = create(:trip, start_date: Date.strptime('8/19/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
       @trip_9 = create(:trip, start_date: Date.strptime('8/20/2015 16:45', '%m/%d/%Y'), start_station_id: 25, end_station_id: 56)
     end
-    it '#most_rides_in_temp_range(range)' do
-      data = ConditionsData.new(Condition.max_trip_numbers_by_temp_range)
+    it '#max_rides_by_temp_range(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
+      range = (90..99)
+
+      expect(data.most_rides_in_temp_range(range).keys[0]).to eq(2)
+      expect(data.most_rides_in_temp_range(range).values[0][0]).to eq(Date.strptime('8/15/2015 16:45', '%m/%d/%Y'))
+    end
+    it '#min_rides_by_temp_range(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
+      range = (90..99)
+      
+      expect(data.least_rides_in_temp_range(range).keys[0]).to eq(1)
+      expect(data.least_rides_in_temp_range(range).values[0][0]).to eq(Date.strptime('8/16/2015 16:45', '%m/%d/%Y'))
+    end
+    xit '#avg_rides_by_temp_range(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
       range = (90..99)
 
       expect(data.most_rides_in_temp_range(range).keys[0]).to eq(2)
