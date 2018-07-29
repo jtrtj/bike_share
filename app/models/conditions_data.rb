@@ -40,6 +40,15 @@ class ConditionsData
     {least_rides_max_temp_val => by_tens.invert[least_rides_max_temp_val]}
   end
 
-  def average_rides_in_temp_range(range)
+  def average_rides_in_temp_range(temp_range)
+    by_tens = []
+    @trip_count_by_temp.select do |key, value|
+      if key[1] >= temp_range.min && key[1] <= temp_range.max
+        by_tens << value
+      else
+        0
+      end
+    end
+    by_tens.sum.to_f / by_tens.count.to_f
   end
 end
