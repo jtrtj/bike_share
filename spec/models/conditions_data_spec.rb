@@ -99,6 +99,43 @@ describe ConditionsData do
                                                                           1.5]
                                                             })
     end
+    it '#max_rides_by_wind_speed(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
+      range = (20.0)
+      expected_number = 2
+
+      expect(data.most_rides_by_wind_speed(range).keys[0]).to eq(expected_number)
+      expect(data.most_rides_by_wind_speed(range).values[0][0]).to eq(@condition_1.date)
+    end
+    xit '#min_rides_by_wind_speed(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
+      range = (20.0)
+      expected_number = 1
+
+      expect(data.least_rides_by_wind_speed(range).keys[0]).to eq(expected_number)
+      expect(data.least_rides_by_wind_speed(range).values[0][0]).to eq(Date.strptime('8/16/2015 16:45', '%m/%d/%Y'))
+    end
+    xit '#avg_rides_by_wind_speed(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
+      range = (3.0)
+
+      expect(data.average_rides_by_wind_speed(range)).to eq(1.5)
+    end
+    xit '#all_rides_by_wind_speed(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_wind_speed)
+      range = (2.0..3.0)
+
+      expect(data.all_rides_by_wind_speed(range)).to eq({3.0 => [{2 => [@condition_1.date, 3.2]},
+                                                                          {1 => [@condition_2.date, 3.1]},
+                                                                          1.5],
+                                                            2.5 => [{2 => [@condition_3.date, 2.8]},
+                                                                          {1 => [@condition_4.date, 2.6]},
+                                                                          1.5],
+                                                            2.0 => [{2 => [@condition_5.date, 2.4]},
+                                                                          {1 => [@condition_6.date, 2.3]},
+                                                                          1.5]
+                                                            })
+    end
 
 
   end
