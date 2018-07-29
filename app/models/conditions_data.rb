@@ -5,6 +5,14 @@ class ConditionsData
     @trip_count_by_temp = trip_count_by_temp
   end
 
+  def all_rides_by_temp_range(all_ranges)
+    all_rides = {}
+    all_ranges.step(10) do |range|
+      max_min_avg_rides_by_temp_range(range)
+    end
+    all_rides
+  end
+
   def max_min_avg_rides_by_temp_range(range)
     [most_rides_in_temp_range(range), least_rides_in_temp_range(range), average_rides_in_temp_range(range)]
   end
@@ -12,7 +20,7 @@ class ConditionsData
   def most_rides_in_temp_range(temp_range)
     by_tens = {}
     @trip_count_by_temp.select do |key, value|
-      if key[1] >= temp_range.min && key[1] <= temp_range.max
+      if key[1] >= temp_range && key[1] <= temp_range + 10
         by_tens[key] = value
       else
         0
@@ -25,7 +33,7 @@ class ConditionsData
   def least_rides_in_temp_range(temp_range)
     by_tens = {}
     @trip_count_by_temp.select do |key, value|
-      if key[1] >= temp_range.min && key[1] <= temp_range.max
+      if key[1] >= temp_range && key[1] <= temp_range + 10
         by_tens[key] = value
       else
         0
@@ -38,7 +46,7 @@ class ConditionsData
   def average_rides_in_temp_range(temp_range)
     by_tens = []
     @trip_count_by_temp.select do |key, value|
-      if key[1] >= temp_range.min && key[1] <= temp_range.max
+      if key[1] >= temp_range && key[1] <= temp_range + 10
         by_tens << value
       else
         0
