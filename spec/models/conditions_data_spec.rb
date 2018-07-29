@@ -41,5 +41,14 @@ describe ConditionsData do
 
       expect(data.average_rides_in_temp_range(range)).to eq(1.5)
     end
+    it '#max_min_avg_rides_by_temp_range(range)' do
+      data = ConditionsData.new(Condition.trip_numbers_by_temp_range)
+      range = (90..99)
+
+      expect(data.max_min_avg_rides_by_temp_range(range)).to eq({90..99 => [{2 => [Date.strptime('8/15/2015 16:45', '%m/%d/%Y'), 93]},
+                                                                            {1 => [Date.strptime('8/16/2015 16:45', '%m/%d/%Y'), 91]},
+                                                                            1.5
+                                                                            ]})
+    end
   end
 end
