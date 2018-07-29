@@ -9,13 +9,20 @@ describe "A user" do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit edit_user_path(user)
+      visit dashboard_path
 
+      click_on "Update My Info"
+
+      fill_in :user_user_name,	with: user.user_name 
+      fill_in :user_first_name,	with: user.first_name 
+      fill_in :user_last_name,	with: user.last_name 
       fill_in :user_street_address,	with: new_address
       fill_in :user_city,	with: new_city
       fill_in :user_zip,	with: new_zip
+      fill_in :user_password,	with: user.password
 
       click_on 'Update Info'
+      save_and_open_page
 
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content(new_address)
