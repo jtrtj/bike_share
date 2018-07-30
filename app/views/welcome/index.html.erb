@@ -1,6 +1,21 @@
-<div class="container">
-<h1 class="title">Hello World</h1>
-<p class="subtitle">
-  The time is now: <%= Time.now %>
-</p>
+<div class="welcome">
+  <div class="container">
+    <h1 class="title is-1 has-text-white has-text-centered has-text-weight-bold">
+      BikeShare
+    </h1>
+    <br>
+
+    <h2 class="is-size-3 has-text-white has-text-centered has-text-weight-bold">
+      Get your ride on
+    </h2>
+    <br>
+
+
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="container has-text-centered">
+  <%= button_to "Log in ", login_path, class: "button is-large is-primary is-inverted" %>
 </div>

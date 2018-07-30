@@ -1,7 +1,7 @@
-<nav class="navbar">
+<nav class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="<%= root_path %>" style="font-weight:bold;">
+      <a class="navbar-item has-text-white" href="<%= root_path %>" style="font-weight:bold;">
         BikeShare
       </a>
       <span class="navbar-burger burger" data-target="navMenu">
@@ -16,7 +16,7 @@
         <%= link_to 'Trips', trips_path, class: 'navbar-item' %>
         <%= link_to 'Conditions', conditions_path, class: 'navbar-item' %>
         <%= link_to 'Bike Shop', bike_shop_path, class: 'navbar-item' %>
-      </div>
+     </div>
       
       <div class="navbar-end">
         <%= link_to "Cart: #{@cart.total_count}", cart_path, class: "navbar-item" %>

@@ -9,60 +9,62 @@
   <br>
   <br>
   <div>
-    <%= will_paginate %>
-      <br>
-      <table class="table is-bordered is-striped">
-        <thead>
-          <th>Date</th>
-          <th>Max. Temperature (f)</th>
-          <th>Avg. Temperature (f)</th>
-          <th>Min. Temperature (f)</th>
-          <th>Avg. Humidity</th>
-          <th>Avg. Visibility (Miles)</th>
-          <th>Avg. Wind Speed (Mph)</th>
-          <th>Precipitation (Inches)</th>
-          <th>Zip Code</th>
-        </thead>
-
-        <tbody>
-          <% @conditions.each do |condition| %>
-            <tr id="condition-<%= condition.id %>">
-              <td>
-                <%= link_to condition.date, condition_path(condition) %>
-              </td>
-              <td>
-                <%= condition.max_temperature_f %>
-              </td>
-              <td>
-                <%= condition.mean_temperature_f %>
-              </td>
-              <td>
-                <%= condition.min_temperature_f %>
-              </td>
-              <td>
-                <%= condition.mean_humidity %>
-              </td>
-              <td>
-                <%= condition.mean_visibility_miles %>
-              </td>
-              <td>
-                <%= condition.mean_wind_speed_mph %>
-              </td>
-              <td>
-                <%= condition.precipitation_inches%>
-              </td>
-              <td>
-                <%= condition.zip_code%>
-              </td>
-              <td>
-                <%= button_to 'Edit', edit_admin_condition_path(condition), method: :get %>
-              </td>
-              <td>
-                <%= button_to 'Delete', admin_condition_path(condition), method: :delete %>
-              </td>
-            </tr>
-            <% end %>
-        </tbody>
-      </table>
+    <div class="box">
+      <%= will_paginate %>
+    </div>
+    <br>
+    <table class="table is-bordered is-striped">
+      <thead>
+        <th>Date
+          <th>
+            <th>Max. Temperature (f)</th>
+            <th>Avg. Temperature (f)</th>
+            <th>Min. Temperature (f)</th>
+            <th>Avg. Humidity</th>
+            <th>Avg. Visibility (Miles)</th>
+            <th>Avg. Wind Speed (Mph)</th>
+            <th>Precipitation (Inches)</th>
+            <th>Zip Code</th>
+      </thead>
+      <tbody>
+        <% @conditions.each do |condition| %>
+          <tr id="condition-<%= condition.id %>">
+            <td>
+              <%= link_to condition.date, condition_path(condition) %>
+            </td>
+            <td>
+              <%= condition.max_temperature_f %>
+            </td>
+            <td>
+              <%= condition.mean_temperature_f %>
+            </td>
+            <td>
+              <%= condition.min_temperature_f %>
+            </td>
+            <td>
+              <%= condition.mean_humidity %>
+            </td>
+            <td>
+              <%= condition.mean_visibility_miles %>
+            </td>
+            <td>
+              <%= condition.mean_wind_speed_mph %>
+            </td>
+            <td>
+              <%= condition.precipitation_inches%>
+            </td>
+            <td>
+              <%= condition.zip_code%>
+            </td>
+            <td>
+              <%= button_to 'Edit', edit_admin_condition_path(condition), method: :get %>
+            </td>
+            <td>
+              <%= button_to 'Delete', admin_condition_path(condition), method: :delete %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
