@@ -8,7 +8,7 @@ describe 'An admin' do
     end
     it 'can create a new item' do
 
-      visit new_admin_item_path
+      visit admin_bike_shop_new_path
 
       fill_in :item_price, with: 200
       fill_in :item_description, with: 'brand new'
@@ -25,7 +25,7 @@ describe 'An admin' do
     end
     it 'must have a description and title and price must be a valid decimal numeric value and greater than zero' do
 
-      visit new_admin_item_path
+      visit admin_bike_shop_new_path
 
       fill_in :item_price, with: 'a'
       fill_in :item_description, with: ''

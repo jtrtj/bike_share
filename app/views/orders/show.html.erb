@@ -11,7 +11,7 @@
 <% end %>
 <h2 class='subtitle'>Total Amount: <%= @order.total %></h2>
 <h2 class='subtitle'>Date Submitted: <%= @order.created_at %></h2>
-<% if @order.status == 'cancelled' || @order.status == 'shipped'%>
+<% if @order.status == 'cancelled' || @order.status == 'completed'%>
   <h2 class='subtitle'>Status: <%= @order.status %> on <%= @order.updated_at %></h2>
 <% else %>
   <h2 class='subtitle'>Status: <%= @order.status %></h2>
