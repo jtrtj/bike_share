@@ -36,5 +36,17 @@ describe 'An admin' do
 
       expect(page).to have_content('Item cannot be created, please make sure to fill the form correctly')
     end
+    it 'can create an item with a decimal price' do
+      visit admin_bike_shop_new_path
+
+      fill_in :item_price, with: 9000.01
+      fill_in :item_description, with: 'brand new'
+      fill_in :item_title, with: 'wheels'
+      select 'retired', from: :item_status
+
+      click_button 'Create Item'
+
+      expect(page).to have_content('9000.01')
+    end
   end
 end
