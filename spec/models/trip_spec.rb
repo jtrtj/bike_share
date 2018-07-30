@@ -191,5 +191,20 @@ describe Trip, type: :model do
 
       expect(Trip.most_trips_weather).to eq(condition_1)
     end
+    it '#least_rides_weather' do
+      user = create(:user)
+      station_1 = create(:station, name: 'Omlette')
+      station_2 = create(:station, name: 'Fromage')
+      trip = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip2 = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip3 = create(:trip,  start_date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip5 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
+      condition_1 = create(:condition, date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), max_temperature_f: 75, mean_temperature_f: 73, min_temperature_f: 71, mean_humidity: 45, mean_visibility_miles: 20, precipitation_inches: 3.0, mean_wind_speed_mph: 23.0, zip_code: 1223)
+      condition_1 = create(:condition, date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), max_temperature_f: 60, mean_temperature_f: 55, min_temperature_f: 57.5, mean_humidity: 40, mean_visibility_miles: 10, precipitation_inches: 2.0, mean_wind_speed_mph: 13.0, zip_code: 1224)
+
+      expect(Trip.least_trips_weather).to eq(condition_2)
+    end
   end
 end
