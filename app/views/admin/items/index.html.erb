@@ -1,6 +1,6 @@
-<table class="table-items-admin">
+<table class="table table-items-admin">
   <thead>
-    <th>Image<th>
+    <th>Image</th>
     <th>Title</th>
     <th>Description</th>
     <th>Price</th>
@@ -8,20 +8,29 @@
   </thead>
 
   <tbody>
-
   <% @items.each do |item| %>
       <tr id="item-<%= item.id %>">
-        <td> <img src="/assets/<%= item.image %>" alt=""></td>
+        <td><%= link_to image_tag("#{item.image}", size: "52x52"), item_path(item) %></td>
         <td><%= item.title %></td>
         <td><%= item.description %></td>
-        <td><%= item.price %></td>
+        <td><%= number_to_currency(item.price) %></td>
         <td><%= item.status %></td>
-        <td><%= button_to 'Edit', admin_item_path(item), method: :get %></td>
+        <td><%= button_to 'Edit', admin_item_path(item), method: :get, class: 'button is-small is-info' %></td>
 
         <% if item.status == 'active' %>
-          <td><%= button_to 'Retire', admin_bike_shop_path, method: :get %></td>
+          <td> 
+            <%= form_for [:admin, item] do |f| %>
+            <%= f.hidden_field :status, :value=>"retired" %>
+            <%= f.submit "Retire", class: 'button is-small is-danger'%>
+            <% end %>
+          </td>
         <% else %>
-          <td><%= button_to 'Reactivate', admin_bike_shop_path, method: :get %></td>
+          <td>
+            <%= form_for [:admin, item] do |f| %>
+            <%= f.hidden_field :status, :value=>"active" %>
+            <%= f.submit "Reactivate", class: 'button is-small is-success' %>
+            <% end %>
+          </td>
         <% end %>
       </tr>
     <% end %>

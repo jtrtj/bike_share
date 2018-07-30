@@ -13,7 +13,7 @@ describe 'an admin' do
       visit order_path(order)
   
       expect(current_path).to eq(order_path(order))
-      expect(page).to have_content("Total Amount: #{order.total}")
+      expect(page).to have_content("Total Amount: $400.00")
       expect(page).to have_content("Status: #{order.status}")
       expect(page).to have_content("#{order.created_at}")
       expect(page).to have_link("#{item.title}")

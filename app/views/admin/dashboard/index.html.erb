@@ -1,3 +1,4 @@
+
 <%= link_to 'All Items', admin_bike_shop_path %>
 
 <br><br>
@@ -29,6 +30,28 @@
 <br><br>
 
 <section class='orders-admin'>
+
+<div class="dropdown is-hoverable">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+      <span>Filter by Status</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <%= link_to 'All', admin_dashboard_index_path, class: 'dropdown-item' %>
+      <hr class="dropdown-divider">
+      <%= link_to 'Ordered', admin_dashboard_index_path(filter: "ordered"), class: 'dropdown-item' %>
+      <%= link_to 'Paid', admin_dashboard_index_path(filter: "paid"), class: 'dropdown-item' %>
+      <%= link_to 'Cancelled', admin_dashboard_index_path(filter: "cancelled"), class: 'dropdown-item' %>
+      <%= link_to 'Completed', admin_dashboard_index_path(filter: "completed"), class: 'dropdown-item' %>
+    </div>
+  </div>
+</div>
+
   <table class='table'>
     <thead>
       <tr>
@@ -71,25 +94,17 @@
     </thead>
       <tbody>
         <tr>
-          <td>Ordered : <%= @orders.count_by_status("ordered") %></td>
+          <td>Ordered : <%= @orders_constant.count_by_status("ordered") %></td>
         </tr>
         <tr>
-          <td>Paid : <%= @orders.count_by_status("paid") %></td>
+          <td>Paid : <%= @orders_constant.count_by_status("paid") %></td>
         </tr>
         <tr>
-          <td>Cancelled : <%= @orders.count_by_status("cancelled") %></td>
+          <td>Cancelled : <%= @orders_constant.count_by_status("cancelled") %></td>
         </tr>
         <tr>
-          <td>Completed : <%= @orders.count_by_status("completed") %></td>
+          <td>Completed : <%= @orders_constant.count_by_status("completed") %></td>
         </tr>
       </tbody>
   </table>
-
-  <div id="status-filter">
-    <h1 class="title is-6">Filters order by</h1>
-    <%= link_to 'Ordered', admin_dashboard_index_path(filter: "ordered") %>
-    <%= link_to 'Paid', admin_dashboard_index_path(filter: "paid") %>
-    <%= link_to 'Cancelled', admin_dashboard_index_path(filter: "cancelled") %>
-    <%= link_to 'Completed', admin_dashboard_index_path(filter: "completed") %>
-  </div>
 </section>

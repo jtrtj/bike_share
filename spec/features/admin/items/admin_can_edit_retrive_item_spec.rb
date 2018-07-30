@@ -37,10 +37,17 @@ describe 'An admin' do
       within "#item-#{@item.id}" do
         click_button 'Retire'
       end
+      within "#item-#{@item.id}" do
+        expect(page).to have_content('retired')
+      end
 
       within "#item-#{@item2.id}" do
         click_button 'Reactivate'
       end
+      within "#item-#{@item2.id}" do
+        expect(page).to have_content('active')
+      end
+
     end
   end
 end
