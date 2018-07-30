@@ -46,7 +46,21 @@ describe 'An admin' do
 
       click_button 'Create Item'
 
-      expect(page).to have_content('9000.01')
+      expect(page).to have_content('$9,000.01')
+    end
+    it 'can create an item with an image' do
+      visit admin_bike_shop_new_path
+
+      fill_in :item_image, with: 'http://img.mp.sohu.com/upload/20170814/3e04dea217c54cd7b8b8a00fa356a615_th.png'
+      fill_in :item_price, with: 9000.01
+      fill_in :item_description, with: 'brand new'
+      fill_in :item_title, with: 'wheels'
+      select 'retired', from: :item_status
+
+      click_button 'Create Item'
+
+      expect(page).to have_content('$9,000.01')
+      expect(page).to have_css("img[src*='http://img.mp.sohu.com/upload/20170814/3e04dea217c54cd7b8b8a00fa356a615_th.png']")
     end
   end
 end

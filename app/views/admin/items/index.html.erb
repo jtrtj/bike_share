@@ -18,7 +18,7 @@
         <td><%= button_to 'Edit', admin_item_path(item), method: :get, class: 'button is-small is-info' %></td>
 
         <% if item.status == 'active' %>
-          <td> 
+          <td>
             <%= form_for [:admin, item] do |f| %>
             <%= f.hidden_field :status, :value=>"retired" %>
             <%= f.submit "Retire", class: 'button is-small is-danger'%>
