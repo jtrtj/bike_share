@@ -23,6 +23,7 @@ class TripsController < ApplicationController
     @date_trips_most = Trip.date_most_trips
     @least_trips_date = Trip.date_with_least_trips
     @date_trips_least = Trip.date_least_trips
+    @date_most_weather = Trip.most_trips_weather
+    @date_least_weather = Trip.least_trips_weather
   end
 end
-

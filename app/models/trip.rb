@@ -87,4 +87,14 @@ class Trip < ApplicationRecord
   def self.date_least_trips
     Trip.where(start_date: date_with_least_trips).length
   end
+
+  def self.most_trips_weather
+    most_dates = date_with_most_trips
+    Condition.find_by(date: most_dates)
+  end
+
+  def self.least_trips_weather
+    least_dates = date_with_least_trips
+    Condition.find_by(date: least_dates)
+  end
 end
