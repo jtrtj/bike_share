@@ -19,5 +19,5 @@
 .byebug_history
 coverage
 
-# Ignore application configuration
-#db/csv
+Ignore application configuration
+db/csv
