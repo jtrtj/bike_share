@@ -1,34 +1,51 @@
-<table class='cart table is-fullwidth'>
-  <thead>
-    <th></th>
-    <th>Item</th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Subtotal</th>
-  </thead>
-  <tbody>
-    <% @cart.items.each do |item| %>
-      <tr id="item-<%= item.id %>">
-      <td><img src="<%= item.image %>" class='image is-48x48'></td>
-      <td><%= item.title  %></td>
-      <td><%= number_to_currency(item.price) %></td>
-      <td>
-        <%= @cart.quantity_by_item(item.id) %>
-        <%= button_to  "-", cart_path(item_id: item.id, todo: 'decrease'), method: :post, class: "button is-success is-small" %>
-        <%= button_to  "+", cart_path(item_id: item.id, todo: 'increase'), method: :post, class: "button is-info is-small" %>
-      </td>
-      <td><%= number_to_currency(@cart.quantity_by_item(item.id) * item.price) %></td>
-      <td><%= button_to  "Remove", cart_path(item_id: item.id, todo: 'remove'), method: :post %>
-      </tr>
-    <% end %>
-    <tr colspan='5' align='right'>
-      <td align='right'>Total: <%= number_to_currency(@cart.total_price_all_items) %></td>
-      <% if current_user %>
-        <td><%= button_to 'Checkout', user_orders_path(current_user), method: :post %></td>
-      <% else %>
-        <td><%= button_to 'Checkout', login_path %></td>
-      <% end %>
-    </tr>
-  </tbody>
+<div class="container">
+  <table class='cart table is-fullwidth'>
+    <thead>
+      <th></th>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </thead>
+    <tbody>
+      <% @cart.items.each do |item| %>
+        <tr id="item-<%= item.id %>">
+          <td>
+            <img src="<%= item.image %>" class='image is-48x48'>
+          </td>
+          <td>
+            <%= item.title  %>
+          </td>
+          <td>
+            <%= number_to_currency(item.price) %>
+          </td>
+          <td>
+            <%= @cart.quantity_by_item(item.id) %>
+              <%= button_to  "-", cart_path(item_id: item.id, todo: 'decrease'), method: :post, class: "button is-success is-small" %>
+                <%= button_to  "+", cart_path(item_id: item.id, todo: 'increase'), method: :post, class: "button is-info is-small" %>
+          </td>
+          <td>
+            <%= number_to_currency(@cart.quantity_by_item(item.id) * item.price) %>
+          </td>
+          <td>
+            <%= button_to  "Remove", cart_path(item_id: item.id, todo: 'remove'), method: :post %>
+        </tr>
+        <% end %>
+          <tr colspan='5' align='right'>
+            <td align='right'>Total:
+              <%= number_to_currency(@cart.total_price_all_items) %>
+            </td>
+            <% if current_user %>
+              <td>
+                <%= button_to 'Checkout', user_orders_path(current_user), method: :post %>
+              </td>
+              <% else %>
+                <td>
+                  <%= button_to 'Checkout', login_path %>
+                </td>
+                <% end %>
+          </tr>
+    </tbody>
 
-</table>
+  </table>
+</div>

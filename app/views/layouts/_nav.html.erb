@@ -20,7 +20,7 @@
       <div class="navbar-end">
         <%= link_to "Cart: #{@cart.total_count}", cart_path, class: "navbar-item has-text-white" %>
           <% if current_admin? %>
-            <a class='navbar-item'>
+            <a class='navbar-item has-text-white'>
               Logged in as Admin User:
               <%= current_user.user_name %>
             </a>
