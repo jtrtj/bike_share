@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'A registered user' do
+  before(:each) do
+    @condition_1 = Condition.create!(date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), max_temperature_f: 75, mean_temperature_f: 73, min_temperature_f: 71, mean_humidity: 45, mean_visibility_miles: 20, precipitation_inches: 3.0, mean_wind_speed_mph: 23.0, zip_code: 1223)
+    @condition_2 = Condition.create!(date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), max_temperature_f: 60, mean_temperature_f: 55, min_temperature_f: 57.5, mean_humidity: 40, mean_visibility_miles: 10, precipitation_inches: 2.0, mean_wind_speed_mph: 13.0, zip_code: 1224)
+  end
   context 'visiting trips dashboard' do
     it 'sees the average duration of a ride' do
       user = create(:user)
@@ -12,7 +16,6 @@ describe 'A registered user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit trips_dashboard_path
-
       expected_result = 70
 
       expect(page).to have_content("Average duration of a ride : #{expected_result}")
@@ -175,13 +178,11 @@ describe 'A registered user' do
       trip4 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip5 = create(:trip,  start_date: DateTime.strptime('5/6/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
       trip6 = create(:trip,  start_date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), start_station: station_1, end_station: station_2)
-      condition_1 = create(:condition, date: DateTime.strptime('4/4/2016', '%m/%d/%Y'), max_temperature_f: 75, mean_temperature_f: 73, min_temperature_f: 71, mean_humidity: 45, mean_visibility_miles: 20, precipitation_inches: 3.0, mean_wind_speed_mph: 23.0, zip_code: 1223)
-      condition_1 = create(:condition, date: DateTime.strptime('7/8/2017', '%m/%d/%Y'), max_temperature_f: 60, mean_temperature_f: 55, min_temperature_f: 57.5, mean_humidity: 40, mean_visibility_miles: 10, precipitation_inches: 2.0, mean_wind_speed_mph: 13.0, zip_code: 1224)
 
       visit trips_dashboard_path
 
       expect(page).to have_content("Weather Conditions on the day with the most trips")
-      expect(page).to have_content("Max temp: #{condition_1.max_temperature_f}")
+      expect(page).to have_content("#{@condition_1.max_temperature_f}")
     end
   end
 end
