@@ -50,8 +50,8 @@ describe "A user" do
 
       click_on 'Checkout'
       order_1 = @user.orders.first
-
-      click_on order_1.id
+      
+      click_on "Order Number #{order_1.id}"
 
       expect(current_path).to eq(order_path(order_1))
       expect(page).to have_content("Total Amount: #{order_1.total}")
