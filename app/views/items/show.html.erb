@@ -7,4 +7,8 @@
   <li><%= @item.price %></li><br>
 </div>
 
-<%= button_to 'Add to Cart', carts_path(item_id: @item.id)%>
+<% if @item.status != 'retired' %>
+  <%= button_to 'Add to Cart', carts_path(item_id: @item.id)%>
+<% else %>
+  <a class="button" title="Disabled button" disabled>Accessory Retired</a>
+<% end %>

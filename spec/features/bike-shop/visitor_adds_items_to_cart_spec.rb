@@ -51,5 +51,14 @@ describe 'a visitor' do
       expect(page).to have_content("You now have 2 #{item_1.title}es in your cart!")
       expect(page).to have_content("Cart: 2")
     end
+    it 'cannot add retired item to cart' do
+      new_item = Item.create!(title: 'bike lizzights', description: 'wonderful led', price: 10, image: 'https://www.elegantthemes.com/blog/wp-content/uploads/2015/02/custom-trackable-short-url-feature.png', status: 'retired')
+
+      visit items_path
+
+      within "#item-#{new_item.id}" do
+        expect(page).to_not have_button "Add to Cart"
+      end
+    end
   end
 end
