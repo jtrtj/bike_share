@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :trips, only: [:index, :show]
 
-  resources :stations, only: [:index, :show]
+  resources :stations, only: [:index]
 
   get '/stations-dashboard', to: 'stations#dashboard'
   resources :carts, only: [:create]
@@ -28,9 +28,10 @@ Rails.application.routes.draw do
     resources :conditions, only: [:new, :create, :edit, :update, :destroy]
     resources :trips, only: [:new, :create, :edit, :update, :destroy]
     resources :dashboard, only: [:index]
-    resources :items, only: [:new, :create]
+    resources :items, only: [:create]
 
     get '/bike-shop', to: 'items#index'
+    get '/bike-shop/new', to: 'items#new'
     get '/bike-shop/:id', to: 'items#edit', as: 'item'
     patch '/bike-shop/:id', to: 'items#update'
   end
@@ -43,6 +44,6 @@ Rails.application.routes.draw do
   get '/bike-shop', to: 'items#index'
   get '/cart', to: 'carts#show'
   post'/cart', to: 'carts#update'
-  get '/:id', to: 'stations#show'
+  get '/:id', to: 'stations#show', as: 'station'
   get '/:id', to: 'trips#show'
 end

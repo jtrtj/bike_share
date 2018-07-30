@@ -33,8 +33,8 @@ describe 'an admin' do
     it 'can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed") and with links' do
       visit admin_dashboard_index_path
 
-      within "#status-filter" do
-        click_on('Ordered')
+      within "#dropdown-menu" do
+        click_link 'Ordered'
       end
       within ".orders-admin" do
         expect(page).to have_content(@order_1.id)
@@ -42,24 +42,24 @@ describe 'an admin' do
       end
 
 
-      within "#status-filter" do
-        click_on('Paid')
+      within "#dropdown-menu" do
+        click_link 'Paid'
       end
       within ".orders-admin" do
         expect(page).to have_content(@order_3.id)
         expect(page).to_not have_content(@order_1.id)
       end
 
-      within "#status-filter" do
-        click_on('Cancelled')
+      within "#dropdown-menu" do
+        click_link 'Cancelled'
       end
       within ".orders-admin" do
         expect(page).to have_content(@order_5.id)
         expect(page).to_not have_content(@order_3.id)
       end
 
-      within "#status-filter" do
-        click_on('Completed')
+      within "#dropdown-menu" do
+        click_link 'Completed'
       end
       within ".orders-admin" do
         expect(page).to have_content(@order_6.id)

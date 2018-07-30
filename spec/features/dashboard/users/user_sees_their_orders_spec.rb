@@ -50,11 +50,11 @@ describe "A user" do
 
       click_on 'Checkout'
       order_1 = @user.orders.first
-
-      click_on order_1.id
+      
+      click_on "Order Number #{order_1.id}"
 
       expect(current_path).to eq(order_path(order_1))
-      expect(page).to have_content("Total Amount: #{order_1.total}")
+      expect(page).to have_content("Total Amount: $1,200.00")
       expect(page).to have_content("Status: #{order_1.status}")
     end
     it 'can only see its own orders' do
