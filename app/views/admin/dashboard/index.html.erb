@@ -1,32 +1,57 @@
-<%= link_to 'All Items', admin_bike_shop_path %>
+<div class="container">
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-6">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification is-primary">
+          <p class="title">Welcome,</p>
+          <p class="subtitle"><%= @user.user_name %></p>
+        </article>
+        <article class="tile is-child notification is-warning">
+          <p class="title">Personal Information</p>
+          <!-- <p class="subtitle"><%= link_to  "Update My Information", edit_user_path(@user) %></p> -->
+        </article>
+      </div>
+      <div class="tile is-parent">
+      <article class="tile is-child notification is-danger">
+        <p class="title">Account Information</p>
+        <p class="subtitle"></p>
+        <div class="content">
+          <p>First Name:
+            <%= @user.first_name %>
+          </p>
+          <p>Last Name:
+            <%= @user.last_name %>
+          </p>
+          <p>Address:
+            <%= @user.street_address %>
+          </p>
+          <p>City:
+            <%= @user.city %>
+          </p>
+          <p>State:
+            <%= @user.state %>
+          </p>
+          <p>Zip Code:
+            <%= @user.zip %>
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-success">
+      <div class="content">
+        <p class="title">All Items</p>
+        <p class="subtitle"></p>
+        <div class="content">
+          <%= link_to 'All Items', admin_bike_shop_path %>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
 
-<br><br>
-
-<h1>Welcome,
-  <%= @user.user_name %>
-</h1>
-
-<h3>Account Information</h3>
-<p>First Name:
-  <%= @user.first_name %>
-</p>
-<p>Last Name:
-  <%= @user.last_name %>
-</p>
-<p>Address:
-  <%= @user.street_address %>
-</p>
-<p>City:
-  <%= @user.city %>
-</p>
-<p>State:
-  <%= @user.state %>
-</p>
-<p>Zip Code:
-  <%= @user.zip %>
-</p>
-
-<br><br>
 
 <section class='orders-admin'>
   <table class='table'>
@@ -93,3 +118,4 @@
     <%= link_to 'Completed', admin_dashboard_index_path(filter: "completed") %>
   </div>
 </section>
+</div>
