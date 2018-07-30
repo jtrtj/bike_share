@@ -32,7 +32,7 @@ describe 'a visitor' do
       visit admin_bike_shop_path
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
-      visit new_admin_item_path
+      visit admin_bike_shop_new_path
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
       visit new_admin_trip_path

@@ -9,7 +9,7 @@
   <tbody>
     <% @cart.items.each do |item| %>
       <tr id="item-<%= item.id %>">
-      <td><img src="<%= item.image %>" class='image is-48x48'></td>
+      <td><%= link_to image_tag("#{item.image}", size: "52x52"), item_path(item) %></td>
       <td><%= item.title  %></td>
       <td><%= number_to_currency(item.price) %></td>
       <td>
