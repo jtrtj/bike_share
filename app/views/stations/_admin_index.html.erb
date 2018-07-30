@@ -25,7 +25,7 @@
       <tbody>
         <% @stations.each do |station| %>
             <tr id="station-<%= station.id %>">
-              <td><%= link_to "#{station.name}", station_path(station) %></td>
+              <td><%= link_to "#{station.name}", "/#{station.slug}" %></td>
               <td><%= station.dock_count %></td>
               <td><%= station.city %></td>
               <td><%= station.installation_date %></td>
