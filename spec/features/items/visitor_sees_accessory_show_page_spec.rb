@@ -20,7 +20,7 @@ describe 'A visitor' do
 
       visit item_path(new_item)
 
-      expect(page).to have_content('Accessory Retired')
+      expect(page).to_not have_content('Add to Cart')
     end
   end
 end

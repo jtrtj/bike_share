@@ -10,6 +10,8 @@
       <h1 class='subtitle'>
         <%= item.price %>
       </h1>
-      <%= button_to 'Add to Cart', carts_path(item_id: item.id) %>
+      <% if item.status != 'retired' %>
+        <%= button_to 'Add to Cart', carts_path(item_id: item.id) %>
+      <% end %>
   </div>
   <% end %>

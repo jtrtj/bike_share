@@ -10,5 +10,5 @@
 <% if @item.status != 'retired' %>
   <%= button_to 'Add to Cart', carts_path(item_id: @item.id)%>
 <% else %>
-  <%= button_to 'Accessory Retired' %>
+  <a class="button" title="Disabled button" disabled>Accessory Retired</a>
 <% end %>
