@@ -71,16 +71,16 @@
     </thead>
       <tbody>
         <tr>
-          <td>Ordered : <%= @orders.count_by_status("ordered") %></td>
+          <td>Ordered : <%= @orders_constant.count_by_status("ordered") %></td>
         </tr>
         <tr>
-          <td>Paid : <%= @orders.count_by_status("paid") %></td>
+          <td>Paid : <%= @orders_constant.count_by_status("paid") %></td>
         </tr>
         <tr>
-          <td>Cancelled : <%= @orders.count_by_status("cancelled") %></td>
+          <td>Cancelled : <%= @orders_constant.count_by_status("cancelled") %></td>
         </tr>
         <tr>
-          <td>Completed : <%= @orders.count_by_status("completed") %></td>
+          <td>Completed : <%= @orders_constant.count_by_status("completed") %></td>
         </tr>
       </tbody>
   </table>
