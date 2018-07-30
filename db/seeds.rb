@@ -43,29 +43,6 @@ stations.each do |station|
 end
 ActiveRecord::Base.connection.reset_pk_sequence!('stations')
 
-trips = CSV.open('./db/csv/trip.csv',
-                  headers: true,
-                  header_converters: :symbol)
-trips.each do |trip|
-  if $. % 200 == 0
-    Trip.create(
-      id:                               trip[:id],
-      duration:                         trip[:duration],
-      start_date:                       Date.strptime(trip[:start_date], '%m/%d/%Y'),
-      start_station_name:               trip[:start_station_name],
-      start_station_id:                 trip[:start_station_id],
-      end_date:                         Date.strptime(trip[:end_date], '%m/%d/%Y'),
-      end_station_name:                 trip[:end_station_name],
-      end_station_id:                   trip[:end_station_id],
-      bike_id:                          trip[:bike_id],
-      subscription_type:                trip[:subscription_type],
-      zip_code:                         trip[:zip_code],
-      created_at:                       trip[:created_at],
-      updated_at:                       trip[:updated_at]
-    )
-  end
-end
-
 conditions = CSV.open('./db/csv/weather.csv',
                       headers: true,
                       header_converters: :symbol)
@@ -84,3 +61,26 @@ conditions.each do |condition|
     )
   end
 end
+
+trips = CSV.open('./db/csv/trip.csv',
+  headers: true,
+  header_converters: :symbol)
+trips.each do |trip|
+    if $. % 200 == 0
+      Trip.create(
+        id:                               trip[:id],
+        duration:                         trip[:duration],
+        start_date:                       Date.strptime(trip[:start_date], '%m/%d/%Y'),
+        start_station_name:               trip[:start_station_name],
+        start_station_id:                 trip[:start_station_id],
+        end_date:                         Date.strptime(trip[:end_date], '%m/%d/%Y'),
+        end_station_name:                 trip[:end_station_name],
+        end_station_id:                   trip[:end_station_id],
+        bike_id:                          trip[:bike_id],
+        subscription_type:                trip[:subscription_type],
+        zip_code:                         trip[:zip_code],
+        created_at:                       trip[:created_at],
+        updated_at:                       trip[:updated_at]
+      )
+    end
+  end
