@@ -15,7 +15,11 @@ class Cart
   end
 
   def decrease_item(item_id)
-    @contents[item_id.to_s] -= 1
+    if @contents[item_id.to_s] >= 1
+      @contents[item_id.to_s] -= 1
+    else
+      @contents[item_id.to_s] = 0
+    end
   end
 
   def remove_item(item_id)

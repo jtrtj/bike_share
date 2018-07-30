@@ -14,9 +14,13 @@
  *= require_self
  */
 
- @import "bulma";
+@import "bulma";
 
- .table {
-   border-collapse: collapse;
-   border-spacing: 0;
- }
+html {
+  background-image: url(asphalt-bicycle-bike-686230.jpg);
+  background-size: cover;
+}
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
