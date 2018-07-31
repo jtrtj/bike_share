@@ -57,7 +57,7 @@ describe 'a visitor' do
       visit items_path
 
       within "#item-#{new_item.id}" do
-        expect(page).to_not have_button "Add to Cart"
+        expect(page).to have_content("Accessory Retired")
       end
     end
   end

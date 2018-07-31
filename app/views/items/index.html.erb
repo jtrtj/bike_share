@@ -15,7 +15,11 @@
           <h1 class='subtitle'>
             <%= number_to_currency(item.price) %>
           </h1>
-          <%= button_to 'Add to Cart', carts_path(item_id: item.id), class: 'button is-info' %>
+          <% if item.status != 'retired' %>
+            <%= button_to 'Add to Cart', carts_path(item_id: item.id), class: 'button is-info' %>
+          <% else %>
+          <a class="button" title="Disabled button" disabled>Accessory Retired</a>
+          <% end %>
         </div>
       <% end %>
     </div>
