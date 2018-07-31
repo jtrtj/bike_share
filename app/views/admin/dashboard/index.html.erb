@@ -1,6 +1,6 @@
 <div class="container">
   <div class="tile is-ancestor">
-    <div class="tile is-vertical is-6">
+    <div class="tile is-vertical is-9">
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification is-primary">
@@ -9,7 +9,7 @@
           </article>
           <article class="tile is-child notification is-warning">
             <p class="title">Personal Information</p>
-            <!-- <p class="subtitle"><%= link_to  "Update My Information", edit_user_path(@user) %></p> -->
+            <p class="subtitle"><%= link_to  "Update My Information", edit_user_path(@user) %></p>
           </article>
         </div>
         <div class="tile is-parent">
@@ -51,41 +51,7 @@
       </article>
     </div>
   </div>
-  <div class="tile is-parent">
-    <article class="tile is-child notification is-success">
-      <div class="content">
-        <p class="title">All Orders</p>
-        <p class="subtitle"></p>
-        <div class="content">
-          <section class='orders_status'>
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th>Orders by status</th>
-                </tr>
-              </thead>
-                <tbody>
-                  <tr>
-                    <td>Ordered : <%= @orders_constant.count_by_status("ordered") %></td>
-                  </tr>
-                  <tr>
-                    <td>Paid : <%= @orders_constant.count_by_status("paid") %></td>
-                  </tr>
-                  <tr>
-                    <td>Cancelled : <%= @orders_constant.count_by_status("cancelled") %></td>
-                  </tr>
-                  <tr>
-                    <td>Completed : <%= @orders_constant.count_by_status("completed") %></td>
-                  </tr>
-                </tbody>
-            </table>
-          </section>
-        </div>
-      </div>
-    </article>
-  </div>
 </div>
-
 
 <section class='orders-admin'>
 
@@ -110,13 +76,45 @@
   </div>
 </div>
 
+<br><br>
+
 <div class="tile is-ancestor">
-  <div class="tile is-vertical is-8">
+  <div class="tile is-vertical is-12">
     <div class="tile">
       <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+          <div class="content">
+            <p class="title">All Orders</p>
+            <p class="subtitle"></p>
+            <div class="content">
+              <section class='orders_status'>
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th>Orders by status</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                      <tr>
+                        <td>Ordered : <%= @orders_constant.count_by_status("ordered") %></td>
+                      </tr>
+                      <tr>
+                        <td>Paid : <%= @orders_constant.count_by_status("paid") %></td>
+                      </tr>
+                      <tr>
+                        <td>Cancelled : <%= @orders_constant.count_by_status("cancelled") %></td>
+                      </tr>
+                      <tr>
+                        <td>Completed : <%= @orders_constant.count_by_status("completed") %></td>
+                      </tr>
+                    </tbody>
+                </table>
+              </section>
+            </div>
+          </div>
+        </article>
       </div>
-      <div class="tile is-child">
-      </div>
+
       <div class="tile is-parent is-7">
         <article class="tile is-child notification is-danger">
           <p class="title">Order Tracking</p>
