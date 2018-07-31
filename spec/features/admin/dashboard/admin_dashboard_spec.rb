@@ -66,7 +66,6 @@ describe 'an admin' do
         expect(page).to_not have_content(@order_5.id)
       end
     end
-
     xit 'can change an order status to cancelled' do
       order = create(:order, status: 'ordered', user_id: @user.id)
 
