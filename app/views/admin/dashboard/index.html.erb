@@ -1,39 +1,63 @@
-
-<%= link_to 'All Items', admin_bike_shop_path %>
-
-<br><br>
-
-<h1>Welcome,
-  <%= @user.user_name %>
-</h1>
-
-<h3>Account Information</h3>
-<p>First Name:
-  <%= @user.first_name %>
-</p>
-<p>Last Name:
-  <%= @user.last_name %>
-</p>
-<p>Address:
-  <%= @user.street_address %>
-</p>
-<p>City:
-  <%= @user.city %>
-</p>
-<p>State:
-  <%= @user.state %>
-</p>
-<p>Zip Code:
-  <%= @user.zip %>
-</p>
-
-<br><br>
+<div class="container">
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-9">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification is-primary">
+            <p class="title">Welcome,</p>
+            <p class="subtitle"><%= @user.user_name %></p>
+          </article>
+          <article class="tile is-child notification is-warning">
+            <p class="title">Personal Information</p>
+            <p class="subtitle"><%= link_to  "Update My Information", edit_user_path(@user) %></p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+        <article class="tile is-child notification is-danger">
+          <p class="title">Account Information</p>
+          <p class="subtitle"></p>
+          <div class="content">
+            <p>First Name:
+              <%= @user.first_name %>
+            </p>
+            <p>Last Name:
+              <%= @user.last_name %>
+            </p>
+            <p>Address:
+              <%= @user.street_address %>
+            </p>
+            <p>City:
+              <%= @user.city %>
+            </p>
+            <p>State:
+              <%= @user.state %>
+            </p>
+            <p>Zip Code:
+              <%= @user.zip %>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-success">
+        <div class="content">
+          <p class="title">All Items</p>
+          <p class="subtitle"></p>
+          <div class="content">
+            <%= link_to 'All Items', admin_bike_shop_path %>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
 
 <section class='orders-admin'>
 
 <div class="dropdown is-hoverable">
   <div class="dropdown-trigger">
-    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+    <button class="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu">
       <span>Filter by Status</span>
       <span class="icon is-small">
         <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -52,59 +76,83 @@
   </div>
 </div>
 
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Order Id</th>
-        <th>User Id</th>
-        <th>Total</th>
-        <th>Order Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr id="order-<%= order.id %>">
-          <td><%= link_to order.id, order_path(order) %></td>
-          <td><%= order.user_id %></td>
-          <td><%= order.total %></td>
-          <td class='status'><%= order.status %></td>
-          <td>
-          <% if order.status == 'paid' %>
-            <td><%= link_to 'Cancel', order_path(order, set_status: 'cancelled'), method: :patch %></td>
-            <td><%= link_to 'Mark as completed', order_path(order, set_status: 'completed'), method: :patch %></td>
-          <% elsif order.status == 'ordered' %>
-            <td><%= link_to 'Cancel', order_path(order, set_status: 'cancelled'), method: :patch %></td>
-            <td><%= link_to 'Mark as paid', order_path(order, set_status: 'paid'), method: :patch %></td>
-          <% end  %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</section>
+<br><br>
 
-<br> <br>
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-12">
+    <div class="tile">
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+          <div class="content">
+            <p class="title">All Orders</p>
+            <p class="subtitle"></p>
+            <div class="content">
+              <section class='orders_status'>
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th>Orders by status</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                      <tr>
+                        <td>Ordered : <%= @orders_constant.count_by_status("ordered") %></td>
+                      </tr>
+                      <tr>
+                        <td>Paid : <%= @orders_constant.count_by_status("paid") %></td>
+                      </tr>
+                      <tr>
+                        <td>Cancelled : <%= @orders_constant.count_by_status("cancelled") %></td>
+                      </tr>
+                      <tr>
+                        <td>Completed : <%= @orders_constant.count_by_status("completed") %></td>
+                      </tr>
+                    </tbody>
+                </table>
+              </section>
+            </div>
+          </div>
+        </article>
+      </div>
 
-<section class='orders_status'>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Orders by status</th>
-      </tr>
-    </thead>
-      <tbody>
-        <tr>
-          <td>Ordered : <%= @orders_constant.count_by_status("ordered") %></td>
-        </tr>
-        <tr>
-          <td>Paid : <%= @orders_constant.count_by_status("paid") %></td>
-        </tr>
-        <tr>
-          <td>Cancelled : <%= @orders_constant.count_by_status("cancelled") %></td>
-        </tr>
-        <tr>
-          <td>Completed : <%= @orders_constant.count_by_status("completed") %></td>
-        </tr>
-      </tbody>
-  </table>
-</section>
+      <div class="tile is-parent is-7">
+        <article class="tile is-child notification is-danger">
+          <p class="title">Order Tracking</p>
+          <p class="subtitle"></p>
+          <div class="content">
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>User Id</th>
+                  <th>Total</th>
+                  <th>Order Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @orders.each do |order| %>
+                  <tr id="order-<%= order.id %>">
+                    <td><%= link_to order.id, order_path(order) %></td>
+                    <td><%= order.user_id %></td>
+                    <td><%= order.total %></td>
+                    <td class='status'><%= order.status %></td>
+                    <td>
+                    <% if order.status == 'paid' %>
+                      <td><%= link_to 'Cancel', order_path(order, set_status: 'cancelled'), method: :patch %></td>
+                      <td><%= link_to 'Mark as completed', order_path(order, set_status: 'completed'), method: :patch %></td>
+                    <% elsif order.status == 'ordered' %>
+                      <td><%= link_to 'Cancel', order_path(order, set_status: 'cancelled'), method: :patch %></td>
+                      <td><%= link_to 'Mark as paid', order_path(order, set_status: 'paid'), method: :patch %></td>
+                    <% end  %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </section>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
