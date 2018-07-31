@@ -31,14 +31,14 @@ describe 'A registered user' do
       visit stations_dashboard_path
 
       expect(page).to have_content("Most bikes available at a station : #{@station_2.dock_count}")
-      expect(page).to have_content("Station with most bikes : #{@station_2.name}")
+      expect(page).to have_content(@station_2.name)
     end
     it 'sees the fewest bikes available at a station (based on docks) and the name of the stations' do
 
       visit stations_dashboard_path
 
       expect(page).to have_content("Fewest bikes available at a station : #{@station_3.dock_count}")
-      expect(page).to have_content("Station with fewest bikes : #{@station_3.name}")
+      expect(page).to have_content(@station_3.name)
     end
     it 'sees the most recently installed station and the oldest station' do
 
