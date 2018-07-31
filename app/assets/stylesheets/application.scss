@@ -17,7 +17,6 @@
 @import "bulma";
 
 html {
-  // background-image: url(bikeshare.jpg);
   background-size: cover;
 }
 .table {
@@ -27,4 +26,9 @@ html {
 .has-bg-image {
   background-image: url(asphalt-bicycle-bike-686230.jpg);
   background-size: cover;
+  opacity: 0.6;
+}
+.card-background {
+  opacity: 0.85;
+  border-radius: 40%;
 }
