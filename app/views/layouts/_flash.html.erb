@@ -1,5 +1,13 @@
-<div class="flash">
-  <% flash.each do |type, message| %>
-    <%= content_tag :div, message.html_safe, class: type %>
-  <% end %>
-</div>
+<section class="hero is-small is-info">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1>
+        <div class="flash">
+          <% flash.each do |type, message| %>
+            <%= content_tag :div, message.html_safe, class: type %>
+          <% end %>
+        </div>
+      </h1>
+    </div>
+  </div>
+</section>
