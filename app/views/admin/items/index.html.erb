@@ -1,10 +1,12 @@
 <table class="table table-items-admin">
+
   <thead>
     <th>Image</th>
     <th>Title</th>
     <th>Description</th>
     <th>Price</th>
     <th>Status</th>
+    <th colspan="2"><%= link_to 'New Accessory', admin_bike_shop_new_path, method: :get, class: 'button is-small' %></th>
   </thead>
 
   <tbody>
@@ -18,7 +20,7 @@
         <td><%= button_to 'Edit', admin_item_path(item), method: :get, class: 'button is-small is-info' %></td>
 
         <% if item.status == 'active' %>
-          <td> 
+          <td>
             <%= form_for [:admin, item] do |f| %>
             <%= f.hidden_field :status, :value=>"retired" %>
             <%= f.submit "Retire", class: 'button is-small is-danger'%>
@@ -29,8 +31,8 @@
             <%= form_for [:admin, item] do |f| %>
             <%= f.hidden_field :status, :value=>"active" %>
             <%= f.submit "Reactivate", class: 'button is-small is-success' %>
-            <% end %>
-          </td>
+        <% end %>
+        </td>
         <% end %>
       </tr>
     <% end %>
