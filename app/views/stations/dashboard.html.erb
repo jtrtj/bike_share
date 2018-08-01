@@ -15,8 +15,8 @@
     <div class="tile is-parent">
       <div class="tile is-child box">
         <p class="title">Station Chronology</p>
-        <p class="subtitle">Newest station : <%= @stations.newest_installation %><br>
-                            Oldest station : <%= @stations.oldest_installation %></p>
+        <p class="subtitle">Newest station : <%= @stations.newest_installation.strftime('%b %d %Y') %><br>
+                            Oldest station : <%= @stations.oldest_installation.strftime('%b %d %Y') %></p>
 
         <figure class="media-left">
           <p class="image">

@@ -39,13 +39,13 @@
               <%=trip.duration%>
             </td>
             <td>
-              <%=trip.start_date%>
+              <%= trip.start_date.strftime('%b %d %Y') %>
             </td>
             <td>
               <%=trip.start_station_id%>
             </td>
             <td>
-              <%=trip.end_date%>
+              <%= trip.end_date.strftime('%b %d %Y') %>
             </td>
             <td>
               <%=trip.end_station_id%>

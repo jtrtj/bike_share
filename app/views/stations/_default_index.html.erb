@@ -14,7 +14,7 @@
     </div>
     <br>
     <div class="level">
-      <table class="table is-bordered is-striped has-text-centered">
+      <table class="table is-bordered is-striped has-text-centered is-fullwidth">
         <thead>
           <th>Name</th>
           <th>Dock Count</th>
@@ -28,7 +28,7 @@
               <td><%= link_to "#{station.name}", "/#{station.slug}" %></td>
               <td><%= station.dock_count %></td>
               <td><%= station.city %></td>
-              <td><%= station.installation_date %></td>
+              <td><%= station.installation_date.strftime('%b %d %Y') %></td>
             </tr>
             <% end %>
         </tbody>

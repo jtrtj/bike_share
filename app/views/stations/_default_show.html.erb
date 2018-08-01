@@ -1,14 +1,23 @@
-<table class='table'>
-  <tr>
-    <th>Name</th>
-    <th>Dock Count</th>
-    <th>City</th>
-    <th>Installation Date</th>
-  </tr>
-  <tr>
-    <td><%= @station.name %></td>
-    <td><%= @station.dock_count %></td>
-    <td><%= @station.city %></td>
-    <td><%= @station.installation_date %></td>
-  </tr>
-</table>
+
+<div class="hero">
+  <div class="hero-body">
+    <div class="container is-widescreen">
+      <div class="notification">
+        <table class='table is-fullwidth'>
+          <tr>
+            <th>Name</th>
+            <th>Dock Count</th>
+            <th>City</th>
+            <th>Installation Date</th>
+          </tr>
+          <tr>
+            <td><%= @station.name %></td>
+            <td><%= @station.dock_count %></td>
+            <td><%= @station.city %></td>
+            <td><%= @station.installation_date.strftime('%b %d %Y') %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

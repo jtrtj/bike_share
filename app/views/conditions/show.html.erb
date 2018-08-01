@@ -14,7 +14,7 @@
       <th>Zip Code</th>
     </tr>
       <tr>
-        <td><%= @condition.date %></td>
+        <td><%= @condition.date.strftime("%m/%d/%Y") %></td>
         <td><%= @condition.max_temperature_f %></td>
         <td><%= @condition.mean_temperature_f %></td>
         <td><%= @condition.min_temperature_f %></td>

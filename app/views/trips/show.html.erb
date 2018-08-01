@@ -43,18 +43,17 @@
         <article class="tile is-child has-text-centered notification is-success">
           <p class="title">Start Station</p>
           <p class="subtitle">Name: <%= @trip.start_station.name %></p>
-          <p class="subtitle">Date: <%= @trip.start_date %></p>
+          <p class="subtitle">Date: <%= @trip.start_date.strftime('%b %d %Y') %></p>
           <p class="subtitle">ID: <%= @trip.start_station_id %></p>
         </article>
         <br>
         <article class="tile is-child has-text-centered notification is-danger">
           <p class="title">End Station</p>
           <p class="subtitle">Name: <%= @trip.end_station.name %></p>
-          <p class="subtitle">Date: <%= @trip.end_date %></p>
+          <p class="subtitle">Date: <%= @trip.end_date.strftime('%b %d %Y') %></p>
           <p class="subtitle">ID: <%= @trip.end_station_id %></p>
         </article>
       </div>
     </div>
   </div>
 </div>
-

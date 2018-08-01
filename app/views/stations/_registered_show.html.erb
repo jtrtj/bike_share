@@ -11,12 +11,12 @@
               <% if current_admin? %>
               <td rowspan="2">
                 <div class="box has-text-centered">
-                <%= button_to  "Edit", edit_admin_station_path(@station.id), method: :get, class: 'button is-medium is-info'%>
+                <%= button_to  "Edit", edit_admin_station_path(@station.id), method: :get, class: 'button is-medium is-fullwidth is-info'%>
               </div>
               </td>
               <td rowspan="2">
                 <div class="box has-text-centered">
-                <%= button_to  "Delete", admin_station_path(@station), method: :delete, class: 'button is-medium is-danger' %>
+                <%= button_to  "Delete", admin_station_path(@station), method: :delete, class: 'button is-medium is-fullwidth is-danger' %>
                 </div>
               </td>
               <% end %>
