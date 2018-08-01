@@ -2,7 +2,7 @@
   <div class="columns is-variable is-3 is-multiline">
     <div class="column is-12"></div>
       <% @items.each do |item| %>
-      <div class="card">
+      <div class="card" id="item-<%= item.id %>">
         <div class="card-image">
           <figure class="image is-1by1">
             <img class="item-image" src="<%= item.image %>">
