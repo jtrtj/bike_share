@@ -37,3 +37,12 @@ html {
   overflow-y: scroll;
   max-height: 440px;
 }
+
+.header-image {
+    background-image: url("bg-image.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #999;
+}
