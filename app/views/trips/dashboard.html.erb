@@ -36,7 +36,7 @@
         </div>
         <div class="column is-one-fourth">
           <div class="box">
-            <div class="heading">Station with most rides ending :</div>
+            <div class="heading">Station with most trips ending :</div>
             <div class="title is-size-6"><%= link_to @station_with_most_rides_ending.name, station_path(@station_with_most_rides_ending) %></div>
           </div>
         </div>
@@ -84,7 +84,7 @@
                   <% time.each do |month| %>
                     <tr>
                       <td>
-                        <p><%= "Total rides for #{month[0].strftime('%b %Y')}: #{month[1]}" %></p>
+                        <p><%= "Total trips for #{month[0].strftime('%b %Y')}: #{month[1]}" %></p>
                       </td>
                     </tr>
                   <% end %>
@@ -114,7 +114,8 @@
               Date with most trips: <%= @most_trips_date.strftime("%B, %d, %Y") %>
             </p>
               <div class="box">
-                <p class='title'> Total number of trips: <%= @date_trips_most %> </p>
+                <p class='title'> Total number of trips: <%= @date_trips_most %> </p><br>
+                <p class='subtitle'>Weather Conditions on the day with the most trips</p>
                   <% if @date_most_weather.nil? %>
                     <p>No data for the weather conditions on this date</p>
                   <% else %>
@@ -135,7 +136,8 @@
               Date with least trips: <%= @least_trips_date.strftime("%B, %d, %Y") %>
             </p>
               <div class="box">
-                <p class='title'> Total number of trips: <%= @date_trips_least %> </p>
+                <p class='title'> Total number of trips: <%= @date_trips_least %> </p><br>
+                <p class='subtitle'>Weather Conditions on the day with the least trips</p>
                   <% if @date_least_weather.nil? %>
                     <p>No data for the weather conditions on this date</p>
                   <% else %>
