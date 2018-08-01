@@ -1,28 +1,56 @@
-<h1> Condition: <%= @condition.id %></h1>
+<div class="container">
+  <section class="hero is-small is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-size-1 has-text-centered has-text-weight-bold">Condition: <%= @condition.id %></h1>
+      </div>
+    </div>
+  </section>
+
+<br>
 
 <section>
   <table class="table">
     <tr>
-      <th>Date</th>
-      <th>Max. Temperature (f)</th>
-      <th>Avg. Temperature (f)</th>
-      <th>Min. Temperature (f)</th>
-      <th>Avg. Humidity</th>
-      <th>Avg. Visibility (Miles)</th>
-      <th>Avg. Wind Speed (Mph)</th>
-      <th>Precipitation (Inches)</th>
-      <th>Zip Code</th>
+      <th>Attributes</th>
+      <th>Data</th>
     </tr>
-      <tr>
-        <td><%= @condition.date %></td>
-        <td><%= @condition.max_temperature_f %></td>
-        <td><%= @condition.mean_temperature_f %></td>
-        <td><%= @condition.min_temperature_f %></td>
-        <td><%= @condition.mean_humidity %></td>
-        <td><%= @condition.mean_visibility_miles %></td>
-        <td><%= @condition.mean_wind_speed_mph %></td>
-        <td><%= @condition.precipitation_inches%></td>
-        <td><%= @condition.zip_code%></td>
+    <tr>
+      <th>Date</th>
+      <th><%= @condition.date %></th>
+    </tr>
+    <tr>
+      <th>Max. Temperature (f)</th>
+      <th><%= @condition.max_temperature_f %></th>
+    </tr>
+    <tr>
+      <th>Avg. Temperature (f)</th>
+      <th><%= @condition.mean_temperature_f %></th>
+    </tr>
+    <tr>
+      <th>Min. Temperature (f)</th>
+      <th><%= @condition.min_temperature_f %></th>
+    </tr>
+    <tr>
+      <th>Avg. Humidity</th>
+      <th><%= @condition.mean_humidity %></th>
+    </tr>
+    <tr>
+      <th>Avg. Visibility (Miles)</th>
+      <th><%= @condition.mean_visibility_miles %></th>
+    </tr>
+    <tr>
+      <th>Avg. Wind Speed (Mph)</th>
+      <th><%= @condition.mean_wind_speed_mph %></th>
+    </tr>
+    <tr>
+      <th>Precipitation (Inches)</th>
+      <th><%= @condition.precipitation_inches%></th>
+    </tr>
+    <tr>
+      <th>Zip Code</th>
+      <th><%= @condition.zip_code%></th>
+    </tr>
         <% if current_admin? %>
           <%= button_to 'Edit', edit_admin_condition_path(@condition), method: :get %>
           <%= button_to 'Delete', admin_condition_path(@condition), method: :delete %>
@@ -30,3 +58,5 @@
       </tr>
   </table>
 </section>
+
+</div>
