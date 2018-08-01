@@ -28,7 +28,7 @@
             <%= number_to_currency(@cart.quantity_by_item(item.id) * item.price) %>
           </td>
           <td>
-            <%= button_to  "Remove", cart_path(item_id: item.id, todo: 'remove'), method: :post %>
+            <%= button_to  "Remove", cart_path(item_id: item.id, todo: 'remove'), method: :post, class: "button is-danger is-medium" %>
           </td>
         </tr>
         <% end %>

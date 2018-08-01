@@ -58,8 +58,8 @@ describe 'A registered user' do
 
       visit trips_dashboard_path
 
-      expect(page).to have_content("Station with most trips originating :")
-      expect(page).to have_content("Station with most trips ending :")
+      expect(page).to have_content("Station with most trips originating:")
+      expect(page).to have_content("Station with most trips ending:")
       expect(page).to have_link("#{station_1.name}")
       expect(page).to have_link("#{station_2.name}")
     end

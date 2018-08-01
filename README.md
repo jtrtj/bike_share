@@ -8,6 +8,8 @@ Using [data] (https://www.kaggle.com/benhamner/sf-bay-area-bike-share#trip.csv) 
 * What station did the most rides originate from and for that station where was the most common destination?
 * Or what is the average number of rides for days that have a max temperature in the 70s?
 
+various other analyses are used to pull a vari
+
 #### The app also includes a shop
 
 Users can select Items from the shop and create orders after logging in.
@@ -27,7 +29,7 @@ Users can select Items from the shop and create orders after logging in.
   end
 ```
   Once a user clicks checkout, the car is sent to the create Order action in the Orders controller
-  
+
 ```ruby
   def create
     user = current_user
@@ -48,7 +50,7 @@ def generate_order_items(cart)
 ```
 
 ##### BikeShare is running Rails version 5.1.6 and a PostgreSQL DataBase.
-##### It was built by 
+##### It was built by
 * [Claire Beauvais] (https://github.com/clairebvs)
 * [Tristan Bambauer] (https://github.com/TristanB17)
 * [John Roemer] (https://github.com/jtrtj)

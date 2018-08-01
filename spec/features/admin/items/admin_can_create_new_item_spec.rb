@@ -10,6 +10,7 @@ describe 'An admin' do
 
       visit admin_bike_shop_new_path
 
+      fill_in :item_image, with: 'gucci.jpeg'
       fill_in :item_price, with: 200
       fill_in :item_description, with: 'brand new'
       fill_in :item_title, with: 'wheels'
@@ -39,6 +40,7 @@ describe 'An admin' do
     it 'can create an item with a decimal price' do
       visit admin_bike_shop_new_path
 
+      fill_in :item_image, with: 'gucci.jpeg'
       fill_in :item_price, with: 9000.01
       fill_in :item_description, with: 'brand new'
       fill_in :item_title, with: 'wheels'
