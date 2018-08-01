@@ -8,11 +8,16 @@ Using [data] (https://www.kaggle.com/benhamner/sf-bay-area-bike-share#trip.csv) 
 * What station did the most rides originate from and for that station where was the most common destination?
 * Or what is the average number of rides for days that have a max temperature in the 70s?
 
-various other analyses are used to pull a vari
+various other analyses are used to manipulate data sets and return results based on intermediate activerecord and SQL queries,
+which are primarily used in the 'dashboard' file of each dataset (trips, stations and conditions).
+
 
 #### The app also includes a shop
 
-Users can select Items from the shop and create orders after logging in.
+* Visitors can view stations index and show, trips index and show, accessories index and show, and they are able to login, create a new account, or add items to a cart before logging in. 
+* Users can select Items from the shop and create orders after logging in.
+* Logged in users can view and edit their profile, checkout their cart, and view additional analytics data.
+* Admin users can be created from the command line. They can create, edit, and delete stations, trips, and accessories.
 
 ```ruby
  def update
@@ -36,7 +41,7 @@ Users can select Items from the shop and create orders after logging in.
     order = user.orders.create
     order.generate_order_items(session[:cart])
     redirect_to dashboard_path
-    flash[:notice] = "Successfully submited your order totaling #{view_context.number_to_currency(order.total)}"
+    flash[:notice] = "Successfully submitted your order totaling #{view_context.number_to_currency(order.total)}"
   end
 ```
 At the Order model level, the Order Items are created in the database.
@@ -48,6 +53,10 @@ def generate_order_items(cart)
     end
   end
 ```
+
+This command enables one to submit the items stored in their cart as an order, which can then be marked as
+'ordered,' 'paid,' and 'completed.' An admin can also choose to cancel an order. Information about the
+order will be displayed according to the status set by the admin user.
 
 ##### BikeShare is running Rails version 5.1.6 and a PostgreSQL DataBase.
 ##### It was built by
