@@ -15,8 +15,7 @@
     <br>
     <table class="table is-bordered is-striped">
       <thead>
-        <th>Date
-          <th>
+        <th>Date</th>
             <th>Max. Temperature (f)</th>
             <th>Avg. Temperature (f)</th>
             <th>Min. Temperature (f)</th>
@@ -57,10 +56,10 @@
               <%= condition.zip_code%>
             </td>
             <td>
-              <%= button_to 'Edit', edit_admin_condition_path(condition), method: :get %>
+              <%= button_to 'Edit', edit_admin_condition_path(condition), method: :get, class: "button is-info" %>
             </td>
             <td>
-              <%= button_to 'Delete', admin_condition_path(condition), method: :delete %>
+              <%= button_to 'Delete', admin_condition_path(condition), method: :delete, class: "button is-danger" %>
             </td>
           </tr>
           <% end %>

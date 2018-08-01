@@ -12,7 +12,7 @@ describe "An admin user" do
       click_on "Create Trip"
 
       expect(current_path).to eq(new_admin_trip_path)
-
+      
       fill_in :trip_duration,	with: 120
       fill_in :trip_start_date,	with: date
       select(station1.name, from: 'Start station')

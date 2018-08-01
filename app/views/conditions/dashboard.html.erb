@@ -1,43 +1,126 @@
-<h1 class='title'>Conditions Dashboard</h1>
+<div class="container">
+  <section class="hero is-small is-primary is-bold">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <h1 class='title is-size-1 has-text-weight-bold'>Conditions Dashboard</h1>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="container">
+  <br>
+  <div class="card">
+    <div class="card-header-title is-centered">Trip Stats for Days--Temperature Range</div>
+     <% @all_trips_by_temp.each_pair do |temp, ride| %>
+      <% if ride[0].keys[0] != nil %>
+        <h2 class='card-header-title'>
+          <%= temp %>s
+        </h2>
+        <div class="card-content">
+          <p>Most rides for
+            <%= temp %> degree weather:
+            <%= ride[0].keys[0] %>, on
+            <%= ride[0].values[0][0].strftime("%B %d, %Y") %>, at
+            <%= ride[0].values[0][1] %></p>
+        <br> 
+          <p>Least rides for
+            <%= temp %> degree weather:
+            <%= ride[1].keys[0] %>, on
+            <%= ride[1].values[0][0].strftime("%B %d, %Y") %>, at
+            <%= ride[1].values[0][1] %></p>
+        <br> 
+          <p>Average rides per day for
+            <%= temp %> degree weather:
+            <%= ride[2].round(1) %></p>
+          </div>
+      <% end %>
+     <% end %>
+    </div>
+  </div>
+</div>
+  <br>
+<div class="container">
+  <div class="card">
+    <% @all_trips_by_precipitation.each_pair do |inches, ride| %>
+      <div class="card-header-title is-centered">
+        Trip Stats for Precipitation between <%= inches %> and <%= inches + 0.5 %> inches
+      </div>
 
-<% @all_trips_by_temp.each_pair do |temp, ride| %>
-  <% if ride[0].keys[0] != nil %>
-    <h2 class='subtitle'>Trip Stats for Days in the <%= temp %>s</h2>
-    Most rides for <%= temp %> degree weather: <%= ride[0].keys[0] %>, on <%= ride[0].values[0][0].strftime("%B %d, %Y") %>, at <%= ride[0].values[0][1] %><br>
-    Least rides for <%= temp %> degree weather: <%= ride[1].keys[0] %>, on <%= ride[1].values[0][0].strftime("%B %d, %Y") %>, at <%= ride[1].values[0][1] %><br>
-    Average rides per day for <%= temp %> degree weather: <%= ride[2].round(1) %> <br><br>
-  <% end %>
-<% end %>
+      <div class="card-content">
+        <% if ride[0].keys[0] != nil %>
+          <p>Most rides:
+            <%= ride[0].keys[0] %> on
+            <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at
+            <%= ride[0].values[0][1].round(1) %> inches</p>
+          <br>
+          Least rides:
+            <p><%= ride[1].keys[0] %> on
+            <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at
+            <%= ride[1].values[0][1].round(1) %> inches</p>
+          <br>
+          Average daily rides for this precipitation:
+            <p><%= ride[2].round(1) %></p>
+          <br>
+        <% else %>
+          <p>No rides at this precipitation</p>
+        <% end %>
+      </div>
+      <% end %>
+  </div>
+</div>
+  <br>
+<div class="container">
+  <div class="card">
+    <% @all_trips_by_wind_speed.each_pair do |miles, ride| %>
+      <h2 class='card-header-title is-centered'>Trip Stats for Wind Speeds between
+        <%= miles %> and
+        <%= miles + 4.0 %> miles
+      </h2>
 
-<% @all_trips_by_precipitation.each_pair do |inches, ride| %>
-  <h2 class='subtitle'>Trip Stats for Precipitation between <%= inches %> and <%= inches + 0.5 %> inches</h2>
-  <% if ride[0].keys[0] != nil %>
-    Most rides: <%= ride[0].keys[0] %> on <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at <%= ride[0].values[0][1].round(1) %> inches <br>
-    Least rides: <%= ride[1].keys[0] %> on <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at <%= ride[1].values[0][1].round(1) %> inches <br>
-    Average daily rides for this precipitation: <%= ride[2].round(1) %> <br>
-  <% else %>
-    No rides at this precipitation
-  <% end %><br><br>
-<% end %>
-
-<% @all_trips_by_wind_speed.each_pair do |miles, ride| %>
-  <h2 class='subtitle'>Trip Stats for Wind Speeds between <%= miles %> and <%= miles + 4.0 %> miles</h2>
-  <% if ride[0].keys[0] != nil %>
-    Most rides: <%= ride[0].keys[0] %> on <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at <%= ride[0].values[0][1].round(1) %> miles <br>
-    Least rides: <%= ride[1].keys[0] %> on <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at <%= ride[1].values[0][1].round(1) %> miles <br>
-    Average daily rides for this wind speed: <%= ride[2].round(1) %> <br>
-  <% else %>
-    No rides at this wind speed
-  <% end %><br><br>
-<% end %>
-
-<% @all_trips_by_visibility.each_pair do |miles, ride| %>
-  <h2 class='subtitle'>Trip Stats for Visibility between <%= miles %> and <%= miles + 4.0 %> miles</h2>
-  <% if ride[0].keys[0] != nil %>
-    Most rides: <%= ride[0].keys[0] %> on <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at <%= ride[0].values[0][1].round(1) %> miles <br>
-    Least rides: <%= ride[1].keys[0] %> on <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at <%= ride[1].values[0][1].round(1) %> miles <br>
-    Average daily rides for this visibility: <%= ride[2].round(1) %> <br>
-  <% else %>
-    No rides at this visibility
-  <% end %><br><br>
-<% end %>
+      <% if ride[0].keys[0] != nil %>
+        <p>Most rides:
+        <%= ride[0].keys[0] %> on
+        <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at
+        <%= ride[0].values[0][1].round(1) %> miles</p>
+        <br>
+        <p>Least rides:
+          <%= ride[1].keys[0] %> on
+          <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at
+          <%= ride[1].values[0][1].round(1) %> miles</p>
+        <br>
+        <p>Average daily rides for this wind speed:
+          <%= ride[2].round(1) %></p>
+        <br>
+      <% else %>
+        <p>No rides at this wind speed</p>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+</div>
+  <br>
+<div class="container">
+  <div class="card">
+    <% @all_trips_by_visibility.each_pair do |miles, ride| %>
+      <h2 class='card-header-title is-centered'>Trip Stats for Visibility between <%= miles %> and <%= miles + 4.0 %> miles</h2>
+      <% if ride[0].keys[0] != nil %>
+        <p>Most rides:
+        <%= ride[0].keys[0] %> on
+        <%= ride[0].values[0][0].strftime("%B %d, %Y") %> at
+        <%= ride[0].values[0][1].round(1) %> miles</p>
+      <br> 
+      <p>Least rides:
+        <%= ride[1].keys[0] %> on
+        <%= ride[1].values[0][0].strftime("%B %d, %Y") %> at
+        <%= ride[1].values[0][1].round(1) %> miles</p>
+      <br> 
+      <p>Average daily rides for this visibility:
+        <%= ride[2].round(1) %></p>
+      <br>
+      <% else %>
+        <p>No rides at this visibility</p>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+</div>
