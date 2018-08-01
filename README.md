@@ -1,5 +1,5 @@
-#BikeShare
-####BikeShare is a web app build with Rails
+# BikeShare
+#### BikeShare is a web app build with Rails
 
 The app is seeded with data from the public bike share system in San Francisco. Since the data used in this project was collected, Bay Area bike share has become [Ford GoBike](https://www.fordgobike.com/).
 
@@ -8,7 +8,7 @@ Using [data] (https://www.kaggle.com/benhamner/sf-bay-area-bike-share#trip.csv) 
 * What station did the most rides originate from and for that station where was the most common destination?
 * Or what is the average number of rides for days that have a max temperature in the 70s?
 
-####The app also includes a shop
+#### The app also includes a shop
 
 Users can select Items from the shop and create orders after logging in.
 
@@ -47,8 +47,8 @@ def generate_order_items(cart)
   end
 ```
 
-#####BikeShare is running Rails version 5.1.6 and a PostgreSQL DataBase.
-#####It was built by 
+##### BikeShare is running Rails version 5.1.6 and a PostgreSQL DataBase.
+##### It was built by 
 * [Claire Beauvais] (https://github.com/clairebvs)
 * [Tristan Bambauer] (https://github.com/TristanB17)
 * [John Roemer] (https://github.com/jtrtj)
