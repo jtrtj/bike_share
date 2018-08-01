@@ -1,24 +1,36 @@
 <div class="hero">
   <div class="hero-body">
-          <table class='table'>
+    <div class="container is-widescreen">
+      <div class="notification">
+          <table class='table is-fullwidth'>
             <tr>
               <th>Name</th>
               <th>Dock Count</th>
               <th>City</th>
               <th>Installation Date</th>
+              <% if current_admin? %>
+              <td rowspan="2">
+                <div class="box has-text-centered">
+                <%= button_to  "Edit", edit_admin_station_path(@station.id), method: :get, class: 'button is-medium is-info'%>
+              </div>
+              </td>
+              <td rowspan="2">
+                <div class="box has-text-centered">
+                <%= button_to  "Delete", admin_station_path(@station), method: :delete, class: 'button is-medium is-danger' %>
+                </div>
+              </td>
+              <% end %>
             </tr>
             <tr>
               <td><%= @station.name %></td>
               <td><%= @station.dock_count %></td>
               <td><%= @station.city %></td>
               <td><%= @station.installation_date.strftime('%b %d %Y') %></td>
-              <% if current_admin? %>
-              <td><%= button_to  "Edit", edit_admin_station_path(@station.id), method: :get, class: 'button is-small is-info'%></td>
-              <td><%= button_to  "Delete", admin_station_path(@station), method: :delete, class: 'button is-small is-danger' %></td>
-              <% end %>
             </tr>
           </table>
-          <table class="table">
+        </div>
+        <div class="notification">
+          <table class="table is-fullwidth is-striped">
             <thead>
               <th>Analysis</th>
             </thead>
@@ -73,5 +85,7 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        </div>
     </div>
 </div>
