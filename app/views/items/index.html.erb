@@ -7,7 +7,7 @@
             <%= link_to  item.title, item_path(item) %>
           </h1>
           <div class="image is-128x128">
-            <%= image_tag(item.image) %>
+            <%= image_tag "#{item.image}" %>
           </div>
           <h1 class='subtitle'>
             <%= item.description %>
