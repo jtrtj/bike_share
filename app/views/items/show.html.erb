@@ -1,10 +1,23 @@
-
-<div class='item-show'>
-  <ul>
-  <li><%= image_tag (@item.image) %></li><br>
-  <li><%= @item.title %></li><br>
-  <li><%= @item.description %></li><br>
-  <li><%= @item.price %></li><br>
-</div>
-
-<%= button_to 'Add to Cart', carts_path(item_id: @item.id)%>
+<section class="hero is-fullheight has-text-centered">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= @item.title %>
+      </h1>
+      <h2 class="subtitle">
+        <%= @item.description %>
+      </h2>
+      <p>
+        <%= image_tag  (@item.image) %>
+      </p>
+      <h2 class="subtitle">
+        <%= number_to_currency(@item.price) %>
+      </h2>
+      <% if @item.status != 'retired' %>
+        <%= button_to 'Add to Cart', carts_path(item_id: @item.id), class: 'button is-success'%>
+      <% else %>
+        <a class="button" title="Disabled button" disabled>Accessory Retired</a>
+      <% end %>
+    </div>
+  </div>
+</section>

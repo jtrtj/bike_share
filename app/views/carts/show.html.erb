@@ -14,7 +14,7 @@
             <img src="<%= item.image %>" class='image is-48x48'>
           </td>
           <td>
-            <%= item.title  %>
+            <%= link_to item.title, item_path(item)  %>
           </td>
           <td>
             <%= number_to_currency(item.price) %>
