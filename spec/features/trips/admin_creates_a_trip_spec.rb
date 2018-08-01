@@ -7,16 +7,16 @@ describe "An admin user" do
       station2 = create(:station, name: "toto")
       admin = create(:user, role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
+      date = Date.today
       visit trips_path
       click_on "Create Trip"
 
       expect(current_path).to eq(new_admin_trip_path)
       
       fill_in :trip_duration,	with: 120
-      fill_in :trip_start_date,	with: Date.today
+      fill_in :trip_start_date,	with: date
       select(station1.name, from: 'Start station')
-      fill_in :trip_end_date,	with: Date.today
+      fill_in :trip_end_date,	with: date
       select(station2.name, from: 'End station')
       fill_in :trip_bike_id, with: 15
       fill_in :trip_subscription_type,	with: "Subscriber"
@@ -26,7 +26,7 @@ describe "An admin user" do
 
       expect(current_path).to eq(trip_path(Trip.last))
       expect(page).to have_content("2 Minutes")
-      expect(page).to have_content(Date.today)
+      expect(page).to have_content(date.strftime('%b %d %Y'))
       expect(page).to have_content(station1.name)
       expect(page).to have_content(station1.id)
       expect(page).to have_content(station2.name)
@@ -34,7 +34,7 @@ describe "An admin user" do
       expect(page).to have_content(15)
       expect(page).to have_content("Subscriber")
       expect(page).to have_content(91112)
-      expect(page).to have_content("Trip created!") 
+      expect(page).to have_content("Trip created!")
     end
   end
 end

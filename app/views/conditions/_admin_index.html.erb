@@ -29,7 +29,7 @@
         <% @conditions.each do |condition| %>
           <tr id="condition-<%= condition.id %>">
             <td>
-              <%= link_to condition.date, condition_path(condition) %>
+              <%= link_to condition.date.strftime('%b %d %Y'), condition_path(condition) %>
             </td>
             <td>
               <%= condition.max_temperature_f %>

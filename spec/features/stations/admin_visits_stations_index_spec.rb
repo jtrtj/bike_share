@@ -16,7 +16,7 @@ describe 'An admin' do
         expect(page).to have_content(station.name)
         expect(page).to have_content(station.dock_count)
         expect(page).to have_content(station.city)
-        expect(page).to have_content(station.installation_date)
+        expect(page).to have_content(station.installation_date.strftime('%b %d %Y'))
         expect(page).to have_button('Edit')
         expect(page).to have_button('Delete')
       end

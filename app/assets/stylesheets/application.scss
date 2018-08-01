@@ -32,3 +32,8 @@ html {
   opacity: 0.85;
   border-radius: 40%;
 }
+
+.box {
+  overflow-y: scroll;
+  max-height: 440px;
+}

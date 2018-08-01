@@ -31,7 +31,7 @@
               <td><%= link_to "#{station.name}", "/#{station.slug}" %></td>
               <td><%= station.dock_count %></td>
               <td><%= station.city %></td>
-              <td><%= station.installation_date %></td>
+              <td><%= station.installation_date.strftime('%b %d %Y') %></td>
               <td><%= button_to  "Edit", edit_admin_station_path(station.id), method: :get, class: "button is-info" %></td>
               <td><%= button_to  "Delete", admin_station_path(station.id), method: :delete, class: "button is-danger" %></td>
             </tr>
