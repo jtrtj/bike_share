@@ -3,9 +3,6 @@
     <div class="hero-body has-text-centered">
       <div class="container">
         <h1 class="title is-size-1 has-text-weight-bold">Trips</h1>
-        <% if current_admin? %>
-          <%= button_to "Create Trip", new_admin_trip_path, class: "button is-large is-inverted is-bordered is-success", method: :get, class: 'button is-info' %>
-        <% end %>
       </div>
     </div>
   </section>
@@ -27,6 +24,9 @@
         <th>Bike</th>
         <th>Subscription Type</th>
         <th>Zip Code</th>
+        <% if current_admin? %>
+        <th colspan="2" class='has-text-centered'><%= button_to "Create Trip", new_admin_trip_path, class: "button is-large is-inverted is-bordered is-success", method: :get, class: 'button is-info' %></th>
+        <% end %>
       </thead>
 
       <% @trips.each do |trip| %>

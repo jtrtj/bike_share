@@ -9,10 +9,10 @@
     <td><%= @station.name %></td>
     <td><%= @station.dock_count %></td>
     <td><%= @station.city %></td>
-    <td><%= @station.installation_date %></td>
+    <td><%= @station.installation_date.strftime('%b %d %Y') %></td>
     <% if current_admin? %>
-    <td><%= button_to  "Edit", edit_admin_station_path(@station.id), method: :get %></td>
-    <td><%= button_to  "Delete", admin_station_path(@station), method: :delete %></td>
+    <td><%= button_to  "Edit", edit_admin_station_path(@station.id), method: :get, class: 'button is-small is-info'%></td>
+    <td><%= button_to  "Delete", admin_station_path(@station), method: :delete, class: 'button is-small is-danger' %></td>
     <% end %>
   </tr>
 </table>
@@ -50,7 +50,7 @@
       <% if @station.trips_started_at.empty? %>
         <td>None</td>
       <% else %>
-        <td><%= @station.most_popular_date %></td>
+        <td><%= @station.most_popular_date.strftime('%b %d %Y') %></td>
       <% end %>
     </tr>
     <tr>

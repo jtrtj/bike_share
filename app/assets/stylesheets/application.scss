@@ -30,3 +30,8 @@ html {
     background-image: none;
   }
 }
+
+.box {
+  overflow-y: scroll;
+  max-height: 440px;
+}

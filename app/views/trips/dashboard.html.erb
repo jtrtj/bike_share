@@ -1,58 +1,180 @@
-Average duration of a ride : <%=  @trips.average_duration_trip.round(1) %> seconds<br><br>
 
-Longest ride : <%= @trips.longest_ride.id %> seconds<br><br>
+    <main class="column">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <div class="title" color='white'>Trips Dashboard</div>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <button type="button" class="button is-medium">
+              Average duration of a ride : <%=  @trips.average_duration_trip.round(1) %> seconds<br><br>
+            </button>
+          </div>
+        </div>
+      </div>
 
-Shortest ride : <%= @trips.shortest_ride.id %> seconds<br><br>
-
-Station with most rides originating: <%= @station_with_most_rides_originating.name %><br>
-Station with most rides ending: <%= @station_with_most_rides_ending.name %><br><br>
-
-Yearly Breakdown: <br>
-            <% time = @trips_by_year.sort_by do |year| %>
-              <% year %>
-            <% end.reverse %>
-            <% time.each do |year| %>
-              <%= "Total rides for #{year[0].year}: #{year[1]}" %><br>
-            <% end %><br><br>
-
-
-Monthly Breakdown:<br>
-            <% time = @trips_by_month.sort_by do |month| %>
-              <% month %>
-            <% end.reverse %>
-            <% time.each do |month| %>
-              <%= "Total rides for #{month[0].strftime('%b %Y')}: #{month[1]}" %><br>
-            <% end %><br><br>
-
-The ID of the most ridden bike is <%= @most_ridden_bike %>, with <%= @most_bike_rides %> number of rides <br>
-The ID of the least ridden bike is <%= @least_ridden_bike %>, with <%= @least_bike_rides %> number of rides<br><br>
-<% @subscription_type_by_count.each do |trip| %>
-  Subscription Type - <%= trip.subscription_type %>, <%= trip.subscription_type_count %>, <%= ((trip.subscription_type_count.to_f / @trips.size.to_f) * 100).round(1) %>%
-<% end %><br><br>
-
-Date with most trips: <%= @most_trips_date.month %>/<%= @most_trips_date.day %>/<%= @most_trips_date.year %>, total number of trips: <%= @date_trips_most %> <br>
-  <% if @date_most_weather.nil? %>
-  <p>No data for the weather conditions on this date</p>
-  <% else %>
-Max temp: <%= @date_most_weather.max_temperature_f %><br>
-Mean temp: <%= @date_most_weather.min_temperature_f %><br>
-Min temp: <%= @date_most_weather.mean_temperature_f %><br>
-Mean visibility (miles): <%= @date_most_weather.mean_visibility_miles %><br>
-Mean wind speed (mph): <%= @date_most_weather.mean_wind_speed_mph %><br>
-Precipitation (inches): <%= @date_most_weather.precipitation_inches %><br>
-Mean humidity: <%= @date_most_weather.mean_humidity %><br><br>
-<% end %>
-
-Date with least trips: <%= @least_trips_date.month %>/<%= @least_trips_date.day %>/<%= @least_trips_date.year %>, total number of trips: <%= @date_trips_least %>
-Weather Conditions on the day with the most trips
-<% if @date_least_weather.nil? %>
-<p>No data for the weather conditions on this date</p>
-<% else %>
-Max temp: <%= @date_least_weather.max_temperature_f %><br>
-Mean temp: <%= @date_least_weather.min_temperature_f %><br>
-Min temp: <%= @date_least_weather.mean_temperature_f %><br>
-Mean visibility (miles): <%= @date_least_weather.mean_visibility_miles %><br>
-Mean wind speed (mph): <%= @date_least_weather.mean_wind_speed_mph %><br>
-Precipitation (inches): <%= @date_least_weather.precipitation_inches %><br>
-Mean humidity: <%= @date_least_weather.mean_humidity %><br><br>
-<% end %>
+      <div class="columns is-multiline">
+        <div class="column is-one-fourth">
+          <div class="box">
+            <div class="heading">Longest ride :</div>
+            <div class="title is-size-5">#<%= link_to @trips.longest_ride.id, trip_path(@trips.longest_ride) %></div>
+          </div>
+        </div>
+        <div class="column is-one-fourth">
+          <div class="box">
+            <div class="heading">Shortest ride :</div>
+            <div class="title is-size-5">#<%= link_to @trips.shortest_ride.id, trip_path(@trips.shortest_ride) %></div>
+          </div>
+        </div>
+        <div class="column is-one-fourth">
+          <div class="box">
+            <div class="heading">Station with most trips originating :</div>
+            <div class="title is-size-6"><%= link_to @station_with_most_rides_originating.name, station_path(@station_with_most_rides_originating) %></div>
+          </div>
+        </div>
+        <div class="column is-one-fourth">
+          <div class="box">
+            <div class="heading">Station with most rides ending :</div>
+            <div class="title is-size-6"><%= link_to @station_with_most_rides_ending.name, station_path(@station_with_most_rides_ending) %></div>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-6">
+          <div class="panel">
+            <p class="panel-heading">
+              Total Rides by Year and Month
+            </p>
+            <div class="box">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>
+                    Total Rides by Year
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% time = @trips_by_year.sort_by do |year| %>
+                    <% year %>
+                  <% end.reverse %>
+                  <% time.each do |year| %>
+                    <tr>
+                      <td>
+                        <p><%= "Total rides for #{year[0].year}: #{year[1]}" %></p>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>
+                    Total Rides by Month
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% time = @trips_by_month.sort_by do |month| %>
+                  <% month %>
+                  <% end.reverse %>
+                  <% time.each do |month| %>
+                    <tr>
+                      <td>
+                        <p><%= "Total rides for #{month[0].strftime('%b %Y')}: #{month[1]}" %></p>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="panel">
+            <p class="panel-heading">
+              Subscriptions by Type
+            </p>
+              <div class="box">
+                <% @subscription_type_by_count.each do |trip| %>
+                  <p class='title'> Subscription Type - </p>
+                  <p class='subtitle is-size-3 has-text-centered'><%= trip.subscription_type %></p>
+                  <p class='subtitle is-size-3 has-text-centered'> <%= trip.subscription_type_count %> total </p>
+                  <p class='subtitle is-size-3 has-text-centered'>Accounts for <%= ((trip.subscription_type_count.to_f / @trips.size.to_f) * 100).round(1) %>% of all rides</p>
+                <% end %>
+              </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="panel">
+            <p class="panel-heading">
+              Date with most trips: <%= @most_trips_date.strftime("%B, %d, %Y") %>
+            </p>
+              <div class="box">
+                <p class='title'> Total number of trips: <%= @date_trips_most %> </p>
+                  <% if @date_most_weather.nil? %>
+                    <p>No data for the weather conditions on this date</p>
+                  <% else %>
+                    <p class 'subtitle is-size-5'>Max Temperature: <%= @date_most_weather.max_temperature_f %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Temperature: <%= @date_most_weather.min_temperature_f %></p><br>
+                    <p class 'subtitle is-size-5'>Min Temperature: <%= @date_most_weather.mean_temperature_f %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Visibility: <%= @date_most_weather.mean_visibility_miles %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Wind Speed (mph): <%= @date_most_weather.mean_wind_speed_mph %></p><br>
+                    <p class 'subtitle is-size-5'>Precipitation (inches): <%= @date_most_weather.precipitation_inches %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Humidity: <%= @date_most_weather.mean_humidity %></p><br>
+                  <% end %>
+              </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="panel">
+            <p class="panel-heading">
+              Date with least trips: <%= @least_trips_date.strftime("%B, %d, %Y") %>
+            </p>
+              <div class="box">
+                <p class='title'> Total number of trips: <%= @date_trips_least %> </p>
+                  <% if @date_least_weather.nil? %>
+                    <p>No data for the weather conditions on this date</p>
+                  <% else %>
+                    <p class 'subtitle is-size-5'>Max Temperature: <%= @date_least_weather.max_temperature_f %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Temperature: <%= @date_least_weather.min_temperature_f %></p><br>
+                    <p class 'subtitle is-size-5'>Min Temperature: <%= @date_least_weather.mean_temperature_f %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Visibility: <%= @date_least_weather.mean_visibility_miles %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Wind Speed (mph): <%= @date_least_weather.mean_wind_speed_mph %></p><br>
+                    <p class 'subtitle is-size-5'>Precipitation (inches): <%= @date_least_weather.precipitation_inches %></p><br>
+                    <p class 'subtitle is-size-5'>Mean Humidity: <%= @date_least_weather.mean_humidity %></p><br>
+                  <% end %>
+              </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="panel">
+            <p class="panel-heading">
+              Most popular bike: Bike #<%= @most_ridden_bike %>, with <%= @most_bike_rides %> number of rides
+            </p>
+            <div class="panel-block">
+              <figure class="image is-16x9">
+                <img src="https://www.selbst.de/assets/sites/default/files/pictures/step_by_step_bauanleitung/Laufrad-selber-bauen01.jpg">
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="panel">
+            <p class="panel-heading">
+              Least ridden bike is Bike #<%= @least_ridden_bike %>, with <%= @least_bike_rides %> number of rides
+            </p>
+            <div class="panel-block">
+              <figure class="image is-16x9">
+                <img src="http://www.miniplayhouse.com/wp-content/uploads/2017/07/akira_bike_01.jpg">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
