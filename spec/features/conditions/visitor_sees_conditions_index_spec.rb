@@ -8,7 +8,7 @@ describe 'A visitor' do
 
       visit conditions_path
 
-      expect(page).to have_content(condition_1.date)
+      expect(page).to have_content(condition_1.date.strftime('%b %d %Y'))
       expect(page).to have_content(condition_1.max_temperature_f)
       expect(page).to have_content(condition_1.mean_temperature_f)
       expect(page).to have_content(condition_1.min_temperature_f)
@@ -18,7 +18,7 @@ describe 'A visitor' do
       expect(page).to have_content(condition_1.precipitation_inches)
       expect(page).to have_content(condition_1.zip_code)
 
-      expect(page).to have_content(condition_2.date)
+      expect(page).to have_content(condition_2.date.strftime('%b %d %Y'))
       expect(page).to have_content(condition_2.max_temperature_f)
       expect(page).to have_content(condition_2.mean_temperature_f)
       expect(page).to have_content(condition_2.min_temperature_f)
