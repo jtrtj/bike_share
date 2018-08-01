@@ -2,25 +2,30 @@
   <div class="columns is-variable is-3 is-multiline">
     <div class="column is-12"></div>
       <% @items.each do |item| %>
-        <div  class="column box is-2" id="item-<%= item.id %>">
-          <h1 class='title is-4'>
-            <%= link_to  item.title, item_path(item) %>
-          </h1>
-          <div class="image is-128x128">
-            <%= image_tag "#{item.image}" %>
-          </div>
-          <h1 class='subtitle'>
-            <%= item.description %>
-          </h1>
-          <h1 class='subtitle'>
-            <%= number_to_currency(item.price) %>
-          </h1>
-          <% if item.status != 'retired' %>
-            <%= button_to 'Add to Cart', carts_path(item_id: item.id), class: 'button is-info' %>
-          <% else %>
-          <a class="button" title="Disabled button" disabled>Accessory Retired</a>
-          <% end %>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-1by1">
+            <img class="item-image" src="<%= item.image %>">
+          </figure>
         </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4"><%= link_to  item.title, item_path(item) %></p>
+              <p class="subtitle is-6"><%= number_to_currency(item.price) %></p>
+              <p class="subtitle is-6"><%= item.description %></p>
+              <p>
+                <% if item.status != 'retired' %>
+                  <%= button_to 'Add to Cart', carts_path(item_id: item.id), class: 'button is-info' %>
+                <% else %>
+                  <a class="button" title="Disabled button" disabled>Accessory Retired</a>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+       </div>
       <% end %>
     </div>
   </div>
+</div>
