@@ -5,11 +5,6 @@
         <h1 class="title is-size-1 has-text-weight-bold">Stations</h1>
       </div>
     </div>
-    <div class="has-text-centered">
-      <div class="container">
-        <%= button_to "Create Station", new_admin_station_path, class: "button is-large is-inverted is-bordered is-success", method: :get %>
-      </div>
-    </div>
   </section>
   <br>
   <br>
@@ -18,12 +13,13 @@
       <%= will_paginate %>
     </div>
     <br>
-    <table class="table is-bordered is-striped ">
+    <table class="table is-bordered is-striped is-fullwidth">
       <thead>
         <th>Name</th>
         <th>Dock Count</th>
         <th>City</th>
         <th>Installation Date</th>
+        <th colspan="2" class='has-text-centered'><%= button_to "Create Station", new_admin_station_path, class: "button is-large is-inverted is-bordered is-success", method: :get, class: 'button is-info' %></th>
       </thead>
       <tbody>
         <% @stations.each do |station| %>

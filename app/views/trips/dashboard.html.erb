@@ -1,4 +1,4 @@
-
+<section class="container">
     <main class="column">
       <div class="level">
         <div class="level-left">
@@ -30,13 +30,13 @@
         </div>
         <div class="column is-one-fourth">
           <div class="box">
-            <div class="heading">Station with most trips originating :</div>
+            <div class="heading">Station with most trips originating:</div>
             <div class="title is-size-6"><%= link_to @station_with_most_rides_originating.name, station_path(@station_with_most_rides_originating) %></div>
           </div>
         </div>
         <div class="column is-one-fourth">
           <div class="box">
-            <div class="heading">Station with most trips ending :</div>
+            <div class="heading">Station with most trips ending:</div>
             <div class="title is-size-6"><%= link_to @station_with_most_rides_ending.name, station_path(@station_with_most_rides_ending) %></div>
           </div>
         </div>
@@ -103,7 +103,7 @@
                   <p class='title'> Subscription Type - </p>
                   <p class='subtitle is-size-3 has-text-centered'><%= trip.subscription_type %></p>
                   <p class='subtitle is-size-3 has-text-centered'> <%= trip.subscription_type_count %> total </p>
-                  <p class='subtitle is-size-3 has-text-centered'>Accounts for <%= ((trip.subscription_type_count.to_f / @trips.size.to_f) * 100).round(1) %>% of all rides</p>
+                  <p class='subtitle is-size-3 has-text-centered'>Accounts for <%= ((trip.subscription_type_count.to_f / @trips.size.to_f) * 100).round(1) %>% of all rides</p><br>
                 <% end %>
               </div>
           </div>
@@ -180,3 +180,4 @@
     </main>
   </div>
 </div>
+</section>
