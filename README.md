@@ -64,9 +64,3 @@ order will be displayed according to the status set by the admin user.
 * [Tristan Bambauer] (https://github.com/TristanB17)
 * [John Roemer] (https://github.com/jtrtj)
 * [Eliot Swank] (https://github.com/EMSwank)
-# bike_share
-# bike_share
-# bike_share
-# bike_share
-# bike_share
-# bike_share
