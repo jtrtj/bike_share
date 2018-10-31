@@ -60,7 +60,7 @@ order will be displayed according to the status set by the admin user.
 
 ##### BikeShare is running Rails version 5.1.6 and a PostgreSQL DataBase.
 ##### It was built by
-* [Claire Beauvais] (https://github.com/clairebvs)
-* [Tristan Bambauer] (https://github.com/TristanB17)
-* [John Roemer] (https://github.com/jtrtj)
-* [Eliot Swank] (https://github.com/EMSwank)
+* [Claire Beauvais](https://github.com/clairebvs)
+* [Tristan Bambauer](https://github.com/TristanB17)
+* [John Roemer](https://github.com/jtrtj)
+* [Eliot Swank](https://github.com/EMSwank)
