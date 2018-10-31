@@ -3,7 +3,7 @@
 
 The app is seeded with data from the public bike share system in San Francisco. Since the data used in this project was collected, Bay Area bike share has become [Ford GoBike](https://www.fordgobike.com/).
 
-Using [data] (https://www.kaggle.com/benhamner/sf-bay-area-bike-share#trip.csv) gathered about Trips, Weather Conditions and Stations, BikeShare makes complex queries to gather analysis such as:
+Using [data](https://www.kaggle.com/benhamner/sf-bay-area-bike-share#trip.csv) gathered about Trips, Weather Conditions and Stations, BikeShare makes complex queries to gather analysis such as:
 
 * What station did the most rides originate from and for that station where was the most common destination?
 * Or what is the average number of rides for days that have a max temperature in the 70s?
